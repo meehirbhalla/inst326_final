@@ -7,7 +7,7 @@ class HumanPlayer:
     Attributes:
         name(str): Name of current player 
     """
-    def __init__(self):
+    def __init__(self, name):
         """Function that will initialize the objects that were represented in
            the attributes.
            
@@ -17,7 +17,9 @@ class HumanPlayer:
         pass
     
     def __add__(self):
-        """Used to add the scores at the end of each round
+        """Used to add the scores at the end of each round. Total score per game
+        will be stored in a dictionary witha key being a game # and value being
+        the total score. 
         
         Args:
         
@@ -32,7 +34,7 @@ class HumanPlayer:
         """
         pass
     
-    def coordinates(self):
+    def coordinates(self, x, y):
         """The players chosen coordinates that the arrow is aimed and fired at
         
         Args:
@@ -47,7 +49,41 @@ class HumanPlayer:
         
         """
         pass 
-   
+    
+    def validate_shot(self):
+        """Validates shot on the board and distributes points based on
+        coordinates
+        
+        Args:
+        
+        """
+        pass
+    
+    def score(self):
+        """Score taken from coordinate shot landed on. Coordinate is determined 
+        based on relative position of shot to center and accounts wind
+        interference
+        
+        Args:
+        """
+        pass
+    
+    def playRound(self):
+        """Initiates one round of the game.
+        
+        Args:
+        
+        """
+        pass
+        
+    def winner(self):
+        """Game is over and determines the winner
+        
+        Args:
+        
+        """
+        pass
+        
     
         
 class ComputerPlayer(HumanPlayer):
@@ -57,7 +93,14 @@ class ComputerPlayer(HumanPlayer):
         HumanPlayer (_type_): _description_
     """
     
-    def __init__(self):
+    def __init__(self, name):
+        """Function that will initialize the objects that were represented in
+           the attributes.
+        """
         super().__init__()
+        
+    def randomize_Coordinates(self):
+        """Overides Human
+        """
 
 
