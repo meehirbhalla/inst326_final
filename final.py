@@ -82,6 +82,9 @@ def wind_strength():
 
 def validate_shot():
     """Determines distance from bullseye.
+    
+    Return:
+        affected coordinates distance from bullseye
     """
     pass
 
