@@ -66,7 +66,6 @@ class HumanPlayer:
     def turn(self):
         """Take turns between human and computer players.
         """         
-    #Add a class or method to take turns between player and computer
         
 class ComputerPlayer(HumanPlayer):
     """Represents a computer player 
@@ -116,8 +115,8 @@ class Game:
         """
         pass
     
-    def rounds(self):
-        """The rounds which are played in the game 
+    def play_rounds(self):
+        """The rounds which are played in the game.
         """
         pass 
 
