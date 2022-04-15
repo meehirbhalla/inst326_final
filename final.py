@@ -47,7 +47,7 @@ class HumanPlayer():
         pass
           
     def turn(self):
-        """Take turns between human and computer players.
+        """Prompts player for desired coordinates.
         """         
         
 class ComputerPlayer(HumanPlayer):
