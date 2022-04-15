@@ -80,7 +80,6 @@ def play_round():
 def wind_strength():
     """Determines the strength and direction at which the wind is occuring
     """
-    #Think about where your storing wind strength 
     pass
 
 def validate_shot():
