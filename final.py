@@ -31,17 +31,16 @@ class HumanPlayer():
         pass
     
     def coordinates(self):
-        """The players inputted coordinates which the arrow is aimed and fired at.
+        """The players inputted coordinates which the arrow is aimed and fired at. Coordinate is determined 
+        based on relative position of shot to center and accounts wind interference.
         
         Return:
-            selected coordinates. 
+            coordinate affected by wind
         """
         pass
     
     def score(self):
-        """Score taken from coordinate shot landed on. Coordinate is determined 
-        based on relative position of shot to center and accounts wind
-        interference. Score calls validate_shot to distribute points based on
+        """Score taken from coordinate shot landed on. Score calls validate_shot to distribute points based on
         where shot landed. 
         """
         pass
