@@ -63,8 +63,8 @@ class ComputerPlayer(HumanPlayer):
         """
         super().__init__()
         
-    def randomize_Coordinates(self, x, y ):
-        """Overides Human and generates random coordinates to shoot.
+    def turn(self):
+        """Overides human and generates random coordinates within bounds to shoot.
         """         
         
 def round():
