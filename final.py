@@ -86,8 +86,8 @@ def winner():
     """Game is over and determines the winner.   
     """
     
-def play_round():
-    """Plays one round of the archery game.
+def main():
+    """Plays one round of the archery game and calls necessary methods/functions.
     """
     pass 
 
