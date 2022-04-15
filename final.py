@@ -46,8 +46,9 @@ class HumanPlayer():
         pass
           
     def turn(self):
-        """Prompts player for desired coordinates.
-        """         
+        """Prompts player for desired coordinates and makes sure inputted coordinates are valid.
+        """
+        pass         
         
 class ComputerPlayer(HumanPlayer):
     """Represents a computer player 
@@ -72,12 +73,12 @@ def round():
     pass
 
 def wind_strength():
-    """Determines the strength and direction at which the wind is occuring
+    """Determines the strength and direction at which the wind is occuring.
     """
     pass
 
 def validate_shot():
-    """Validates a shot on the board.
+    """Determines distance from bullseye.
     """
     pass
 
