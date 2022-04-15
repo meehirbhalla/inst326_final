@@ -24,11 +24,17 @@ class HumanPlayer():
         
         Args:
             other (int): round score to be added to current score
+        
+        Return:
+            dictionary of scores
         """
         pass
     
     def coordinates(self):
-        """The players chosen coordinates that the arrow is aimed and fired at    
+        """The players inputted coordinates which the arrow is aimed and fired at.
+        
+        Return:
+            selected coordinates. 
         """
         pass
     
@@ -37,8 +43,6 @@ class HumanPlayer():
         based on relative position of shot to center and accounts wind
         interference. Score calls validate_shot to distribute points based on
         where shot landed. 
-        
-        Args:
         """
         pass
           
