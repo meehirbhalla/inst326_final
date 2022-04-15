@@ -1,6 +1,10 @@
 import argparse
 import sys
 
+class Player:
+    """
+    
+    """    
 class HumanPlayer:
     """Represents a Human player
     
@@ -64,7 +68,7 @@ class HumanPlayer:
         """
         pass
           
-    def take_turns(self):
+    def turn(self):
         """Take turns between human and computer players.
         """         
     #Add a class or method to take turns between player and computer
@@ -73,7 +77,7 @@ class ComputerPlayer(HumanPlayer):
     """Represents a computer player 
 
     Args:
-        HumanPlayer (_type_): _description_
+        HumanPlayer (HumanPlayer): _description_
     """
     
     def __init__(self, name):
@@ -85,6 +89,10 @@ class ComputerPlayer(HumanPlayer):
     def randomize_Coordinates(self, x, y ):
         """Overides Human
         """
+    
+    def turn(self):
+        """Take turns between human and computer players.
+        """         
 
 
 def winner():
