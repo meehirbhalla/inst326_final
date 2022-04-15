@@ -63,11 +63,6 @@ class ComputerPlayer(HumanPlayer):
         """Overides Human and generates random coordinates to shoot.
         """         
         
-   
-def winner():
-    """Game is over and determines the winner.   
-    """
-    
 def round():
     """Initiates one round of the game.
     """
@@ -83,7 +78,11 @@ def validate_shot():
     """
     pass
 
-def play_game():
+def winner():
+    """Game is over and determines the winner.   
+    """
+    
+def play_round():
     """Plays one round of the archery game.
     """
     pass 
