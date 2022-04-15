@@ -7,6 +7,9 @@ class HumanPlayer:
     Attributes:
         name(str): Name of current player 
     """
+    #Include score as a attribute for player
+    #Think about the methods that belong in HumanPlayer and those that belong 
+    #outside it. Validate_Shot for example. 
     def __init__(self, name):
         """Function that will initialize the objects that were represented in
            the attributes.
@@ -16,9 +19,9 @@ class HumanPlayer:
         """
         pass
     
-    def __add__(self):
+    def __iadd__(self): #Add additional argument for iadd, fix description
         """Used to add the scores at the end of each round. Total score per game
-        will be stored in a dictionary witha key being a game # and value being
+        will be stored in a dictionary with a key being a game # and value being
         the total score. 
         
         Args:
@@ -26,15 +29,16 @@ class HumanPlayer:
         """
         pass
 
-    def windStrength(self):
+    def wind_strength(self):
         """Determines the strength and direction at which the wind is occuring
         
         Args:
         
         """
+        #Think about where your storing wind strength 
         pass
     
-    def coordinates(self, x, y):
+    def coordinates(self):
         """The players chosen coordinates that the arrow is aimed and fired at
         
         Args:
@@ -48,11 +52,11 @@ class HumanPlayer:
         Args:
         
         """
+
         pass 
     
     def validate_shot(self):
-        """Validates shot on the board and distributes points based on
-        coordinates
+        """Validates shot on the board
         
         Args:
         
@@ -62,29 +66,15 @@ class HumanPlayer:
     def score(self):
         """Score taken from coordinate shot landed on. Coordinate is determined 
         based on relative position of shot to center and accounts wind
-        interference
+        interference. Score calls validate_shot to distribute points based on
+        where shot landed. 
         
         Args:
         """
         pass
-    
-    def playRound(self):
-        """Initiates one round of the game.
-        
-        Args:
-        
-        """
-        pass
-        
-    def winner(self):
-        """Game is over and determines the winner
-        
-        Args:
-        
-        """
-        pass
-        
-    
+           
+    #Add a class or method to take turns between player and computer
+    #
         
 class ComputerPlayer(HumanPlayer):
     """Represents a computer player 
@@ -99,8 +89,23 @@ class ComputerPlayer(HumanPlayer):
         """
         super().__init__()
         
-    def randomize_Coordinates(self):
+    def randomize_Coordinates(self, x, y ):
         """Overides Human
         """
 
 
+def winner():
+    """Game is over and determines the winner. 
+        
+    Args:
+        
+    """
+    
+def play_round(self):
+    """Initiates one round of the game. Calls round method to initiate a 
+    players turn. 
+        
+    Args:
+        
+    """
+    pass
