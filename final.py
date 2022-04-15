@@ -137,6 +137,3 @@ def parse_args(arglist):
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-
-    #test khaliil
-    #test #2
