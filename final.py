@@ -1,10 +1,6 @@
 import argparse
 import sys
-
-class Player:
-    """
-    
-    """    
+      
 class HumanPlayer:
     """Represents a Human player
     
@@ -93,7 +89,6 @@ class ComputerPlayer(HumanPlayer):
     def turn(self):
         """Take turns between human and computer players.
         """         
-
 
 def winner():
     """Game is over and determines the winner.   
