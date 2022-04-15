@@ -74,6 +74,9 @@ def round():
 
 def wind_strength():
     """Determines the strength and direction at which the wind is occuring.
+    
+    Return:
+        wind strength which consists of strength and direction
     """
     pass
 
