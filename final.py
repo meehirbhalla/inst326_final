@@ -17,6 +17,7 @@ def __init__(self, name):
 def turn(self):
         """Take turns between human and computer players.
         """
+        
 class HumanPlayer:
     """Represents a Human player
     
