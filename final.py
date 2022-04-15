@@ -1,6 +1,22 @@
 import argparse
 import sys
-      
+
+class Player:
+    """
+    
+    """   
+def __init__(self, name):
+    """Function that will initialize the objects that were represented in
+        the attributes.
+        
+    Args:
+        name (str): user inputted name
+    """
+    pass
+
+def turn(self):
+        """Take turns between human and computer players.
+        """
 class HumanPlayer:
     """Represents a Human player
     
@@ -37,23 +53,6 @@ class HumanPlayer:
         """
         pass
     
-    def rounds(self):
-        """The rounds which are played in the game 
-        
-        Args:
-        
-        """
-
-        pass 
-    
-    def validate_shot(self):
-        """Validates shot on the board
-        
-        Args:
-        
-        """
-        pass
-    
     def score(self):
         """Score taken from coordinate shot landed on. Coordinate is determined 
         based on relative position of shot to center and accounts wind
@@ -83,28 +82,44 @@ class ComputerPlayer(HumanPlayer):
         super().__init__()
         
     def randomize_Coordinates(self, x, y ):
-        """Overides Human
+        """Overides Human and generates random coordinates to shoot.
         """
     
     def turn(self):
         """Take turns between human and computer players.
         """         
 
-def winner():
-    """Game is over and determines the winner.   
-    """
+class Game:
+    """An arrow game.
     
-def play_round():
-    """Initiates one round of the game. Calls round method to initiate a 
-    players turn.  
-    """
-    pass
+    Attributes:
+        players (list of Player): the players.
+    """    
+    def winner(self):
+        """Game is over and determines the winner.   
+        """
+        
+    def play_round(self):
+        """Initiates one round of the game. Calls round method to initiate a 
+        players turn.  
+        """
+        pass
 
-def wind_strength():
-    """Determines the strength and direction at which the wind is occuring
-    """
-    #Think about where your storing wind strength 
-    pass
+    def wind_strength(self):
+        """Determines the strength and direction at which the wind is occuring
+        """
+        #Think about where your storing wind strength 
+        pass
+    
+    def validate_shot(self):
+        """Validates shot on the board  
+        """
+        pass
+    
+    def rounds(self):
+        """The rounds which are played in the game 
+        """
+        pass 
 
 def parse_args(arglist):
     """Parse command line arguments.
