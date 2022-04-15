@@ -90,37 +90,32 @@ class ComputerPlayer(Player):
         """Take turns between human and computer players.
         """         
 
-class Game:
-    """An arrow game.
+   
+def winner():
+    """Game is over and determines the winner.   
+    """
     
-    Attributes:
-        players (list of Player): the players.
-    """    
-    def winner(self):
-        """Game is over and determines the winner.   
-        """
-        
-    def play_round(self):
-        """Initiates one round of the game. Calls round method to initiate a 
-        players turn.  
-        """
-        pass
+def play_round():
+    """Initiates one round of the game. Calls round method to initiate a 
+    players turn.  
+    """
+    pass
 
-    def wind_strength(self):
-        """Determines the strength and direction at which the wind is occuring
-        """
-        #Think about where your storing wind strength 
-        pass
-    
-    def validate_shot(self):
-        """Validates shot on the board  
-        """
-        pass
-    
-    def play_rounds(self):
-        """The rounds which are played in the game.
-        """
-        pass 
+def wind_strength():
+    """Determines the strength and direction at which the wind is occuring
+    """
+    #Think about where your storing wind strength 
+    pass
+
+def validate_shot():
+    """Validates a shot on the board.
+    """
+    pass
+
+def play_rounds():
+    """The rounds which are played in the game.
+    """
+    pass 
 
 def parse_args(arglist):
     """Parse command line arguments.
