@@ -104,6 +104,18 @@ def wind_strength():
     pass
 
 def parse_args(arglist):
+    """Parse command line arguments.
+    
+    Expect two mandatory arguments:
+        - str: name of player
+        - str: desired position on target
+    
+    Args:
+        arglist (list of str): arguments from command line
+    
+    Returns:
+        namespace: parsed arguments
+    """ 
     pass
 
 if __name__ == "__main__":
