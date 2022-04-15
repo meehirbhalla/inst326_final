@@ -1,33 +1,13 @@
 import argparse
 import sys
 
-class Player:
-    """Class for archery player.
-    
-    Attributes:
-        name (str): player name
-    """   
-def __init__(self, name):
-    """Function that will initialize the objects that were represented in
-        the attributes.
-        
-    Args:
-        name (str): user inputted name
-    """
-    self.name = name
-
-def turn(self):
-        """Take turns between human and computer players.
-        """
-        
-class HumanPlayer(Player):
+class HumanPlayer():
     """Represents a Human player
     
     Attributes:
         name(str): Name of current player 
         score (int): score of player
     """
-    #Include score as a attribute for player
     def __init__(self, name):
         """Function that will initialize the objects that were represented in
            the attributes.
@@ -69,7 +49,7 @@ class HumanPlayer(Player):
         """Take turns between human and computer players.
         """         
         
-class ComputerPlayer(Player):
+class ComputerPlayer(HumanPlayer):
     """Represents a computer player 
 
     Attributes:
@@ -84,12 +64,8 @@ class ComputerPlayer(Player):
         
     def randomize_Coordinates(self, x, y ):
         """Overides Human and generates random coordinates to shoot.
-        """
-    
-    def turn(self):
-        """Take turns between human and computer players.
         """         
-
+        
    
 def winner():
     """Game is over and determines the winner.   
