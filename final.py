@@ -88,8 +88,11 @@ def validate_shot():
     """
     pass
 
-def winner():
-    """Game is over and determines the winner.   
+def game_over():
+    """Game is over and determines the winner. 
+    
+    Return:
+        boolean: false if game is not over true if game is over
     """
     
 def main():
