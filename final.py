@@ -28,10 +28,7 @@ class HumanPlayer():
         pass
     
     def coordinates(self):
-        """The players chosen coordinates that the arrow is aimed and fired at
-        
-        Args:
-        
+        """The players chosen coordinates that the arrow is aimed and fired at    
         """
         pass
     
@@ -71,9 +68,8 @@ def winner():
     """Game is over and determines the winner.   
     """
     
-def play_round():
-    """Initiates one round of the game. Calls round method to initiate a 
-    players turn.  
+def round():
+    """Initiates one round of the game.
     """
     pass
 
@@ -87,8 +83,8 @@ def validate_shot():
     """
     pass
 
-def play_rounds():
-    """The rounds which are played in the game.
+def play_game():
+    """Plays one round of the archery game.
     """
     pass 
 
