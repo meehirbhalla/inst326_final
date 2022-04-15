@@ -1,5 +1,5 @@
 import argparse
-
+import sys
 
 class HumanPlayer:
     """Represents a Human player
@@ -15,27 +15,18 @@ class HumanPlayer:
            the attributes.
            
         Args:
-        
+            name (str): user inputted name
         """
         pass
     
-    def __iadd__(self): #Add additional argument for iadd, fix description
+    def __iadd__(self, other):
         """Used to add the scores at the end of each round. Total score per game
         will be stored in a dictionary with a key being a game # and value being
         the total score. 
         
         Args:
-        
+            other (int): round score to be added to current score
         """
-        pass
-
-    def wind_strength(self):
-        """Determines the strength and direction at which the wind is occuring
-        
-        Args:
-        
-        """
-        #Think about where your storing wind strength 
         pass
     
     def coordinates(self):
@@ -72,9 +63,11 @@ class HumanPlayer:
         Args:
         """
         pass
-           
+          
+    def take_turns(self):
+        """Take turns between human and computer players.
+        """         
     #Add a class or method to take turns between player and computer
-    #
         
 class ComputerPlayer(HumanPlayer):
     """Represents a computer player 
@@ -95,17 +88,23 @@ class ComputerPlayer(HumanPlayer):
 
 
 def winner():
-    """Game is over and determines the winner. 
-        
-    Args:
-        
+    """Game is over and determines the winner.   
     """
     
-def play_round(self):
+def play_round():
     """Initiates one round of the game. Calls round method to initiate a 
-    players turn. 
-        
-    Args:
-        
+    players turn.  
     """
     pass
+
+def wind_strength():
+    """Determines the strength and direction at which the wind is occuring
+    """
+    #Think about where your storing wind strength 
+    pass
+
+def parse_args(arglist):
+    pass
+
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
