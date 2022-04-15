@@ -2,8 +2,10 @@ import argparse
 import sys
 
 class Player:
-    """
+    """Class for archery player.
     
+    Attributes:
+        name (str): player name
     """   
 def __init__(self, name):
     """Function that will initialize the objects that were represented in
@@ -12,21 +14,20 @@ def __init__(self, name):
     Args:
         name (str): user inputted name
     """
-    pass
+    self.name = name
 
 def turn(self):
         """Take turns between human and computer players.
         """
         
-class HumanPlayer:
+class HumanPlayer(Player):
     """Represents a Human player
     
     Attributes:
         name(str): Name of current player 
+        score (int): score of player
     """
     #Include score as a attribute for player
-    #Think about the methods that belong in HumanPlayer and those that belong 
-    #outside it. Validate_Shot for example. 
     def __init__(self, name):
         """Function that will initialize the objects that were represented in
            the attributes.
@@ -68,14 +69,14 @@ class HumanPlayer:
         """Take turns between human and computer players.
         """         
         
-class ComputerPlayer(HumanPlayer):
+class ComputerPlayer(Player):
     """Represents a computer player 
 
-    Args:
-        HumanPlayer (HumanPlayer): _description_
+    Attributes:
+        cname (str): name for computer player
     """
     
-    def __init__(self, name):
+    def __init__(self, cname):
         """Function that will initialize the objects that were represented in
            the attributes.
         """
