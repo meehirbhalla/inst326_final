@@ -31,8 +31,9 @@ class HumanPlayer():
         pass
     
     def coordinates(self):
-        """The players inputted coordinates which the arrow is aimed and fired at. Coordinate is determined 
-        based on relative position of shot to center and accounts wind interference.
+        """The players inputted coordinates which the arrow is aimed and fired 
+        at. Coordinate is determined based on relative position of shot to 
+        center and accounts wind interference.
         
         Return:
             coordinate affected by wind
@@ -40,12 +41,15 @@ class HumanPlayer():
         pass
     
     def score(self):
-        """Score taken from coordinate shot landed on. Score calls validate_shot to distribute points based on
-        where shot landed. 
+        #Scores in each round will be stored in a dictionary with the rounds 
+        #being the keys and the scores as the values.
+        """Score taken from coordinate shot landed on. Score calls validate_shot
+        to distribute points based on where shot landed. 
         """
         
     def turn(self):
-        """Prompts player for desired coordinates and makes sure inputted coordinates are valid.
+        """Prompts player for desired coordinates and makes sure inputted 
+        coordinates are valid.
         """
         pass         
         
@@ -63,7 +67,8 @@ class ComputerPlayer(HumanPlayer):
         super().__init__()
         
     def turn(self):
-        """Overides human and generates random coordinates within bounds to shoot.
+        """Overides human and generates random coordinates within bounds 
+        to shoot.
         """         
         
 def round():
@@ -96,7 +101,8 @@ def game_over():
     # use f-strings to display the name and total score over all 3 rounds
     
 def main():
-    """Plays one round of the archery game and calls necessary methods/functions.
+    """Plays one round of the archery game and calls necessary 
+    methods/functions.
     """
     pass 
 
