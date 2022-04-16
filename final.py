@@ -56,7 +56,8 @@ class HumanPlayer():
         """Prompts player for desired coordinates and makes sure inputted 
         coordinates are valid.
         """
-        pass         
+        # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
+        # c3 would unpack to x = c and y = 3
         
 class ComputerPlayer(HumanPlayer):
     #Inherits all the methods from the human class
