@@ -56,6 +56,7 @@ class HumanPlayer():
         pass         
         
 class ComputerPlayer(HumanPlayer):
+    #Inherits all the methods from the human class
     """Represents a computer player 
 
     Attributes:
@@ -63,12 +64,14 @@ class ComputerPlayer(HumanPlayer):
     """
     
     def __init__(self, cname):
+        #Uses super to call the init method from the human class.
         """Function that will initialize the objects that were represented in
            the attributes.
         """
         super().__init__()
         
     def turn(self):
+        #Overrides the turn method in the human class
         """Overides human and generates random coordinates within bounds 
         to shoot.
         """         
