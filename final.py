@@ -67,17 +67,17 @@ class ComputerPlayer(HumanPlayer):
     """
     
     def __init__(self, cname):
-        #Uses super to call the init method from the human class.
         """Function that will initialize the objects that were represented in
            the attributes.
         """
+        # uses super to call the init method from the human class
         super().__init__()
         
     def turn(self):
-        #Overrides the turn method in the human class
         """Overides human and generates random coordinates within bounds 
         to shoot.
         """         
+        # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
         
 def round():
     """Initiates one round of the game.
