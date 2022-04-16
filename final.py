@@ -67,7 +67,8 @@ class ComputerPlayer(HumanPlayer):
         cname (str): name for computer player
     """
     
-    def __init__(self, cname):
+    # optional parameter for computer name 
+    def __init__(self, cname = 'Computer'):
         """Function that will initialize the objects that were represented in
            the attributes.
         """
