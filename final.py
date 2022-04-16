@@ -18,6 +18,7 @@ class HumanPlayer():
         """
         pass
     
+    # iadd magic method to add to dictionary of scores per round
     def __iadd__(self, other):
         """Used to add the scores at the end of each round. Total score per game
         will be stored in a dictionary with a key being a game # and value being
