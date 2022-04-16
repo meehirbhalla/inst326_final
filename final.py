@@ -101,7 +101,8 @@ def validate_shot():
     Return:
         affected coordinates distance from bullseye
     """
-    pass
+    # determine distance using the x and y coordinates of the affected coordinate
+    # in relation to the bullseye (c3)
 
 def game_over():
     """Game is over and determines the winner. 
