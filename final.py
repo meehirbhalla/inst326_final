@@ -105,6 +105,7 @@ def game_over():
         boolean: false if game is not over true if game is over
     """
     # use f-strings to display the name and total score over all 3 rounds
+    # use custom list sorting to list best performing rounds by score
     
 def main():
     """Plays one round of the archery game and calls necessary 
