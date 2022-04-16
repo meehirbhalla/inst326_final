@@ -46,6 +46,7 @@ class HumanPlayer():
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
         """
+        # determine score using conditional expressions, if _ unit from the bullseye then assign _ points
         
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
