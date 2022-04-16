@@ -1,119 +1,122 @@
 import argparse
-import sys
 
-class HumanPlayer():
+class HumanPlayer:
     """Represents a Human player
     
     Attributes:
         name(str): Name of current player 
-        score (int): score of player
+        score(integer): tracks the players total score 
     """
+    #Include score as a attribute for player
+    #Think about the methods that belong in HumanPlayer and those that belong 
+    #outside it. Validate_Shot for example. 
     def __init__(self, name):
+        self.name = name
         """Function that will initialize the objects that were represented in
            the attributes.
            
         Args:
-            name (str): user inputted name
+        
         """
         pass
     
-    def __iadd__(self, other):
+    def __iadd__(self): #Add additional argument for iadd, fix description
         """Used to add the scores at the end of each round. Total score per game
         will be stored in a dictionary with a key being a game # and value being
         the total score. 
         
         Args:
-            other (int): round score to be added to current score
         
-        Return:
-            dictionary of scores
         """
+        pass
+
+    def wind_strength(self):
+        """Determines the strength and direction at which the wind is occuring
+        
+        Args:
+        
+        """
+        #Think about where your storing wind strength 
         pass
     
     def coordinates(self):
-        """The players inputted coordinates which the arrow is aimed and fired at. Coordinate is determined 
-        based on relative position of shot to center and accounts wind interference.
+        """The players chosen coordinates that the arrow is aimed and fired at
         
-        Return:
-            coordinate affected by wind
+        Args:
+        
         """
         pass
     
+    def rounds(self):
+        """The rounds which are played in the game 
+        
+        Args:
+        
+        """
+
+        pass 
+    
     def score(self):
-        """Score taken from coordinate shot landed on. Score calls validate_shot to distribute points based on
+        """Score taken from coordinate shot landed on. Coordinate is determined 
+        based on relative position of shot to center and accounts wind
+        interference. Score calls validate_shot to distribute points based on
         where shot landed. 
+        
+        Args:
         """
         pass
-          
-    def turn(self):
-        """Prompts player for desired coordinates and makes sure inputted coordinates are valid.
+    
+    def take_turn():
+        """Initiates a turn for a player(human or computer)
+    
         """
-        pass         
-        
+           
+    #Add a class or method to take turns between player and computer
+    #
+#------------------------------------------------------------------------------#        
+
 class ComputerPlayer(HumanPlayer):
     """Represents a computer player 
 
-    Attributes:
-        cname (str): name for computer player
+    Args:
+        HumanPlayer (_type_): _description_
     """
     
-    def __init__(self, cname):
+    def __init__(self, name):
         """Function that will initialize the objects that were represented in
            the attributes.
         """
         super().__init__()
         
-    def turn(self):
-        """Overides human and generates random coordinates within bounds to shoot.
-        """         
+    def randomize_Coordinates(self, x, y ):
+        """Overides Human
+        """
         
-def round():
-    """Initiates one round of the game.
-    """
-    pass
-
-def wind_strength():
-    """Determines the strength and direction at which the wind is occuring.
+#------------------------------------------------------------------------------#
     
-    Return:
-        wind strength which consists of strength and direction
-    """
-    pass
-
-def validate_shot():
-    """Determines distance from bullseye.
     
-    Return:
-        affected coordinates distance from bullseye
-    """
-    pass
-
-def game_over():
-    """Game is over and determines the winner. 
-    
-    Return:
-        boolean: false if game is not over true if game is over
-    """
-    
-def main():
-    """Plays one round of the archery game and calls necessary methods/functions.
-    """
-    pass 
-
-def parse_args(arglist):
-    """Parse command line arguments.
-    
-    Expect two mandatory arguments:
-        - str: name of player
-        - str: desired position on target
-    
+def validate_shot(self):
+    """Validates shot on the board
+        
     Args:
-        arglist (list of str): arguments from command line
     
-    Returns:
-        namespace: parsed arguments
-    """ 
+    """
     pass
 
-if __name__ == "__main__":
-    args = parse_args(sys.argv[1:])
+    
+def play_round(self):
+    """Initiates one round of the game. Calls round method to initiate a 
+    players turn. 
+        
+    Args:
+        
+    """
+    pass
+
+def winner():
+    """Game is over and determines the winner. 
+        
+    Args:
+        
+    """
+    
