@@ -41,11 +41,11 @@ class HumanPlayer():
         pass
     
     def score(self):
-        #Scores in each round will be stored in a dictionary with the rounds 
-        #being the keys and the scores as the values.
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
         """
+        # scores in each round will be stored in a dictionary with the rounds 
+        # being the keys and the scores as the values.
         # determine score using conditional expressions, if _ unit from the bullseye then assign _ points
         
     def turn(self):
