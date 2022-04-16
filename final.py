@@ -18,6 +18,11 @@ class HumanPlayer():
         """
         pass
     
+    def round(self):
+        """Initiates one round of the game.
+        """
+        pass
+
     # __iadd__ magic method to add to dictionary of scores per round
     def __iadd__(self, other):
         """Used to add the scores at the end of each round. Total score per game
@@ -43,7 +48,7 @@ class HumanPlayer():
             coordinate affected by wind
         """
         pass
-    
+
     def score(self):
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
@@ -59,6 +64,7 @@ class HumanPlayer():
         """
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
         # e.g., c3 would unpack to x = c and y = 3
+  
         
 class ComputerPlayer(HumanPlayer):
     # inherits all the methods from the human class
@@ -81,11 +87,7 @@ class ComputerPlayer(HumanPlayer):
         to shoot.
         """         
         # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
-        
-def round():
-    """Initiates one round of the game.
-    """
-    pass
+
 
 def wind_strength():
     """Determines the strength and direction at which the wind is occuring.
