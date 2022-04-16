@@ -8,7 +8,7 @@ class HumanPlayer():
         name(str): Name of current player 
         score (int): score of player
     """
-    # Utilizes optional parameters of name
+    # utilizes optional parameters of name
     def __init__(self, name = 'Player 1'):
         """Function that will initialize the objects that were represented in
            the attributes.
@@ -30,8 +30,8 @@ class HumanPlayer():
         Return:
             dictionary of scores
         """
-         #Uses the __iadd__ magic method to calculate the score and add to
-         #dictionary of scores each round
+         # uses the __iadd__ magic method to calculate the score and add to
+         # dictionary of scores each round
         pass
     
     def coordinates(self):
@@ -61,7 +61,7 @@ class HumanPlayer():
         # e.g., c3 would unpack to x = c and y = 3
         
 class ComputerPlayer(HumanPlayer):
-    #Inherits all the methods from the human class
+    # inherits all the methods from the human class
     """Represents a computer player 
 
     Attributes:
