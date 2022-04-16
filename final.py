@@ -58,7 +58,7 @@ class HumanPlayer():
         coordinates are valid.
         """
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
-        # c3 would unpack to x = c and y = 3
+        # e.g., c3 would unpack to x = c and y = 3
         
 class ComputerPlayer(HumanPlayer):
     #Inherits all the methods from the human class
