@@ -78,7 +78,7 @@ def wind_strength():
     Return:
         wind strength which consists of strength and direction
     """
-    pass
+    # randomly generate wind direction of 1-2 units in NESW direction
 
 def validate_shot():
     """Determines distance from bullseye.
