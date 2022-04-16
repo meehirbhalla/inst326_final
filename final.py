@@ -8,7 +8,7 @@ class HumanPlayer():
         name(str): Name of current player 
         score (int): score of player
     """
-    # optional parameter of name
+    # Utilizes optional parameters of name
     def __init__(self, name = 'Player 1'):
         """Function that will initialize the objects that were represented in
            the attributes.
@@ -30,7 +30,8 @@ class HumanPlayer():
         Return:
             dictionary of scores
         """
-         #Uses the __iadd__ magic method to calculate to calculate the score
+         #Uses the __iadd__ magic method to calculate the score and add to
+         #dictionary of scores each round
         pass
     
     def coordinates(self):
@@ -49,7 +50,8 @@ class HumanPlayer():
         """
         # scores in each round will be stored in a dictionary with the rounds 
         # being the keys and the scores as the values.
-        # determine score using conditional expressions, if _ unit from the bullseye then assign _ points
+        # determine score using conditional expressions, 
+        # if _ unit from the bullseye then assign _ points
         
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
@@ -116,7 +118,8 @@ def main():
     """
     pass 
 
-# argument parser in order to use command line arguments (player name and desired target)
+# argument parser in order to use command line arguments 
+# (player name and desired target) 
 def parse_args(arglist):
     """Parse command line arguments.
     
