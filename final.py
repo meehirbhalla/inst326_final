@@ -103,8 +103,14 @@ def validate_shot():
     Return:
         affected coordinates distance from bullseye
     """
+<<<<<<< HEAD
     # determine distance using the x and y coordinates of the affected coordinate
     # in relation to the bullseye (c3)
+=======
+    #Calls the wind_strength() method to calculate location of shot from the 
+    #center
+    pass
+>>>>>>> ef618f7 (Adding comments and calls)
 
 def game_over():
     """Game is over and determines the winner. 
@@ -119,6 +125,8 @@ def main():
     """Plays one round of the archery game and calls necessary 
     methods/functions.
     """
+    # Will make a call to coordinates(), turn(), validate_shot(), score(), and 
+    # game_over()
     pass 
 
 # argument parser in order to use command line arguments 
