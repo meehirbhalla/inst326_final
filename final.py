@@ -111,6 +111,7 @@ def main():
     """
     pass 
 
+# argument parser in order to use command line arguments (player name and desired target)
 def parse_args(arglist):
     """Parse command line arguments.
     
