@@ -8,7 +8,8 @@ class HumanPlayer():
         name(str): Name of current player 
         score (int): score of player
     """
-    def __init__(self, name):
+    # optional parameter of name
+    def __init__(self, name = 'Player 1'):
         """Function that will initialize the objects that were represented in
            the attributes.
            
