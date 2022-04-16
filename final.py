@@ -43,8 +43,7 @@ class HumanPlayer():
         """Score taken from coordinate shot landed on. Score calls validate_shot to distribute points based on
         where shot landed. 
         """
-        pass
-          
+        
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted coordinates are valid.
         """
