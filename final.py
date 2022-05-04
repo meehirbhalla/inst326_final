@@ -31,15 +31,15 @@ class HumanPlayer():
 
     def score(self):
         """Score taken from coordinate shot landed on. Score calls validate_shot
-        to distribute points based on where shot landed. 
+        then distributes points based on where shot landed. 
         """
         # scores in each round will be stored in a dictionary with the rounds 
         # being the keys and the scores as the values.
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
-    # __iadd__ magic method to add to dictionary of scores per round
-    def __iadd__(self, other):#BRICE
+    # __add__ magic method to add to dictionary of scores per round
+    def __add__(self, other):#BRICE
         """Used to add the scores at the end of each round. Total score in each
         round will be stored in a dictionary with a key being a round # and 
         value being the score. 
@@ -48,14 +48,16 @@ class HumanPlayer():
             other (int): round score to be added to current score
         
         Return:
-            dictionary of scores
+            dictionary of scores ( I think this should just return total score)
         """
         #score_per_game = dict()
         
+        self.score = self.score + other.score
+        return self.score
         
          # uses the __iadd__ magic method to calculate the score and add to
          # dictionary of scores each round
-        pass
+        
     
     def coordinates(self): #MEHIR
         """The players inputted coordinates which the arrow is aimed and fired 
