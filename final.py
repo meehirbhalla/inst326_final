@@ -1,35 +1,48 @@
 import argparse
 import sys
 Rounds = 0
+score_per_game = dict()
 class HumanPlayer():
     """Represents a Human player
     
     Attributes:
-        name(str): Name of current player 
         score (int): score of player
+        name(str): Name of current player 
     """
     # utilizes optional parameters of name
-    def __init__(self, name = 'Player 1', score): #KHALIIL
+    def __init__(self, score, name = 'Player 1'): #KHALIIL
         """Function that will initialize the objects that were represented in
            the attributes.
            
         Args:
+            score(integer): score of player
             name (str): user inputted name
         """
-        self.name = name
         self.score = score
+        self.name = name
+       
     
     def round(self):
         """Initiates one round of the game.
         """
-        # think you might have to use input statements here
+        # think you might have to use input statements here or this method
+        # will call the coordinates method where the user inputs coordinates 
         pass
 
+    def score(self):
+        """Score taken from coordinate shot landed on. Score calls validate_shot
+        to distribute points based on where shot landed. 
+        """
+        # scores in each round will be stored in a dictionary with the rounds 
+        # being the keys and the scores as the values.
+        # determine score using conditional expressions, 
+        # if _ unit from the bullseye then assign _ points
+        
     # __iadd__ magic method to add to dictionary of scores per round
     def __iadd__(self, other):#BRICE
-        """Used to add the scores at the end of each round. Total score per game
-        will be stored in a dictionary with a key being a game # and value being
-        the total score. 
+        """Used to add the scores at the end of each round. Total score in each
+        round will be stored in a dictionary with a key being a round # and 
+        value being the score. 
         
         Args:
             other (int): round score to be added to current score
@@ -37,7 +50,8 @@ class HumanPlayer():
         Return:
             dictionary of scores
         """
-        score_per_game = dict()
+        #score_per_game = dict()
+        
         
          # uses the __iadd__ magic method to calculate the score and add to
          # dictionary of scores each round
@@ -52,15 +66,6 @@ class HumanPlayer():
             coordinate affected by wind
         """
         pass
-
-    def score(self):
-        """Score taken from coordinate shot landed on. Score calls validate_shot
-        to distribute points based on where shot landed. 
-        """
-        # scores in each round will be stored in a dictionary with the rounds 
-        # being the keys and the scores as the values.
-        # determine score using conditional expressions, 
-        # if _ unit from the bullseye then assign _ points
         
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
