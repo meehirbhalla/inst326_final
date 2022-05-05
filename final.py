@@ -20,9 +20,6 @@ class HumanPlayer():
         
         self.name = name
         self.score = score
-
-        
-
     
     def round(self):
         """Initiates one round of the game.
@@ -37,8 +34,6 @@ class HumanPlayer():
             # there should be a total of three rounds, and the first player to win 2 rounds win, but as long as the game is not over keep initiating
             # announce whose turn it is
             # display wind strength
-            
-
 
     # __iadd__ magic method to add to dictionary of scores per round
     def __iadd__(self, other):
