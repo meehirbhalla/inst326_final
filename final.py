@@ -99,7 +99,7 @@ class HumanPlayer():
             
         x,y = self.player_input
         
-        # set x and y from player input
+        # unpack x and y from player input
         self.x_coordinate = x
         self.y_coordinate = y
         
