@@ -29,7 +29,8 @@ class HumanPlayer():
         rounds = 0 
         player = 0
 
-        #in the begining of each round anounce the current round, and display 
+        #in the begining of each round anounce the current round, and display display score
+        # announce whose turn it is 
 
         while game_over() == False:
             # keep initiating rounds of the game
