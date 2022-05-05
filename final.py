@@ -91,8 +91,28 @@ class HumanPlayer():
         while(player_input not in valid_input):
             player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
             
-        x,y = player_input
+        x,y = self.player_input
         print (f'Coordinate selected: ,{x},{y}')
+    
+    def wind_strength(self, player_input):
+        """Determines the strength and direction at which the wind is occuring.
+        
+        Return:
+            wind strength which consists of strength and direction
+        """
+        # randomize direction
+        direction = ['N', 'S', 'E', 'W']
+        print(random.choice(direction))
+        
+        # randomize wind strength
+        strength = [1, 2]
+        
+        x, y = self.player_input
+        if x in player_input
+    
+    
+    
+    # randomly generate wind direction of 1-2 units in NESW direction
 
   
 class ComputerPlayer(HumanPlayer):
@@ -117,23 +137,6 @@ class ComputerPlayer(HumanPlayer):
         """         
         # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
 
-
-def wind_strength():
-    """Determines the strength and direction at which the wind is occuring.
-    
-    Return:
-        wind strength which consists of strength and direction
-    """
-    # randomize direction
-    direction = ['N', 'S', 'E', 'W']
-    print(random.choice(direction))
-    
-    # randomize wind strength
-    strength = [1, 2]
-    
-    
-    
-    # randomly generate wind direction of 1-2 units in NESW direction
 
 def validate_shot():
     """Determines distance from bullseye.
