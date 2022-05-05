@@ -114,7 +114,6 @@ class HumanPlayer():
         """
         # randomize direction
         direction = ['N', 'S', 'E', 'W']
-        print(random.choice(direction))
     
         # for A as x coordinate
         if (self.x_coordinate == 'A') and (self.y_coordinate == 1):
