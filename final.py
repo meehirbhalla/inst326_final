@@ -108,7 +108,15 @@ class HumanPlayer():
         strength = [1, 2]
         
         x, y = self.player_input
-        if x in player_input
+        # if (x in self.player_input == 'A') and (y in self.player_input <= 2):
+        
+        if (y in self.player_input == 1):
+            print(random.choice(direction[0, 2, 3]))
+            
+        if (y in self.player_input == 5):
+            print(random.choice(direction[1, 2, 3]))
+        
+            
     
     
     
