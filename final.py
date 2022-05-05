@@ -100,7 +100,8 @@ class HumanPlayer():
         
         # ensure valid input
         while(player_input.lower() not in valid_input):
-            player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
+            player_input = input (f'''{self.name}, Please enter a coordinate in the format (xy),
+                                  where x is a letter from A-E and y is a number from 1-5: ''')
             
             player_input = player_input.lower()
             x,y = player_input
