@@ -92,27 +92,28 @@ class HumanPlayer():
         # e.g., c3 would unpack to x = c and y = 3
         
         # prompt player 
-        valid_input = ['A1', 'A2', 'A3', 'A4', 'A5',
-                       'B1', 'B2', 'B3', 'B4', 'B5',
-                       'C1', 'C2', 'C3', 'C4', 'C5',
-                       'D1', 'D2', 'D3', 'D4', 'D5',
-                       'E1', 'E2', 'E3', 'E4', 'E5']
+        valid_input = ['a1', 'a2', 'a3', 'a4', 'a5',
+                       'b1', 'b2', 'b3', 'b4', 'b5',
+                       'c1', 'c2', 'c3', 'c4', 'c5',
+                       'd1', 'd2', 'd3', 'd4', 'd5',
+                       'e1', 'e2', 'e3', 'e4', 'e5']
         
         # ensure valid input
-        while(player_input not in valid_input):
+        while(player_input.lower() not in valid_input):
             player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
             
-        x,y = player_input
+            player_input = player_input.lower()
+            x,y = player_input
         
         # unpack x and y from player input
         # sets the selected_coordinate as an int
-        if x in player_input == 'A':
+        if x in player_input == 'a':
             self.selected_coordinate = 1 + y
-        if x in player_input == 'B':
+        if x in player_input == 'b':
             self.selected_coordinate = 2 + y
-        if x in player_input == 'C':
+        if x in player_input == 'c':
             self.selected_coordinate = 3 + y
-        if x in player_input == 'D':
+        if x in player_input == 'd':
             self.selected_coordinate = 4 + y
         else:
             self.selected_coordinate = 5 + y
