@@ -114,7 +114,7 @@ class HumanPlayer():
             self.selected_coordinate = 3 + y
         if x in player_input == 'D':
             self.selected_coordinate = 4 + y
-        if x in player_input == 'E':
+        else:
             self.selected_coordinate = 5 + y
         
         print (f'Coordinate selected: ,{player_input}')
