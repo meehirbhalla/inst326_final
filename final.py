@@ -81,9 +81,17 @@ class HumanPlayer():
         # e.g., c3 would unpack to x = c and y = 3
         
         # prompt player 
-        player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
-        x,y = player_input
+        valid_input = ['A1', 'A2', 'A3', 'A4', 'A5',
+                       'B1', 'B2', 'B3', 'B4', 'B5',
+                       'C1', 'C2', 'C3', 'C4', 'C5',
+                       'D1', 'D2', 'D3', 'D4', 'D5',
+                       'E1', 'E2', 'E3', 'E4', 'E5']
         
+        # ensure valid input
+        while(player_input not in valid_input):
+            player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
+            
+        x,y = player_input
         print (f'Coordinate selected: ,{x},{y}')
 
   
