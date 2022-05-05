@@ -155,6 +155,23 @@ class HumanPlayer():
             self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
         else:
             self.random_direction = (random.choice(direction[1::3]))
+    
+    def validate_shot(final_coordinate):
+        """Determines distance from bullseye.
+
+        Return:
+            affected coordinates distance from bullseye
+        """
+        bullseye = 33
+        x,y = self.final_coordinate
+        
+        # determine distance using the x and y coordinate values of the final affected coordinate
+        if (x == 2) or (x == 3) or (x == 4) and (y == 2) or (y == 3) or (y == 4):
+            self.distance_to_bullseye = 1
+        else:
+            self.distance_to_bullseye = 2
+        
+    
   
 class ComputerPlayer(HumanPlayer):
     # inherits all the methods from the human class
@@ -178,17 +195,6 @@ class ComputerPlayer(HumanPlayer):
         """         
         # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
 
-
-def validate_shot():
-    """Determines distance from bullseye.
-    
-    Return:
-        affected coordinates distance from bullseye
-    """
-    bullseye = 'C3'
-    
-    if 
-    # determine distance using the x and y coordinates of the affected coordinate
 
 def game_over():
     """Game is over and determines the winner. 
