@@ -51,7 +51,7 @@ class HumanPlayer():
          # dictionary of scores each round
         pass
     
-    def coordinates(self, random_direction, player_input):
+    def coordinates(self, x_coordinate, y_coordinate):
         """The players inputted coordinates which the arrow is aimed and fired 
         at. Coordinate is determined based on relative position of shot to 
         center and accounts wind interference.
@@ -63,11 +63,15 @@ class HumanPlayer():
         wind_strength(self.player_input)
         
         wind = self.random_direction
-        x,y = self.player_input
         
         if wind == 'N':
-            y in self.player_input
-            self.affected_shot = self.player_input
+            self.y_coordinate = self.y_coordinate + 1
+        if wind == 'S':
+            self.y_coordinate = self.y_coordinate - 1
+        if wind == 'E':
+            self.x_coordinate = self.x_coordinate + 1
+        if wind == 'W':
+            self.x_coordinate = self.x_coordinate + 1
     
     def score(self):
         """Score taken from coordinate shot landed on. Score calls validate_shot
