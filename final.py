@@ -163,6 +163,8 @@ class HumanPlayer():
             affected coordinates distance from bullseye
         """
         bullseye = 33
+        
+        # unpack final coordinate
         x,y = self.final_coordinate
         
         # determine distance using the x and y coordinate values of the final affected coordinate
@@ -171,7 +173,6 @@ class HumanPlayer():
         else:
             self.distance_to_bullseye = 2
         
-    
   
 class ComputerPlayer(HumanPlayer):
     # inherits all the methods from the human class
