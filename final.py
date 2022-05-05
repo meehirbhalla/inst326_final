@@ -2,35 +2,6 @@ import argparse
 import sys
 import random
 
-# valid positions on the target
-POTENTIAL_SPOTS = {
-    'A1': 11, 
-    'A2': 12,
-    'A3': 13,
-    'A4': 14,
-    'A5': 15,
-    'B1': 21,
-    'B2': 22,
-    'B3': 23,
-    'B4': 24,
-    'B5': 25,
-    'C1': 31,
-    'C2': 32,
-    'C3': 33,
-    'C4': 34,
-    'C5': 35,
-    'D1': 41,
-    'D2': 42,
-    'D3': 43,
-    'D4': 44,
-    'D5': 45,
-    'E1': 51,
-    'E2': 52,
-    'E3': 53,
-    'E4': 54,
-    'E5': 55
-}
-
 class HumanPlayer():
     """Represents a Human player
     
@@ -80,7 +51,7 @@ class HumanPlayer():
          # dictionary of scores each round
         pass
     
-    def coordinates(self, x_coordinate, y_coordinate):
+    def coordinates(self, selected_coordinate):
         """The players inputted coordinates which the arrow is aimed and fired 
         at. Coordinate is determined based on relative position of shot to 
         center and accounts wind interference.
@@ -89,18 +60,20 @@ class HumanPlayer():
             coordinate affected by wind
         """
         
-        wind_strength(self.player_input)
+        wind_strength(selected_coordinate)
         
         wind = self.random_direction
+        x, y = self.selected_coordinate
         
         if wind == 'N':
-            self.y_coordinate = self.y_coordinate + 1
+            self.final_coordinate = self.selected_coordinate + 1
         if wind == 'S':
-            self.y_coordinate = self.y_coordinate - 1
+            self.final_coordinate = self.selected_coordinate - 1
         if wind == 'E':
-            self.x_coordinate = self.x_coordinate + 1
+            self.final_coordinate = self.selected_coordinate + 10
         if wind == 'W':
-            self.x_coordinate = self.x_coordinate + 1
+            self.final_coordinate = self.selected_coordinate - 10
+            
     
     def score(self):
         """Score taken from coordinate shot landed on. Score calls validate_shot
