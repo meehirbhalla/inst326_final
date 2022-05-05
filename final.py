@@ -98,13 +98,15 @@ class HumanPlayer():
             self.player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
             
         x,y = self.player_input
+        
+        # set x and y from player input
         self.x_coordinate = x
         self.y_coordinate = y
         
         print (f'Coordinate selected: ,{self.x_coordinate},{self.y_coordinate}')
         
     
-    def wind_strength(self, player_input):
+    def wind_strength(self, x_coordinate, y_coordinate):
         """Determines the direction at which the wind is occuring.
         
         Return:
