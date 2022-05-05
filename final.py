@@ -103,7 +103,10 @@ class HumanPlayer():
             player_input = input (f'''{self.name}, Please enter a coordinate in the format (xy),
                                   where x is a letter from A-E and y is a number from 1-5: ''')
             
+            # make user input lower case
             player_input = player_input.lower()
+            
+            # unpack inputted coordinates
             x,y = player_input
         
         # unpack x and y from player input
