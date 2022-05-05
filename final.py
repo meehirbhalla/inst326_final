@@ -147,7 +147,7 @@ class HumanPlayer():
         print (f'Coordinate selected: ,{player_input}')
         
     
-    def wind_strength(self, x_coordinate, y_coordinate):
+    def wind_strength(self, selected_coordinate):
         """Determines the direction at which the wind is occuring.
         
         Return:
@@ -157,33 +157,31 @@ class HumanPlayer():
         direction = ['N', 'S', 'E', 'W']
     
         # for A as x coordinate
-        if (self.x_coordinate == 'A') and (self.y_coordinate == 1):
+        if (self.selected_coordinate == 11):
             self.random_direction = (random.choice(direction[0::2]))
-        if (self.x_coordinate == 'A') and (self.y_coordinate == 2) or (self.y_coordinate == 3) or (self.y_coordinate == 4):
-            self.random_direction = (random.choice(direction[0:2]))
-        if (self.x_coordinate == 'A') and (self.y_coordinate == 5):
+        elif (self.selected_coordinate == 12) or (self.selected_coordinate == 13) or (self.selected_coordinate == 14):
+            self.random_direction = (random.choice(direction[0::2]))
+        else:
             self.random_direction = (random.choice(direction[1::2]))
             
         # for B, C, and D as x coordinate
-        if (self.x_coordinate == 'B') or (self.x_coordinate == 'C') or (self.x_coordinate == 'D') and (self.y_coordinate == 2) or (self.y_coordinate == 3) or (self.y_coordinate 4):
-            self.random_direction = (random.choice(direction))
-        if (self.x_coordinate == 'B') or (self.x_coordinate == 'C') or (self.x_coordinate == 'D') and (self.y_coordinate == 1):
+        if (self.selected_coordinate == 21) or (self.selected_coordinate == 31) or (self.selected_coordinate == 41):
             dont_include = 1
             self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        if (self.x_coordinate == 'B') or (self.x_coordinate == 'C') or (self.x_coordinate == 'D') and (self.y_coordinate == 5):
+        elif (self.selected_coordinate == 25) or (self.selected_coordinate == 35) or (self.selected_coordinate == 45):
             dont_include = 0
             self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        
+        else:
+            self.random_direction = (random.choice(direction))
+            
         # for E as x coordinate
-        if (self.x_coordinate == 'E') and (self.y_coordinate == 1):
+        if (self.selected_coordinate == 51):
             self.random_direction = (random.choice(direction[0::3]))
-        if (self.x_coordinate == 'E') and (self.y_coordinate == 2) or (self.y_coordinate == 3) or (self.y_coordinate == 4):
+        elif (self.selected_coordinate == 52) or (self.selected_coordinate == 53) or (self.selected_coordinate == 54):
             dont_include = 2
             self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        if (self.x_coordinate == 'E') and (self.y_coordinate == 5):
+        else:
             self.random_direction = (random.choice(direction[1::3]))
-        
-
   
 class ComputerPlayer(HumanPlayer):
     # inherits all the methods from the human class
