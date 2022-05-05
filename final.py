@@ -51,7 +51,7 @@ class HumanPlayer():
          # dictionary of scores each round
         pass
     
-    def coordinates(self):
+    def coordinates(self, random_direction, player_input):
         """The players inputted coordinates which the arrow is aimed and fired 
         at. Coordinate is determined based on relative position of shot to 
         center and accounts wind interference.
@@ -59,10 +59,14 @@ class HumanPlayer():
         Return:
             coordinate affected by wind
         """
-        player_input = input (f'{self.name}, Please enter a coordinate: ')
         
-        return player_input
-
+        wind_strength(self.player_input)
+        
+        wind = self.random_direction
+        
+        if wind == 'N':
+            self.affected_shot = self.player_input
+    
     def score(self):
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
@@ -88,11 +92,12 @@ class HumanPlayer():
                        'E1', 'E2', 'E3', 'E4', 'E5']
         
         # ensure valid input
-        while(player_input not in valid_input):
-            player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
+        while(self.player_input not in valid_input):
+            self.player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
             
         x,y = self.player_input
         print (f'Coordinate selected: ,{x},{y}')
+        
     
     def wind_strength(self, player_input):
         """Determines the direction at which the wind is occuring.
@@ -108,30 +113,30 @@ class HumanPlayer():
     
         # for A as x coordinate
         if (x in self.player_input == 'A') and (y in self.player_input == 1):
-            random_direction = (random.choice(direction[0::2]))
+            self.random_direction = (random.choice(direction[0::2]))
         if (x in self.player_input == 'A') and (y in self.player_input == 2) or (y in self.player_input == 3) or (y in self.player_input == 4):
-            random_direction = (random.choice(direction[0:2]))
+            self.random_direction = (random.choice(direction[0:2]))
         if (x in self.player_input == 'A') and (y in self.player_input == 5):
-            random_direction = (random.choice(direction[1::2]))
+            self.random_direction = (random.choice(direction[1::2]))
             
         # for B, C, and D as x coordinate
         if (x in self.player_input == 'B') or (x in self.player_input == 'C') or (x in self.player_input == 'D') and (y in self.player_input == 2) or (y in self.player_input == 3) or (y in self.player_input == 4):
-            random_direction = (random.choice(direction))
+            self.random_direction = (random.choice(direction))
         if (x in self.player_input == 'B') or (x in self.player_input == 'C') or (x in self.player_input == 'D') and (y in self.player_input == 1):
             dont_include = 1
-            random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
+            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
         if (x in self.player_input == 'B') or (x in self.player_input == 'C') or (x in self.player_input == 'D') and (y in self.player_input == 5):
             dont_include = 0
-            random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
+            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
         
         # for E as x coordinate
         if (x in self.player_input == 'E') and (y in self.player_input == 1):
-            random_direction = (random.choice(direction[0::3]))
+            self.random_direction = (random.choice(direction[0::3]))
         if (x in self.player_input == 'E') and (y in self.player_input == 2) or (y in self.player_input == 3) or (y in self.player_input == 4):
             dont_include = 2
-            random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
+            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
         if (x in self.player_input == 'E') and (y in self.player_input == 5):
-            random_direction = (random.choice(direction[1::3]))
+            self.random_direction = (random.choice(direction[1::3]))
         
 
   
@@ -164,9 +169,10 @@ def validate_shot():
     Return:
         affected coordinates distance from bullseye
     """
+    bullseye = 'C3'
     
+    if 
     # determine distance using the x and y coordinates of the affected coordinate
-    # in relation to the bullseye (c3)
 
 def game_over():
     """Game is over and determines the winner. 
