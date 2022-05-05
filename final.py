@@ -60,10 +60,10 @@ class HumanPlayer():
             coordinate affected by wind
         """
         
+        # call the wind strength method to caluculate the random wind direction
         wind = wind_strength(selected_coordinate)
         
-        x, y = self.selected_coordinate
-        
+        # the final coordinate depends on the random wind direction
         if wind == 'N':
             self.final_coordinate = self.selected_coordinate + 1
         if wind == 'S':
@@ -105,8 +105,9 @@ class HumanPlayer():
         x,y = player_input
         
         # unpack x and y from player input
+        # sets the selected_coordinate as an int
         if x in player_input == 'A':
-            self.elected_coordinate = 1 + y
+            self.selected_coordinate = 1 + y
         if x in player_input == 'B':
             self.selected_coordinate = 2 + y
         if x in player_input == 'C':
@@ -125,10 +126,10 @@ class HumanPlayer():
         Return:
             wind strength which consists of direction
         """
-        # randomize direction
+        # list of potential directions
         direction = ['N', 'S', 'E', 'W']
     
-        # for A as x coordinate
+        # if A is the X coordinate the player selected
         if (self.selected_coordinate == 11):
             self.random_direction = (random.choice(direction[0::2]))
         elif (self.selected_coordinate == 12) or (self.selected_coordinate == 13) or (self.selected_coordinate == 14):
@@ -136,7 +137,7 @@ class HumanPlayer():
         else:
             self.random_direction = (random.choice(direction[1::2]))
             
-        # for B, C, and D as x coordinate
+        # if B, C, or D is the X coordinate the player selected
         if (self.selected_coordinate == 21) or (self.selected_coordinate == 31) or (self.selected_coordinate == 41):
             dont_include = 1
             self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
@@ -146,7 +147,7 @@ class HumanPlayer():
         else:
             self.random_direction = (random.choice(direction))
             
-        # for E as x coordinate
+        # if E is the X coordinate the player selected
         if (self.selected_coordinate == 51):
             self.random_direction = (random.choice(direction[0::3]))
         elif (self.selected_coordinate == 52) or (self.selected_coordinate == 53) or (self.selected_coordinate == 54):
