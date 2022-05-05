@@ -110,11 +110,11 @@ class HumanPlayer():
         # sets the selected_coordinate as an int
         if x in player_input == 'a':
             self.selected_coordinate = 1 + y
-        if x in player_input == 'b':
+        elif x in player_input == 'b':
             self.selected_coordinate = 2 + y
-        if x in player_input == 'c':
+        elif x in player_input == 'c':
             self.selected_coordinate = 3 + y
-        if x in player_input == 'd':
+        elif x in player_input == 'd':
             self.selected_coordinate = 4 + y
         else:
             self.selected_coordinate = 5 + y
