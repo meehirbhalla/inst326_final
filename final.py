@@ -23,15 +23,17 @@ class HumanPlayer():
         
 
     
-    def round(self, rounds):
+    def round(self):
         """Initiates one round of the game.
         """
-        self.rounds = rounds
-        self.name = player
-        rounds = 0
+        rounds = 0 
         player = 0
 
-        while game_over() != 3:
+        #in the begining of each round anounce the current round, and display 
+
+        while game_over() == False:
+            # keep initiating rounds of the game
+            # there should be a total of three rounds, and the first player to win 2 rounds win, but as long as the game is not over keep initiating 
             
 
 
