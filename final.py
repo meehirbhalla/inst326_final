@@ -95,17 +95,14 @@ class HumanPlayer():
         print (f'Coordinate selected: ,{x},{y}')
     
     def wind_strength(self, player_input):
-        """Determines the strength and direction at which the wind is occuring.
+        """Determines the direction at which the wind is occuring.
         
         Return:
-            wind strength which consists of strength and direction
+            wind strength which consists of direction
         """
         # randomize direction
         direction = ['N', 'S', 'E', 'W']
         print(random.choice(direction))
-        
-        # randomize wind strength
-        strength = 1
         
         x, y = self.player_input
     
