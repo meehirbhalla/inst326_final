@@ -76,13 +76,17 @@ class HumanPlayer():
         """Prompts player for desired coordinates and makes sure inputted 
         coordinates are valid.
         """
-        # prompt player 
-        player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
-        
+    
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
         # e.g., c3 would unpack to x = c and y = 3
-  
         
+        # prompt player 
+        player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
+        x,y = player_input
+        
+        print (f'Coordinate selected: ,{x},{y}')
+
+  
 class ComputerPlayer(HumanPlayer):
     # inherits all the methods from the human class
     """Represents a computer player 
