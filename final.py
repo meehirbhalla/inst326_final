@@ -63,8 +63,10 @@ class HumanPlayer():
         wind_strength(self.player_input)
         
         wind = self.random_direction
+        x,y = self.player_input
         
         if wind == 'N':
+            y in self.player_input
             self.affected_shot = self.player_input
     
     def score(self):
@@ -96,7 +98,10 @@ class HumanPlayer():
             self.player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
             
         x,y = self.player_input
-        print (f'Coordinate selected: ,{x},{y}')
+        self.x_coordinate = x
+        self.y_coordinate = y
+        
+        print (f'Coordinate selected: ,{self.x_coordinate},{self.y_coordinate}')
         
     
     def wind_strength(self, player_input):
@@ -108,34 +113,32 @@ class HumanPlayer():
         # randomize direction
         direction = ['N', 'S', 'E', 'W']
         print(random.choice(direction))
-        
-        x, y = self.player_input
     
         # for A as x coordinate
-        if (x in self.player_input == 'A') and (y in self.player_input == 1):
+        if (self.x_coordinate == 'A') and (self.y_coordinate == 1):
             self.random_direction = (random.choice(direction[0::2]))
-        if (x in self.player_input == 'A') and (y in self.player_input == 2) or (y in self.player_input == 3) or (y in self.player_input == 4):
+        if (self.x_coordinate == 'A') and (self.y_coordinate == 2) or (self.y_coordinate == 3) or (self.y_coordinate == 4):
             self.random_direction = (random.choice(direction[0:2]))
-        if (x in self.player_input == 'A') and (y in self.player_input == 5):
+        if (self.x_coordinate == 'A') and (self.y_coordinate == 5):
             self.random_direction = (random.choice(direction[1::2]))
             
         # for B, C, and D as x coordinate
-        if (x in self.player_input == 'B') or (x in self.player_input == 'C') or (x in self.player_input == 'D') and (y in self.player_input == 2) or (y in self.player_input == 3) or (y in self.player_input == 4):
+        if (self.x_coordinate == 'B') or (self.x_coordinate == 'C') or (self.x_coordinate == 'D') and (self.y_coordinate == 2) or (self.y_coordinate == 3) or (self.y_coordinate 4):
             self.random_direction = (random.choice(direction))
-        if (x in self.player_input == 'B') or (x in self.player_input == 'C') or (x in self.player_input == 'D') and (y in self.player_input == 1):
+        if (self.x_coordinate == 'B') or (self.x_coordinate == 'C') or (self.x_coordinate == 'D') and (self.y_coordinate == 1):
             dont_include = 1
             self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        if (x in self.player_input == 'B') or (x in self.player_input == 'C') or (x in self.player_input == 'D') and (y in self.player_input == 5):
+        if (self.x_coordinate == 'B') or (self.x_coordinate == 'C') or (self.x_coordinate == 'D') and (self.y_coordinate == 5):
             dont_include = 0
             self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
         
         # for E as x coordinate
-        if (x in self.player_input == 'E') and (y in self.player_input == 1):
+        if (self.x_coordinate == 'E') and (self.y_coordinate == 1):
             self.random_direction = (random.choice(direction[0::3]))
-        if (x in self.player_input == 'E') and (y in self.player_input == 2) or (y in self.player_input == 3) or (y in self.player_input == 4):
+        if (self.x_coordinate == 'E') and (self.y_coordinate == 2) or (self.y_coordinate == 3) or (self.y_coordinate == 4):
             dont_include = 2
             self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        if (x in self.player_input == 'E') and (y in self.player_input == 5):
+        if (self.x_coordinate == 'E') and (self.y_coordinate == 5):
             self.random_direction = (random.choice(direction[1::3]))
         
 
