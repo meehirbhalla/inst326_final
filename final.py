@@ -4,31 +4,31 @@ import random
 
 # valid positions on the target
 POTENTIAL_SPOTS = {
-    'A1': 1, 
-    'A2': 2,
-    'A3': 3,
-    'A4': 4,
-    'A5': 5,
-    'B1': 6,
-    'B2': 7,
-    'B3': 8,
-    'B4': 9,
-    'B5': 10,
-    'C1': 11,
-    'C2': 12,
-    'C3': 13,
-    'C4': 14,
-    'C5': 15,
-    'D1': 16,
-    'D2': 17,
-    'D3': 18,
-    'D4': 19,
-    'D5': 20,
-    'E1': 21,
-    'E2': 22,
-    'E3': 23,
-    'E4': 24,
-    'E5': 25
+    'A1': 11, 
+    'A2': 12,
+    'A3': 13,
+    'A4': 14,
+    'A5': 15,
+    'B1': 21,
+    'B2': 22,
+    'B3': 23,
+    'B4': 24,
+    'B5': 25,
+    'C1': 31,
+    'C2': 32,
+    'C3': 33,
+    'C4': 34,
+    'C5': 35,
+    'D1': 41,
+    'D2': 42,
+    'D3': 43,
+    'D4': 44,
+    'D5': 45,
+    'E1': 51,
+    'E2': 52,
+    'E3': 53,
+    'E4': 54,
+    'E5': 55
 }
 
 class HumanPlayer():
@@ -127,16 +127,24 @@ class HumanPlayer():
                        'E1', 'E2', 'E3', 'E4', 'E5']
         
         # ensure valid input
-        while(self.player_input not in valid_input):
-            self.player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
+        while(player_input not in valid_input):
+            player_input = input (f'{self.name}, Please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-5: ')
             
-        x,y = self.player_input
+        x,y = player_input
         
         # unpack x and y from player input
-        self.x_coordinate = x
-        self.y_coordinate = y
+        if x in player_input == 'A':
+            self.elected_coordinate = 1 + y
+        if x in player_input == 'B':
+            self.selected_coordinate = 2 + y
+        if x in player_input == 'C':
+            self.selected_coordinate = 3 + y
+        if x in player_input == 'D':
+            self.selected_coordinate = 4 + y
+        if x in player_input == 'E':
+            self.selected_coordinate = 5 + y
         
-        print (f'Coordinate selected: ,{self.x_coordinate},{self.y_coordinate}')
+        print (f'Coordinate selected: ,{player_input}')
         
     
     def wind_strength(self, x_coordinate, y_coordinate):
