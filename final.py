@@ -1,7 +1,7 @@
 import argparse
 import sys
-Rounds = 0
-score_per_game = dict()
+Round = 0
+score_per_round = dict()
 class HumanPlayer():
     """Represents a Human player
     
@@ -25,7 +25,7 @@ class HumanPlayer():
     def round(self):
         """Initiates one round of the game.
         """
-        # think you might have to use input statements here or this method
+        # think you m  ight have to use input statements here or this method
         # will call the coordinates method where the user inputs coordinates 
         pass
 
@@ -38,8 +38,8 @@ class HumanPlayer():
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
-    # __add__ magic method to add to dictionary of scores per round
-    def __add__(self, other):#BRICE
+    # __iadd__ magic method to add to dictionary of scores per round
+    def __iadd__(self, other):#BRICE
         """Used to add the scores at the end of each round. Total score in each
         round will be stored in a dictionary with a key being a round # and 
         value being the score. 
@@ -48,12 +48,15 @@ class HumanPlayer():
             other (int): round score to be added to current score
         
         Return:
-            dictionary of scores ( I think this should just return total score)
+            Dictionary with total score accumulated per round
         """
         #score_per_game = dict()
         
-        self.score = self.score + other.score
-        return self.score
+        self.score += other.score
+        score_per_round[Round] = self.score
+        Round += 1
+        
+        return score_per_round
         
          # uses the __iadd__ magic method to calculate the score and add to
          # dictionary of scores each round
