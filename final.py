@@ -112,6 +112,15 @@ class HumanPlayer():
         
         if (y in self.player_input == 1):
             print(random.choice(direction[0, 2, 3]))
+            
+        if (x in self.player_input == 'A') and (y in self.player_input == 1):
+            random_direction = (random.choice(direction[0::2]))
+        if (x in self.player_input == 'A') and (y in self.player_input == 2) or (y in self.player_input == 3) or (y in self.player_input == 4):
+            random_direction = (random.choice(direction[0:2]))
+        if (x in self.player_input == 'A') and (y in self.player_input == 5):
+            random_direction = (random.choice(direction[1::2]))
+            
+            
         
 
   
