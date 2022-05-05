@@ -1,5 +1,6 @@
 import argparse
 import sys
+import random
 
 class HumanPlayer():
     """Represents a Human player
@@ -63,7 +64,9 @@ class HumanPlayer():
         Return:
             coordinate affected by wind
         """
-        pass
+        player_input = input (f'{self.name}, Please enter a coordinate: ')
+        
+        return player_input
 
     def score(self):
         """Score taken from coordinate shot landed on. Score calls validate_shot
@@ -111,6 +114,7 @@ def wind_strength():
     Return:
         wind strength which consists of strength and direction
     """
+    
     # randomly generate wind direction of 1-2 units in NESW direction
 
 def validate_shot():
@@ -119,6 +123,7 @@ def validate_shot():
     Return:
         affected coordinates distance from bullseye
     """
+    
     # determine distance using the x and y coordinates of the affected coordinate
     # in relation to the bullseye (c3)
 
