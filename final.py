@@ -109,15 +109,15 @@ class HumanPlayer():
         # unpack x and y from player input
         # sets the selected_coordinate as an int
         if x in player_input == 'a':
-            self.selected_coordinate = 1 + y
+            self.selected_coordinate = int(str('1') + str(y))
         elif x in player_input == 'b':
-            self.selected_coordinate = 2 + y
+            self.selected_coordinate = int(str('2') + str(y))
         elif x in player_input == 'c':
-            self.selected_coordinate = 3 + y
+            self.selected_coordinate = int(str('3') + str(y))
         elif x in player_input == 'd':
-            self.selected_coordinate = 4 + y
+            self.selected_coordinate = int(str('4') + str(y))
         else:
-            self.selected_coordinate = 5 + y
+            self.selected_coordinate = int(str('5') + str(y))
         
         print (f'Coordinate selected: ,{player_input}')
         
