@@ -60,9 +60,8 @@ class HumanPlayer():
             coordinate affected by wind
         """
         
-        wind_strength(selected_coordinate)
+        wind = wind_strength(selected_coordinate)
         
-        wind = self.random_direction
         x, y = self.selected_coordinate
         
         if wind == 'N':
