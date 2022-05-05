@@ -76,6 +76,8 @@ class HumanPlayer():
         """Prompts player for desired coordinates and makes sure inputted 
         coordinates are valid.
         """
+        # prompt player 
+        player_input = input (f'{self.name}, Please enter a coordinate: ')
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
         # e.g., c3 would unpack to x = c and y = 3
   
@@ -109,6 +111,14 @@ def wind_strength():
     Return:
         wind strength which consists of strength and direction
     """
+    # randomize direction
+    direction = ['N', 'S', 'E', 'W']
+    print(random.choice(direction))
+    
+    # randomize wind strength
+    strength = [1, 2]
+    
+    
     
     # randomly generate wind direction of 1-2 units in NESW direction
 
