@@ -112,40 +112,41 @@ class HumanPlayer():
         
         if (y in self.player_input == 1):
             print(random.choice(direction[0, 2, 3]))
-            
-        if (x in self.player_input == 'A') and (y in self.player_input == 5):
+         
+        condition1 = []
+        condition2 = 
+        # if the y coord is extreme top    
+        if (y in self.player_input == 5):
             random_direction = (random.choice(direction[1, 2]))
             random_strength = (random.choice(strength))
             
-        if (x in self.player_input == 'B') and (y in self.player_input == 5):
+        if (y in self.player_input == 5):
             random_direction = (random.choice(direction[1, 2, 3]))
             
-        if (x in self.player_input == 'C') and (y in self.player_input == 5):
+        if (y in self.player_input == 5):
             random_direction = (random.choice(direction[1, 2, 3])) 
             
-        if (x in self.player_input == 'D') and (y in self.player_input == 5):
+        if (y in self.player_input == 5):
             random_direction = (random.choice(direction[1, 2, 3]))
         
-        if (x in self.player_input == 'E') and (y in self.player_input == 5):
+        if (y in self.player_input == 5):
             random_direction = (random.choice(direction[1, 2]))
-
-        if (x in self.player_input == 'A') and (y in self.player_input == 1):
+            
+        # if the y coord is extreme bottom    
+        if (y in self.player_input == 1):
             random_direction = (random.choice(direction[0, 2, 3]))
         
-        if (x in self.player_input == 'B') and (y in self.player_input == 1):
+        if (y in self.player_input == 1):
             random_direction = (random.choice(direction[0, 2, 3]))
         
-        if (x in self.player_input == 'C') and (y in self.player_input == 1):
+        if (y in self.player_input == 1):
             random_direction = (random.choice(direction[0, 2, 3]))
         
-        if (x in self.player_input == 'D') and (y in self.player_input == 1):
+        if (y in self.player_input == 1):
             random_direction = (random.choice(direction[0, 2, 3]))
             
-        if (x in self.player_input == 'E') and (y in self.player_input == 1):
+        if (y in self.player_input == 1):
             random_direction = (random.choice(direction[0, 2]))
-            
-            
-        
             
     
     
