@@ -9,19 +9,31 @@ class HumanPlayer():
         score (int): score of player
     """
     # utilizes optional parameters of name
-    def __init__(self, name = 'Player 1'):
+    def __init__(self, name = 'Player 1', score):
         """Function that will initialize the objects that were represented in
            the attributes.
            
         Args:
             name (str): user inputted name
         """
-        pass
+        
+        self.name = name
+        self.score = score
+
+        
+
     
-    def round(self):
+    def round(self, rounds):
         """Initiates one round of the game.
         """
-        pass
+        self.rounds = rounds
+        self.name = player
+        rounds = 0
+        player = 0
+
+        while game_over() != 3:
+            
+
 
     # __iadd__ magic method to add to dictionary of scores per round
     def __iadd__(self, other):
