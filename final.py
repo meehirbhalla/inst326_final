@@ -147,11 +147,6 @@ class HumanPlayer():
             
         if (y in self.player_input == 1):
             random_direction = (random.choice(direction[0, 2]))
-            
-    
-    
-    
-    # randomly generate wind direction of 1-2 units in NESW direction
 
   
 class ComputerPlayer(HumanPlayer):
