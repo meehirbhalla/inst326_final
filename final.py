@@ -108,11 +108,7 @@ class HumanPlayer():
         strength = 1
         
         x, y = self.player_input
-        # if (x in self.player_input == 'A') and (y in self.player_input <= 2):
-        
-        if (y in self.player_input == 1):
-            print(random.choice(direction[0, 2, 3]))
-        
+    
         # for A as x coordinate
         if (x in self.player_input == 'A') and (y in self.player_input == 1):
             random_direction = (random.choice(direction[0::2]))
