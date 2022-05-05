@@ -30,12 +30,12 @@ class HumanPlayer():
         player = 0
 
         #in the begining of each round anounce the current round, and display display score
-        # announce whose turn it is
-        # display wind strength 
 
         while game_over() == False:
             # keep initiating rounds of the game
-            # there should be a total of three rounds, and the first player to win 2 rounds win, but as long as the game is not over keep initiating 
+            # there should be a total of three rounds, and the first player to win 2 rounds win, but as long as the game is not over keep initiating
+            # announce whose turn it is
+            # display wind strength
             
 
 
