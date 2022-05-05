@@ -30,7 +30,8 @@ class HumanPlayer():
         player = 0
 
         #in the begining of each round anounce the current round, and display display score
-        # announce whose turn it is 
+        # announce whose turn it is
+        # display wind strength 
 
         while game_over() == False:
             # keep initiating rounds of the game
