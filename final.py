@@ -3,6 +3,7 @@ import sys
 import random
 
 score_per_round = dict()
+
 class HumanPlayer():
     """Represents a Human player
     
@@ -21,7 +22,6 @@ class HumanPlayer():
         """
         self.score = score
         self.name = name
-       
     
     def round(self, rounds):
         """Initiates one round of the game.
