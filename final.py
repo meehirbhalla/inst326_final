@@ -89,7 +89,7 @@ class HumanPlayer():
         """
     
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
-        # e.g., c3 would unpack to x = c and y = 3
+        # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
         
         # prompt player 
         valid_input = ['a1', 'a2', 'a3', 'a4', 'a5',
