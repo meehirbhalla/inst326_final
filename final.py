@@ -143,24 +143,26 @@ class HumanPlayer():
         else:
             self.random_direction = (random.choice(direction[1::3]))
 
-    def validate_shot():
+    def validate_shot(self):
         """Determines distance from bullseye.
 
-            Return:
-                affected coordinates distance from bullseye
-            """
-            bullseye = 33
-            
-            # unpack final coordinate
-            x,y = self.final_coordinate
-            
-            # determine distance using the x and y coordinate values of the final affected coordinate
-            if (x == 2) or (x == 3) or (x == 4) and (y == 2) or (y == 3) or (y == 4):
-                self.distance_to_bullseye = 1
-            elif (x == 3) and (y == 3):
-                self.distance_to_bullseye = 0
-            else:
-                self.distance_to_bullseye = 2
+        Return:
+            affected coordinates distance from bullseye
+        """
+        bullseye = 33
+        
+        # unpack final coordinate
+        x,y = self.final_coordinate
+        
+        # determine distance using the x and y coordinate values of the final affected coordinate
+        if (x == 2) or (x == 3) or (x == 4) and (y == 2) or (y == 3) or (y == 4):
+            self.distance_to_bullseye = 1
+        elif (x == 3) and (y == 3):
+            self.distance_to_bullseye = 0
+        else:
+            self.distance_to_bullseye = 2
+        
+        return self.distance_to_bullseye
                 
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
