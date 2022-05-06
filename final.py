@@ -86,7 +86,6 @@ class HumanPlayer():
         elif wind == 'W':
             self.final_coordinate = self.selected_coordinate - 10
             
-    
     def score(self):
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
