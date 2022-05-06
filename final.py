@@ -112,11 +112,10 @@ class HumanPlayer():
         """Prompts player for desired coordinates and makes sure inputted 
         coordinates are valid.
         """
-    
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
         # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
         
-        # prompt player 
+        # list of valid inputs
         valid_input = ['a1', 'a2', 'a3', 'a4', 'a5',
                        'b1', 'b2', 'b3', 'b4', 'b5',
                        'c1', 'c2', 'c3', 'c4', 'c5',
