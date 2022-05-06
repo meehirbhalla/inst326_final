@@ -63,7 +63,7 @@ class HumanPlayer():
          # dictionary of scores each round
         
     
-    def coordinates(self): #MEHIR
+    def coordinates(self):
         """The players inputted coordinates which the arrow is aimed and fired 
         at. Coordinate is determined based on relative position of shot to 
         center and accounts wind interference.
