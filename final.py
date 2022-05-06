@@ -1,25 +1,26 @@
 import argparse
 import sys
-import random
 
+score_per_round = dict()
 class HumanPlayer():
     """Represents a Human player
     
     Attributes:
-        name(str): Name of current player 
         score (int): score of player
+        name(str): Name of current player 
     """
     # utilizes optional parameters of name
-    def __init__(self, name = 'Player 1', score):
+    def __init__(self, score, name = 'Player 1'): #KHALIIL
         """Function that will initialize the objects that were represented in
            the attributes.
            
         Args:
+            score(integer): score of player
             name (str): user inputted name
         """
-        
-        self.name = name
         self.score = score
+        self.name = name
+       
     
     def round(self, rounds):
         """Initiates one round of the game.
@@ -28,32 +29,49 @@ class HumanPlayer():
         #player = 0
         # keep initiating rounds of the game
         while game_over() == False:
-            
             # in the begining of each round anounce the current round, and display score
             print(f"The current score is {score()}")
             print(f"Round {rounds} of 3")
-            
+
             # there should be a total of three rounds, and the first player to win 2 rounds win, but as long as the game is not over keep initiating
+            rounds += 1
             # announce whose turn it is
             # display wind strength
 
+    def score(self): #Raeen
+        """Score taken from coordinate shot landed on. Score calls validate_shot
+        then distributes points based on where shot landed. 
+        """
+        # scores in each round will be stored in a dictionary with the rounds 
+        # being the keys and the scores as the values.
+        # determine score using conditional expressions, 
+        # if _ unit from the bullseye then assign _ points
+        
     # __iadd__ magic method to add to dictionary of scores per round
-    def __iadd__(self, other):
-        """Used to add the scores at the end of each round. Total score per game
-        will be stored in a dictionary with a key being a game # and value being
-        the total score. 
+    def __iadd__(self, other):#BRICE
+        """Used to add the scores at the end of each round. Total score in each
+        round will be stored in a dictionary with a key being a round # and 
+        value being the score. 
         
         Args:
             other (int): round score to be added to current score
         
         Return:
-            dictionary of scores
+            Dictionary with total score accumulated per round
         """
+        #score_per_game = dict()
+        
+        self.score += other.score
+        score_per_round[Round] = self.score
+        Round += 1
+        
+        return score_per_round
+        
          # uses the __iadd__ magic method to calculate the score and add to
          # dictionary of scores each round
-        pass
+        
     
-    def coordinates(self, selected_coordinate):
+    def coordinates(self): #MEHIR
         """The players inputted coordinates which the arrow is aimed and fired 
         at. Coordinate is determined based on relative position of shot to 
         center and accounts wind interference.
@@ -84,6 +102,19 @@ class HumanPlayer():
         # being the keys and the scores as the values.
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
+        scores = {}
+        
+        if validate_shot(player_input) == 0:
+            points = 10
+        elif validate_shot(player_input) == 1:
+            points = 5
+        elif validate_shot(player_input) == 2:
+            points = 3
+        else
+            points = 0
+        
+        scores[round] = points
+        
         
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
@@ -125,10 +156,32 @@ class HumanPlayer():
             self.selected_coordinate = int(str('5') + str(y))
         
         print (f'Coordinate selected: ,{player_input}')
+  
         
+class ComputerPlayer(HumanPlayer):
+    # inherits all the methods from the human class
+    """Represents a computer player 
+
+    Attributes:
+        cname (str): name for computer player
+    """
     
-    def wind_strength(self, selected_coordinate):
-        """Determines the direction at which the wind is occuring.
+    # optional parameter for computer name 
+    def __init__(self, cname = 'Computer'):
+        """Function that will initialize the objects that were represented in
+           the attributes.
+        """
+        # uses super to call the init method from the human class
+        super().__init__()
+        
+    def turn(self):
+        """Overides human and generates random coordinates within bounds 
+        to shoot.
+        """         
+        # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
+
+def wind_strength():#MEHIR
+    """Determines the direction at which the wind is occuring.
         
         Return:
             wind strength which consists of direction
@@ -162,9 +215,9 @@ class HumanPlayer():
             self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
         else:
             self.random_direction = (random.choice(direction[1::3]))
-    
-    def validate_shot(final_coordinate):
-        """Determines distance from bullseye.
+
+def validate_shot(): #MEHIR
+    """Determines distance from bullseye.
 
         Return:
             affected coordinates distance from bullseye
@@ -204,6 +257,28 @@ class ComputerPlayer(HumanPlayer):
         to shoot.
         """         
         # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
+        
+        
+        letters = ['a','b','c','d','e']
+        nums = ['1','2','3','4','5']
+        rand_let = random.choice(letters)
+        rand_num = random.choice(nums)
+        coor = rand_let + rand_num
+        
+        # unpack x and y from computer input
+        # sets the selected_coordinate as an int
+        if x in coor == 'a':
+            self.selected_coordinate = int(str('1') + str(y))
+        elif x in coor == 'b':
+            self.selected_coordinate = int(str('2') + str(y))
+        elif x in coor == 'c':
+            self.selected_coordinate = int(str('3') + str(y))
+        elif x in coor == 'd':
+            self.selected_coordinate = int(str('4') + str(y))
+        else:
+            self.selected_coordinate = int(str('5') + str(y))
+        
+        print (f'Coordinate selected: ,{coor}')
 
 
 def game_over():
@@ -212,18 +287,40 @@ def game_over():
     Return:
         boolean: false if game is not over true if game is over
     """
+    player = HumanPlayer()
+    #May need a function to determine winner 
+    #How do I call score_per_game dict from here
+    #best_score = max(player.score_per_game, key=player.score_per_game.get)
+    #best_score = player.score_per_game.sort(key=lambda x: )
+   
+    
+    if Round == 3: 
+        print(f"The winner is: {player.name} with a total score of: {player.__iadd__()}")
+        print()
+        return True
+    else:
+        
+        return False
     # use f-strings to display the name and total score over all 3 rounds
     # use custom list sorting to list best performing rounds by score
+
+def winner(player):
     
-def main():
+    pass
+
+    
+def main():#BRICE
     """Plays one round of the archery game and calls necessary 
     methods/functions.
     """
+    #Isnt this doing the same thing as round()?
+    # Will make a call to coordinates(), turn(), validate_shot(), score(), and 
+    # game_over()
     pass 
 
 # argument parser in order to use command line arguments 
 # (player name and desired target) 
-def parse_args(arglist):
+def parse_args(arglist):#Brice
     """Parse command line arguments.
     
     Expect two mandatory arguments:
@@ -236,7 +333,11 @@ def parse_args(arglist):
     Returns:
         namespace: parsed arguments
     """ 
-    pass
-
+    parser = argparse.ArgumentParser()
+    parser.add_argument("Player1", help= "Name ofthe first player")
+    parser.add_argument("Computer", help= "Name ofthe computer player")
+    return parser.parse_args(arglist)
+ 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
+    
