@@ -108,15 +108,15 @@ class HumanPlayer():
         
         scores[round] = points
         
-    def wind_strength(self):
-        """determines the direction at which the wind is occuring.
+    def wind_strength(self, selected_coordinate):
+        """Determines the direction at which the wind is occuring.
         
-        return:
+        Return:
             wind strength which consists of direction
         """
         # list of potential directions
         direction = ['N', 'S', 'E', 'W']
-
+    
         # if A is the X coordinate the player selected
         if (self.selected_coordinate == 11):
             self.random_direction = (random.choice(direction[0::2]))
@@ -143,6 +143,8 @@ class HumanPlayer():
             self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
         else:
             self.random_direction = (random.choice(direction[1::3]))
+        
+        return self.random_direction
 
     def validate_shot(self):
         """Determines distance from bullseye.
