@@ -79,7 +79,7 @@ class HumanPlayer():
         to distribute points based on where shot landed. 
         """
         # scores in each round will be stored in a dictionary with the rounds 
-        # being the keys and the scores as the values.
+        # being the keys and the scores as the values. 
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
@@ -179,6 +179,8 @@ class HumanPlayer():
             self.distance_to_bullseye = 0
         else:
             self.distance_to_bullseye = 2
+        
+        return self.distance_to_bullseye
         
   
 class ComputerPlayer(HumanPlayer):
