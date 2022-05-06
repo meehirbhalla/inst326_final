@@ -36,6 +36,7 @@ class HumanPlayer():
             # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
             rounds += 1
             # announce whose turn it is
+            print(f"{} it is your turn")
             # display wind strength
             print(f"The current wind direction is {wind_strength} ")
 
@@ -180,9 +181,6 @@ class ComputerPlayer(HumanPlayer):
         to shoot.
         """         
         # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
-<<<<<<< HEAD
-
-=======
         
         
         letters = ['a','b','c','d','e']
@@ -206,7 +204,6 @@ class ComputerPlayer(HumanPlayer):
         
         print (f'Coordinate selected: ,{computer_selected}')
         
->>>>>>> 7c502f49e3fdc96209b59479a98cae1ae74d5025
 def wind_strength():#MEHIR
     """Determines the direction at which the wind is occuring.
         
