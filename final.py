@@ -22,7 +22,7 @@ class HumanPlayer():
         self.name = name
        
     
-    def round(self): #Raeen
+    def round(self): 
         """Initiates one round of the game.
         """
         # think you m  ight have to use input statements here or this method
@@ -83,7 +83,6 @@ class HumanPlayer():
             self.final_coordinate = self.selected_coordinate + 10
         if wind == 'W':
             self.final_coordinate = self.selected_coordinate - 10
-<<<<<<< HEAD
             
     
     def score(self):
@@ -107,8 +106,6 @@ class HumanPlayer():
         
         scores[round] = points
         
-=======
->>>>>>> 6228ef42dff2f07d0ac3a5588de02695f24e56dd
         
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
@@ -173,17 +170,29 @@ class ComputerPlayer(HumanPlayer):
         to shoot.
         """         
         # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
-<<<<<<< HEAD
-
-=======
         
-def round():#KHALIIL
-    """Initiates one round of the game.
-    """
-    Rounds = Rounds + 1
-    pass
->>>>>>> bcf7223 (Testing commit)
-
+        
+        letters = ['a','b','c','d','e']
+        nums = ['1','2','3','4','5']
+        rand_let = random.choice(letters)
+        rand_num = random.choice(nums)
+        computer_selected = rand_let + rand_num
+        
+        # unpack x and y from computer input
+        # sets the selected_coordinate as an int
+        if x in computer_selected == 'a':
+            self.selected_coordinate = int(str('1') + str(y))
+        elif x in computer_selected == 'b':
+            self.selected_coordinate = int(str('2') + str(y))
+        elif x in computer_selected == 'c':
+            self.selected_coordinate = int(str('3') + str(y))
+        elif x in computer_selected == 'd':
+            self.selected_coordinate = int(str('4') + str(y))
+        else:
+            self.selected_coordinate = int(str('5') + str(y))
+        
+        print (f'Coordinate selected: ,{computer_selected}')
+        
 def wind_strength():#MEHIR
     """Determines the direction at which the wind is occuring.
         
@@ -241,52 +250,13 @@ def validate_shot(): #MEHIR
         
         return self.distance_to_bullseye
 
-<<<<<<< HEAD
     Attributes:
         cname (str): name for computer player
-    """
     
-    # optional parameter for computer name 
-    def __init__(self, cname = 'Computer'):
-        """Function that will initialize the objects that were represented in
-           the attributes.
-        """
-        # uses super to call the init method from the human class
-        super().__init__()
-        
-    def turn(self):
-        """Overides human and generates random coordinates within bounds 
-        to shoot.
-        """         
-        # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
-        
-        
-        letters = ['a','b','c','d','e']
-        nums = ['1','2','3','4','5']
-        rand_let = random.choice(letters)
-        rand_num = random.choice(nums)
-        coor = rand_let + rand_num
-        
-        # unpack x and y from computer input
-        # sets the selected_coordinate as an int
-        if x in coor == 'a':
-            self.selected_coordinate = int(str('1') + str(y))
-        elif x in coor == 'b':
-            self.selected_coordinate = int(str('2') + str(y))
-        elif x in coor == 'c':
-            self.selected_coordinate = int(str('3') + str(y))
-        elif x in coor == 'd':
-            self.selected_coordinate = int(str('4') + str(y))
-        else:
-            self.selected_coordinate = int(str('5') + str(y))
-        
-        print (f'Coordinate selected: ,{coor}')
+    
 
 
 def game_over():
-=======
-def game_over():#BRICE
->>>>>>> 6228ef42dff2f07d0ac3a5588de02695f24e56dd
     """Game is over and determines the winner. 
     
     Return:
