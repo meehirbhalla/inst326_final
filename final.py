@@ -107,48 +107,6 @@ class HumanPlayer():
         
         scores[round] = points
         
-        
-    def turn(self):
-        """Prompts player for desired coordinates and makes sure inputted 
-        coordinates are valid.
-        """
-    
-        # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
-        # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
-        
-        # prompt player 
-        valid_input = ['a1', 'a2', 'a3', 'a4', 'a5',
-                       'b1', 'b2', 'b3', 'b4', 'b5',
-                       'c1', 'c2', 'c3', 'c4', 'c5',
-                       'd1', 'd2', 'd3', 'd4', 'd5',
-                       'e1', 'e2', 'e3', 'e4', 'e5']
-        
-        # ensure valid input
-        while(player_input.lower() not in valid_input):
-            player_input = input (f'''{self.name}, Please enter a coordinate in the format (xy),
-                                  where x is a letter from A-E and y is a number from 1-5: ''')
-            
-            # make user input lower case
-            player_input = player_input.lower()
-            
-            # unpack inputted coordinates
-            x,y = player_input
-        
-        # unpack x and y from player input
-        # sets the selected_coordinate as an int
-        if x in player_input == 'a':
-            self.selected_coordinate = int(str('1') + str(y))
-        elif x in player_input == 'b':
-            self.selected_coordinate = int(str('2') + str(y))
-        elif x in player_input == 'c':
-            self.selected_coordinate = int(str('3') + str(y))
-        elif x in player_input == 'd':
-            self.selected_coordinate = int(str('4') + str(y))
-        else:
-            self.selected_coordinate = int(str('5') + str(y))
-        
-        print (f'Coordinate selected: ,{player_input}')
-    
     def wind_strength():#MEHIR
     """Determines the direction at which the wind is occuring.
         
@@ -203,6 +161,47 @@ class HumanPlayer():
                 self.distance_to_bullseye = 0
             else:
                 self.distance_to_bullseye = 2
+                
+    def turn(self):
+        """Prompts player for desired coordinates and makes sure inputted 
+        coordinates are valid.
+        """
+    
+        # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
+        # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
+        
+        # prompt player 
+        valid_input = ['a1', 'a2', 'a3', 'a4', 'a5',
+                       'b1', 'b2', 'b3', 'b4', 'b5',
+                       'c1', 'c2', 'c3', 'c4', 'c5',
+                       'd1', 'd2', 'd3', 'd4', 'd5',
+                       'e1', 'e2', 'e3', 'e4', 'e5']
+        
+        # ensure valid input
+        while(player_input.lower() not in valid_input):
+            player_input = input (f'''{self.name}, Please enter a coordinate in the format (xy),
+                                  where x is a letter from A-E and y is a number from 1-5: ''')
+            
+            # make user input lower case
+            player_input = player_input.lower()
+            
+            # unpack inputted coordinates
+            x,y = player_input
+        
+        # unpack x and y from player input
+        # sets the selected_coordinate as an int
+        if x in player_input == 'a':
+            self.selected_coordinate = int(str('1') + str(y))
+        elif x in player_input == 'b':
+            self.selected_coordinate = int(str('2') + str(y))
+        elif x in player_input == 'c':
+            self.selected_coordinate = int(str('3') + str(y))
+        elif x in player_input == 'd':
+            self.selected_coordinate = int(str('4') + str(y))
+        else:
+            self.selected_coordinate = int(str('5') + str(y))
+        
+        print (f'Coordinate selected: ,{player_input}')
   
         
 class ComputerPlayer(HumanPlayer):
