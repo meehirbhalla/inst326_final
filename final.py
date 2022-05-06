@@ -270,13 +270,11 @@ def game_over():
         print()
         return True
     else:
-        
         return False
     # use f-strings to display the name and total score over all 3 rounds
     # use custom list sorting to list best performing rounds by score
 
 def winner(player):
-    
     pass
 
     
