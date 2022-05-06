@@ -248,14 +248,6 @@ def validate_shot(): #MEHIR
             self.distance_to_bullseye = 0
         else:
             self.distance_to_bullseye = 2
-        
-  
-class ComputerPlayer(HumanPlayer):
-    # inherits all the methods from the human class
-    """Represents a computer player 
-
-    Attributes:
-        cname (str): name for computer player
     
     
 
