@@ -27,11 +27,9 @@ class HumanPlayer():
         """Initiates one round of the game.
         """
         rounds = 0 
-        #player = 0
-        # keep initiating rounds of the game
         while game_over() == False:
             # in the begining of each round anounce the current round, and display current score 
-            print(f"The current score is {self.scores}") 
+            print(f"The current score is {score()}") 
             print(f"Round {rounds} of 3")
             # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
             rounds += 1
