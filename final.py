@@ -149,8 +149,6 @@ class HumanPlayer():
         Return:
             affected coordinates distance from bullseye
         """
-        bullseye = 33
-        
         # unpack final coordinate
         x,y = self.final_coordinate
         
