@@ -21,16 +21,18 @@ class HumanPlayer():
         self.name = name
         self.score = score
     
-    def round(self):
+    def round(self, rounds):
         """Initiates one round of the game.
         """
         rounds = 0 
-        player = 0
-
-        #in the begining of each round anounce the current round, and display display score
-
+        #player = 0
+        # keep initiating rounds of the game
         while game_over() == False:
-            # keep initiating rounds of the game
+            
+            # in the begining of each round anounce the current round, and display score
+            print(f"The current score is {score()}")
+            print(f"Round {rounds} of 3")
+            
             # there should be a total of three rounds, and the first player to win 2 rounds win, but as long as the game is not over keep initiating
             # announce whose turn it is
             # display wind strength
@@ -79,7 +81,7 @@ class HumanPlayer():
         to distribute points based on where shot landed. 
         """
         # scores in each round will be stored in a dictionary with the rounds 
-        # being the keys and the scores as the values. 
+        # being the keys and the scores as the values.
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
@@ -179,8 +181,6 @@ class HumanPlayer():
             self.distance_to_bullseye = 0
         else:
             self.distance_to_bullseye = 2
-        
-        return self.distance_to_bullseye
         
   
 class ComputerPlayer(HumanPlayer):
