@@ -82,6 +82,19 @@ class HumanPlayer():
         # being the keys and the scores as the values. 
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
+        scores = {}
+        
+        if validate_shot(player_input) == 0:
+            points = 10
+        elif validate_shot(player_input) == 1:
+            points = 5
+        elif validate_shot(player_input) == 2:
+            points = 3
+        else
+            points = 0
+        
+        scores[round] = points
+        
         
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
@@ -204,6 +217,28 @@ class ComputerPlayer(HumanPlayer):
         to shoot.
         """         
         # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
+        
+        
+        letters = ['a','b','c','d','e']
+        nums = ['1','2','3','4','5']
+        rand_let = random.choice(letters)
+        rand_num = random.choice(nums)
+        coor = rand_let + rand_num
+        
+        # unpack x and y from computer input
+        # sets the selected_coordinate as an int
+        if x in coor == 'a':
+            self.selected_coordinate = int(str('1') + str(y))
+        elif x in coor == 'b':
+            self.selected_coordinate = int(str('2') + str(y))
+        elif x in coor == 'c':
+            self.selected_coordinate = int(str('3') + str(y))
+        elif x in coor == 'd':
+            self.selected_coordinate = int(str('4') + str(y))
+        else:
+            self.selected_coordinate = int(str('5') + str(y))
+        
+        print (f'Coordinate selected: ,{coor}')
 
 
 def game_over():
