@@ -63,8 +63,8 @@ class HumanPlayer():
          # uses the __iadd__ magic method to calculate the score and add to
          # dictionary of scores each round
         
-    
-    def coordinates(self):
+    # Meehir
+    def coordinates(self, selected_coordinate):
         """The players inputted coordinates which the arrow is aimed and fired 
         at. Coordinate is determined based on relative position of shot to 
         center and accounts wind interference.
@@ -107,7 +107,8 @@ class HumanPlayer():
             points = 0
         
         scores[round] = points
-        
+     
+    # Meehir    
     def wind_strength(self, selected_coordinate):
         """Determines the direction at which the wind is occuring.
         
@@ -145,7 +146,8 @@ class HumanPlayer():
             self.random_direction = (random.choice(direction[1::3]))
         
         return self.random_direction
-
+    
+    # Meehir
     def validate_shot(self):
         """Determines distance from bullseye.
 
@@ -164,7 +166,8 @@ class HumanPlayer():
             self.distance_to_bullseye = 2
         
         return self.distance_to_bullseye
-                
+    
+    # Meehir           
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
         coordinates are valid.
