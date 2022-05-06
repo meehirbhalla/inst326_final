@@ -36,18 +36,9 @@ class HumanPlayer():
             # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
             rounds += 1
             # announce whose turn it is
-            print(f"{} it is your turn")
+            print(f"{self.name}, it is your turn")
             # display wind strength
             print(f"The current wind direction is {wind_strength} ")
-
-    def score(self): #Raeen
-        """Score taken from coordinate shot landed on. Score calls validate_shot
-        then distributes points based on where shot landed. 
-        """
-        # scores in each round will be stored in a dictionary with the rounds 
-        # being the keys and the scores as the values.
-        # determine score using conditional expressions, 
-        # if _ unit from the bullseye then assign _ points
         
     # __iadd__ magic method to add to dictionary of scores per round
     def __iadd__(self, other):#BRICE
