@@ -1,5 +1,6 @@
 import argparse
 import sys
+import random
 
 score_per_round = dict()
 class HumanPlayer():
@@ -113,35 +114,35 @@ class HumanPlayer():
         return:
             wind strength which consists of direction
         """
-    # list of potential directions
-    direction = ['N', 'S', 'E', 'W']
+        # list of potential directions
+        direction = ['N', 'S', 'E', 'W']
 
-    # if A is the X coordinate the player selected
-    if (self.selected_coordinate == 11):
-        self.random_direction = (random.choice(direction[0::2]))
-    elif (self.selected_coordinate == 12) or (self.selected_coordinate == 13) or (self.selected_coordinate == 14):
-        self.random_direction = (random.choice(direction[0::2]))
-    else:
-        self.random_direction = (random.choice(direction[1::2]))
-        
-    # if B, C, or D is the X coordinate the player selected
-    if (self.selected_coordinate == 21) or (self.selected_coordinate == 31) or (self.selected_coordinate == 41):
-        dont_include = 1
-        self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-    elif (self.selected_coordinate == 25) or (self.selected_coordinate == 35) or (self.selected_coordinate == 45):
-        dont_include = 0
-        self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-    else:
-        self.random_direction = (random.choice(direction))
-        
-    # if E is the X coordinate the player selected
-    if (self.selected_coordinate == 51):
-        self.random_direction = (random.choice(direction[0::3]))
-    elif (self.selected_coordinate == 52) or (self.selected_coordinate == 53) or (self.selected_coordinate == 54):
-        dont_include = 2
-        self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-    else:
-        self.random_direction = (random.choice(direction[1::3]))
+        # if A is the X coordinate the player selected
+        if (self.selected_coordinate == 11):
+            self.random_direction = (random.choice(direction[0::2]))
+        elif (self.selected_coordinate == 12) or (self.selected_coordinate == 13) or (self.selected_coordinate == 14):
+            self.random_direction = (random.choice(direction[0::2]))
+        else:
+            self.random_direction = (random.choice(direction[1::2]))
+            
+        # if B, C, or D is the X coordinate the player selected
+        if (self.selected_coordinate == 21) or (self.selected_coordinate == 31) or (self.selected_coordinate == 41):
+            dont_include = 1
+            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
+        elif (self.selected_coordinate == 25) or (self.selected_coordinate == 35) or (self.selected_coordinate == 45):
+            dont_include = 0
+            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
+        else:
+            self.random_direction = (random.choice(direction))
+            
+        # if E is the X coordinate the player selected
+        if (self.selected_coordinate == 51):
+            self.random_direction = (random.choice(direction[0::3]))
+        elif (self.selected_coordinate == 52) or (self.selected_coordinate == 53) or (self.selected_coordinate == 54):
+            dont_include = 2
+            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
+        else:
+            self.random_direction = (random.choice(direction[1::3]))
 
     def validate_shot(self):
         """Determines distance from bullseye.
