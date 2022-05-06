@@ -70,14 +70,60 @@ class HumanPlayer():
         Return:
             coordinate affected by wind
         """
-        pass
+        
+        # call the wind strength method to caluculate the random wind direction
+        wind = wind_strength(selected_coordinate)
+        
+        # the final coordinate depends on the random wind direction
+        if wind == 'N':
+            self.final_coordinate = self.selected_coordinate + 1
+        if wind == 'S':
+            self.final_coordinate = self.selected_coordinate - 1
+        if wind == 'E':
+            self.final_coordinate = self.selected_coordinate + 10
+        if wind == 'W':
+            self.final_coordinate = self.selected_coordinate - 10
         
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
         coordinates are valid.
         """
+    
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
-        # e.g., c3 would unpack to x = c and y = 3
+        # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
+        
+        # prompt player 
+        valid_input = ['a1', 'a2', 'a3', 'a4', 'a5',
+                       'b1', 'b2', 'b3', 'b4', 'b5',
+                       'c1', 'c2', 'c3', 'c4', 'c5',
+                       'd1', 'd2', 'd3', 'd4', 'd5',
+                       'e1', 'e2', 'e3', 'e4', 'e5']
+        
+        # ensure valid input
+        while(player_input.lower() not in valid_input):
+            player_input = input (f'''{self.name}, Please enter a coordinate in the format (xy),
+                                  where x is a letter from A-E and y is a number from 1-5: ''')
+            
+            # make user input lower case
+            player_input = player_input.lower()
+            
+            # unpack inputted coordinates
+            x,y = player_input
+        
+        # unpack x and y from player input
+        # sets the selected_coordinate as an int
+        if x in player_input == 'a':
+            self.selected_coordinate = int(str('1') + str(y))
+        elif x in player_input == 'b':
+            self.selected_coordinate = int(str('2') + str(y))
+        elif x in player_input == 'c':
+            self.selected_coordinate = int(str('3') + str(y))
+        elif x in player_input == 'd':
+            self.selected_coordinate = int(str('4') + str(y))
+        else:
+            self.selected_coordinate = int(str('5') + str(y))
+        
+        print (f'Coordinate selected: ,{player_input}')
   
         
 class ComputerPlayer(HumanPlayer):
@@ -113,25 +159,61 @@ def round():#KHALIIL
 >>>>>>> bcf7223 (Testing commit)
 
 def wind_strength():#MEHIR
-    """Determines the strength and direction at which the wind is occuring.
+    """Determines the direction at which the wind is occuring.
+        
+        Return:
+            wind strength which consists of direction
+        """
+        # list of potential directions
+        direction = ['N', 'S', 'E', 'W']
     
-    Return:
-        wind strength which consists of strength and direction
-    """
-    # randomly generate wind direction of 1-2 units in NESW direction
+        # if A is the X coordinate the player selected
+        if (self.selected_coordinate == 11):
+            self.random_direction = (random.choice(direction[0::2]))
+        elif (self.selected_coordinate == 12) or (self.selected_coordinate == 13) or (self.selected_coordinate == 14):
+            self.random_direction = (random.choice(direction[0::2]))
+        else:
+            self.random_direction = (random.choice(direction[1::2]))
+            
+        # if B, C, or D is the X coordinate the player selected
+        if (self.selected_coordinate == 21) or (self.selected_coordinate == 31) or (self.selected_coordinate == 41):
+            dont_include = 1
+            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
+        elif (self.selected_coordinate == 25) or (self.selected_coordinate == 35) or (self.selected_coordinate == 45):
+            dont_include = 0
+            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
+        else:
+            self.random_direction = (random.choice(direction))
+            
+        # if E is the X coordinate the player selected
+        if (self.selected_coordinate == 51):
+            self.random_direction = (random.choice(direction[0::3]))
+        elif (self.selected_coordinate == 52) or (self.selected_coordinate == 53) or (self.selected_coordinate == 54):
+            dont_include = 2
+            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
+        else:
+            self.random_direction = (random.choice(direction[1::3]))
 
 def validate_shot(): #MEHIR
     """Determines distance from bullseye.
-    
-    Return:
-        affected coordinates distance from bullseye
-    """
-    # determine distance using the x and y coordinates of the affected coordinate
-    # in relation to the bullseye (c3)
 
-    #Calls the wind_strength() method to calculate location of shot from the 
-    #center
-    pass
+        Return:
+            affected coordinates distance from bullseye
+        """
+        bullseye = 33
+        
+        # unpack final coordinate
+        x,y = self.final_coordinate
+        
+        # determine distance using the x and y coordinate values of the final affected coordinate
+        if (x == 2) or (x == 3) or (x == 4) and (y == 2) or (y == 3) or (y == 4):
+            self.distance_to_bullseye = 1
+        elif (x == 3) and (y == 3):
+            self.distance_to_bullseye = 0
+        else:
+            self.distance_to_bullseye = 2
+        
+        return self.distance_to_bullseye
 
 def game_over():#BRICE
     """Game is over and determines the winner. 
