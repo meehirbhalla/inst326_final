@@ -79,11 +79,11 @@ class HumanPlayer():
         # the final coordinate depends on the random wind direction
         if wind == 'N':
             self.final_coordinate = self.selected_coordinate + 1
-        if wind == 'S':
+        elif wind == 'S':
             self.final_coordinate = self.selected_coordinate - 1
-        if wind == 'E':
+        elif wind == 'E':
             self.final_coordinate = self.selected_coordinate + 10
-        if wind == 'W':
+        elif wind == 'W':
             self.final_coordinate = self.selected_coordinate - 10
             
     
