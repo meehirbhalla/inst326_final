@@ -133,38 +133,34 @@ class HumanPlayer():
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
         # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
         
-        # list of valid inputs
-        valid_input = ['a1', 'a2', 'a3', 'a4', 'a5',
-                       'b1', 'b2', 'b3', 'b4', 'b5',
-                       'c1', 'c2', 'c3', 'c4', 'c5',
-                       'd1', 'd2', 'd3', 'd4', 'd5',
-                       'e1', 'e2', 'e3', 'e4', 'e5']
+        # list of valid inputs depending on wind direction
+        N = ['a5', 'b5', 'c5', 'd5', 'e5']
+        S = ['a1', 'b1', 'c1', 'd1', 'e1']
+        E = ['e1', 'e2', 'e3', 'e4', 'e5']
+        W = ['a1', 'a2', 'a3', 'a4', 'a5']
         
-        # ensure valid input
-        while(player_input.lower() not in valid_input):
-            player_input = input (f'''{self.name}, Please enter a coordinate in the format (xy),
-                                  where x is a letter from A-E and y is a number from 1-5: ''')
-            
-        # make user input lower case
+        if wind == 'N':
+            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
+            while player_input.lower() in N:
+                print(' ')
+                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
+        elif wind == 'S':
+            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
+            while player_input.lower() in S:
+                print(' ')
+                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
+        elif wind == 'E':
+            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
+            while player_input.lower() in E:
+                print(' ')
+                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
+        elif wind == 'W':
+            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
+            while player_input.lower() in W:
+                print(' ')
+                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
+
         player_input = player_input.lower()
-            
-        # unpack inputted coordinates
-        x,y = player_input
-        
-        # unpack x and y from player input
-        # sets the selected_coordinate as an int
-        if x in player_input == 'a':
-            self.selected_coordinate = int(str('1') + str(y))
-        elif x in player_input == 'b':
-            self.selected_coordinate = int(str('2') + str(y))
-        elif x in player_input == 'c':
-            self.selected_coordinate = int(str('3') + str(y))
-        elif x in player_input == 'd':
-            self.selected_coordinate = int(str('4') + str(y))
-        else:
-            self.selected_coordinate = int(str('5') + str(y))
-        
-        print (f'Coordinate selected: ,{player_input}')
         
     # Meehir    
     def wind_strength(self, selected_coordinate):
@@ -175,35 +171,11 @@ class HumanPlayer():
         """
         # list of potential directions
         direction = ['N', 'S', 'E', 'W']
-    
-        # if A is the X coordinate the player selected
-        if (self.selected_coordinate == 11):
-            self.random_direction = (random.choice(direction[0::2]))
-        elif (self.selected_coordinate == 12) or (self.selected_coordinate == 13) or (self.selected_coordinate == 14):
-            self.random_direction = (random.choice(direction[0::2]))
-        else:
-            self.random_direction = (random.choice(direction[1::2]))
-            
-        # if B, C, or D is the X coordinate the player selected
-        if (self.selected_coordinate == 21) or (self.selected_coordinate == 31) or (self.selected_coordinate == 41):
-            dont_include = 1
-            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        elif (self.selected_coordinate == 25) or (self.selected_coordinate == 35) or (self.selected_coordinate == 45):
-            dont_include = 0
-            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        else:
-            self.random_direction = (random.choice(direction))
-            
-        # if E is the X coordinate the player selected
-        if (self.selected_coordinate == 51):
-            self.random_direction = (random.choice(direction[0::3]))
-        elif (self.selected_coordinate == 52) or (self.selected_coordinate == 53) or (self.selected_coordinate == 54):
-            dont_include = 2
-            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        else:
-            self.random_direction = (random.choice(direction[1::3]))
         
-        return self.random_direction
+        # random wind direction
+        wind = random.choice(direction)
+        
+        
   
     # Meehir
     def validate_shot(self):
