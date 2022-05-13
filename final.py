@@ -90,15 +90,15 @@ class HumanPlayer():
         Return:
             coordinate affected by wind
         """ 
-        # the final coordinate depends on the random wind direction
+        # the final coordinate depends on the random wind direction's affect on the player_input
         if self.wind == 'N':
-            self.final_coordinate = self.selected_coordinate + 1
+            self.final_coordinate = self.player_input + 1
         elif self.wind == 'S':
-            self.final_coordinate = self.selected_coordinate - 1
+            self.final_coordinate = self.player_input - 1
         elif self.wind == 'E':
-            self.final_coordinate = self.selected_coordinate + 10
+            self.final_coordinate = self.player_input + 10
         elif self.wind == 'W':
-            self.final_coordinate = self.selected_coordinate - 10
+            self.final_coordinate = self.player_input - 10
             
     def score(self):
         """Score taken from coordinate shot landed on. Score calls validate_shot
@@ -109,6 +109,16 @@ class HumanPlayer():
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         scores = {}
+        
+        five_points = ['B2','B3','B4','C2','C4','E2','E3','E4']
+        
+        # accounts for bullseye, five, and one point shots
+        if self.final_coordinate == 'C3':
+            scores.append(10)
+        elif self.final_coordinate in five_points:
+            scores.append(5)
+        else:
+            scores.append(1)
         
         if validate_shot(player_input) == 0:
             points = 10
@@ -201,21 +211,25 @@ class HumanPlayer():
         """Determines distance from bullseye.
 
         Return:
-            affected coordinates distance from bullseye
+            final coordinate distance from bullseye
         """
-        # unpack final coordinate
-        x,y = self.final_coordinate
+        # unpack final_coordinate as a string
+        f,l = str(self.final_coordinate)
         
-        # determine distance using the x and y coordinate values of the final affected coordinate
-        if (x == 2) or (x == 3) or (x == 4) and (y == 2) or (y == 3) or (y == 4):
-            self.distance_to_bullseye = 1
-        elif (x == 3) and (y == 3):
-            self.distance_to_bullseye = 0
+        if f == '1':
+            self.final_coordinate = (str('A') + str(l))
+        elif f == '2':
+            self.final_coordinate = (str('B') + str(l))
+        elif f  == '3':
+            self.final_coordinate = (str('C') + str(l))
+        elif f == '4':
+            self.final_coordinate = (str('D') + str(l))
         else:
-            self.distance_to_bullseye = 2
+            self.final_coordinate = (str('E') + str(l))
         
-        return self.distance_to_bullseye
-    
+        return self.final_coordinate
+            
+            
 class ComputerPlayer(HumanPlayer):
     # inherits all the methods from the human class
     """Represents a computer player 
