@@ -139,28 +139,57 @@ class HumanPlayer():
         E = ['e1', 'e2', 'e3', 'e4', 'e5']
         W = ['a1', 'a2', 'a3', 'a4', 'a5']
         
-        if wind == 'N':
+        # prompts users for coordinate with restrictions applied
+        if self.wind == 'N':
             player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
             while player_input.lower() in N:
                 print(' ')
                 player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
-        elif wind == 'S':
+        elif self.wind == 'S':
             player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
             while player_input.lower() in S:
                 print(' ')
                 player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
-        elif wind == 'E':
+        elif self.wind == 'E':
             player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
             while player_input.lower() in E:
                 print(' ')
                 player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
-        elif wind == 'W':
+        elif self.wind == 'W':
             player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
             while player_input.lower() in W:
                 print(' ')
                 player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
 
+        # convert to lowercase
         player_input = player_input.lower()
+        
+        # unpack inputted coordinates
+        x,y = player_input  
+        
+        # convert to number coordinate
+        if x == 'a':
+            player_input = int(str('1') + str(y))
+        elif x  == 'b':
+            player_input = int(str('2') + str(y))
+        elif x  == 'c':
+            player_input = int(str('3') + str(y))
+        elif x  == 'd':
+            player_input = int(str('4') + str(y))
+        elif x  == 'e':
+            player_input = int(str('5') + str(y))
+            
+        # the final coordinate depends on the random wind direction
+        if self.wind == 'N':
+            self.final_coordinate = int(player_input) + 1
+        elif self.wind == 'S':
+            self.final_coordinate = int(player_input) - 1
+        elif self.wind == 'E':
+            self.final_coordinate = int(player_input) + 10
+        elif self.wind == 'W':
+            self.final_coordinate = int(player_input) - 10
+            
+        return self.final_coordinate
         
     # Meehir    
     def wind_strength(self, selected_coordinate):
@@ -173,10 +202,8 @@ class HumanPlayer():
         direction = ['N', 'S', 'E', 'W']
         
         # random wind direction
-        wind = random.choice(direction)
+        self.wind = random.choice(direction)
         
-        
-  
     # Meehir
     def validate_shot(self):
         """Determines distance from bullseye.
