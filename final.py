@@ -82,26 +82,22 @@ class HumanPlayer():
          # dictionary of scores each round
         
     # Meehir
-    def coordinates(self, selected_coordinate):
+    def coordinates(self):
         """The players inputted coordinates which the arrow is aimed and fired 
         at. Coordinate is determined based on relative position of shot to 
         center and accounts wind interference.
         
         Return:
             coordinate affected by wind
-        """
-        
-        # call the wind strength method to caluculate the random wind direction
-        wind = wind_strength(selected_coordinate)
-        
+        """ 
         # the final coordinate depends on the random wind direction
-        if wind == 'N':
+        if self.wind == 'N':
             self.final_coordinate = self.selected_coordinate + 1
-        elif wind == 'S':
+        elif self.wind == 'S':
             self.final_coordinate = self.selected_coordinate - 1
-        elif wind == 'E':
+        elif self.wind == 'E':
             self.final_coordinate = self.selected_coordinate + 10
-        elif wind == 'W':
+        elif self.wind == 'W':
             self.final_coordinate = self.selected_coordinate - 10
             
     def score(self):
@@ -129,6 +125,9 @@ class HumanPlayer():
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
         coordinates are valid.
+        
+        Returns:
+            self.player_input: player input represented as a number
         """
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
         # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
@@ -169,30 +168,20 @@ class HumanPlayer():
         
         # convert to number coordinate
         if x == 'a':
-            player_input = int(str('1') + str(y))
+            self.player_input = int(str('1') + str(y))
         elif x  == 'b':
-            player_input = int(str('2') + str(y))
+            self.player_input = int(str('2') + str(y))
         elif x  == 'c':
-            player_input = int(str('3') + str(y))
+            self.player_input = int(str('3') + str(y))
         elif x  == 'd':
-            player_input = int(str('4') + str(y))
+            self.player_input = int(str('4') + str(y))
         elif x  == 'e':
-            player_input = int(str('5') + str(y))
+            self.player_input = int(str('5') + str(y))
             
-        # the final coordinate depends on the random wind direction
-        if self.wind == 'N':
-            self.final_coordinate = int(player_input) + 1
-        elif self.wind == 'S':
-            self.final_coordinate = int(player_input) - 1
-        elif self.wind == 'E':
-            self.final_coordinate = int(player_input) + 10
-        elif self.wind == 'W':
-            self.final_coordinate = int(player_input) - 10
-            
-        return self.final_coordinate
+        return self.player_input
         
     # Meehir    
-    def wind_strength(self, selected_coordinate):
+    def wind_strength(self):
         """Determines the direction at which the wind is occuring.
         
         Return:
@@ -203,6 +192,9 @@ class HumanPlayer():
         
         # random wind direction
         self.wind = random.choice(direction)
+        
+        #return random direction
+        return self.wind
         
     # Meehir
     def validate_shot(self):
