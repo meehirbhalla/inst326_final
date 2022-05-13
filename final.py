@@ -1,6 +1,7 @@
 import argparse
 import sys
 import random
+from typing_extensions import Self
 
 score_per_round = dict()
 
@@ -52,11 +53,30 @@ class HumanPlayer():
         """
         #score_per_game = dict()
         
-        self.score += other.score
-        score_per_round[Round] = self.score
-        Round += 1
+        #self.score += other.score
+        #score_per_round[Round] = self.score
+        #Round += 1
+        
+        #return score_per_round
+        
+        #totalScore = 0
+        #totalScore += self.score
+        
+        score_per_round = {}
+        
+        if round == 1:
+            self.score = self.scores[round]
+            score_per_round[0] = self.score
+        elif round == 2:
+            #check if round starts at 0 or 1
+            self.score = self.scores[1] + other.scores[round]
+            score_per_round[1] = self.score
+        elif round == 3:
+            self.score += self.score + other.scores[round]
+            score_per_round[2] = self.score
         
         return score_per_round
+        
         
          # uses the __iadd__ magic method to calculate the score and add to
          # dictionary of scores each round
@@ -256,15 +276,16 @@ def game_over():
     Return:
         boolean: false if game is not over true if game is over
     """
-    player = HumanPlayer()
+    player = HumanPlayer(0, "Player 1")
     #May need a function to determine winner 
     #How do I call score_per_game dict from here
     #best_score = max(player.score_per_game, key=player.score_per_game.get)
     #best_score = player.score_per_game.sort(key=lambda x: )
    
     
-    if Round == 3: 
-        print(f"The winner is: {player.name} with a total score of: {player.__iadd__()}")
+    if round == 3: 
+        print(f"The winner is: {player.name} with a total score of: \
+            {player.__iadd__()}")
         print()
         return True
     else:
@@ -272,8 +293,7 @@ def game_over():
     # use f-strings to display the name and total score over all 3 rounds
     # use custom list sorting to list best performing rounds by score
 
-def winner(player):
-    pass
+def winner(player):    pass
 
     
 def main():#BRICE
