@@ -176,6 +176,8 @@ class HumanPlayer():
         # unpack inputted coordinates
         x,y = self.player_input  
         
+        self.final_coordinate = self.player_input
+        
         # convert to number coordinate
         if x == 'a':
             self.player_input = int(str('1') + str(y))
@@ -221,8 +223,6 @@ class HumanPlayer():
             self.final_coordinate = (str('D') + str(l))
         else:
             self.final_coordinate = (str('E') + str(l))
-        
-        return self.final_coordinate
             
             
 class ComputerPlayer(HumanPlayer):
