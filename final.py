@@ -150,31 +150,31 @@ class HumanPlayer():
         
         # prompts users for coordinate with restrictions applied
         if self.wind == 'North':
-            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
-            while player_input.lower() not in N:
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
+            while self.player_input.lower() not in N:
                 print(' ')
-                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
         elif self.wind == 'South':
-            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
-            while player_input.lower() not in S:
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
+            while self.player_input.lower() not in S:
                 print(' ')
-                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
         elif self.wind == 'East':
-            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
-            while player_input.lower() not in E:
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
+            while self.player_input.lower() not in E:
                 print(' ')
-                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
         elif self.wind == 'West':
-            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
-            while player_input.lower() not in W:
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
+            while self.player_input.lower() not in W:
                 print(' ')
-                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
 
         # convert to lowercase
-        player_input = player_input.lower()
+        self.player_input = self.player_input.lower()
         
         # unpack inputted coordinates
-        x,y = player_input  
+        x,y = self.player_input  
         
         # convert to number coordinate
         if x == 'a':
