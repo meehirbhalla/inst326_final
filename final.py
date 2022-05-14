@@ -126,6 +126,8 @@ class HumanPlayer():
         coordinates are valid.
         
         Side effects:
+            prints message prompting user to console.
+            
             player_input attribute is set to user input.
 
             player_input is changed to lowercase.
