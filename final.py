@@ -109,16 +109,6 @@ class HumanPlayer():
         # if _ unit from the bullseye then assign _ points
         scores = {}
         
-        five_points = ['B2','B3','B4','C2','C4','E2','E3','E4']
-        
-        # accounts for bullseye, five, and one point shots
-        if self.final_coordinate == 'C3':
-            scores.append(10)
-        elif self.final_coordinate in five_points:
-            scores.append(5)
-        else:
-            scores.append(1)
-        
         if validate_shot(player_input) == 0:
             points = 10
         elif validate_shot(player_input) == 1:
