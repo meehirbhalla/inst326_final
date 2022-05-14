@@ -125,8 +125,10 @@ class HumanPlayer():
         """Prompts player for desired coordinates and makes sure inputted 
         coordinates are valid.
         
-        Returns:
-            self.player_input: player input represented as a number
+        Side effects:
+            player_input attribute is set to user input.
+            
+            final_coordinate is instantiated with the same value as the player_input attribute.
         """
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
         # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
