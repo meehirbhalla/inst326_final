@@ -191,10 +191,11 @@ class HumanPlayer():
         
     # Meehir    
     def wind_strength(self):
-        """Determines the direction at which the wind is occuring.
+        """randomly generates a wind direction from a list of North,
+        South, East, and West.
         
-        Return:
-            wind strength which consists of direction
+        Side effects: 
+            creates wind attribute and sets it to a random cardinal direction.
         """
         # list of potential directions
         direction = ['North', 'South', 'East', 'West']
