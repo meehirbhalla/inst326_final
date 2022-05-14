@@ -91,13 +91,13 @@ class HumanPlayer():
             coordinate affected by wind
         """ 
         # the final coordinate depends on the random wind direction's affect on the player_input
-        if self.wind == 'N':
+        if self.wind == 'North':
             self.final_coordinate = self.player_input + 1
-        elif self.wind == 'S':
+        elif self.wind == 'South':
             self.final_coordinate = self.player_input - 1
-        elif self.wind == 'E':
+        elif self.wind == 'East':
             self.final_coordinate = self.player_input + 10
-        elif self.wind == 'W':
+        elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
             
     def score(self):
