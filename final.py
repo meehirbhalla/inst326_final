@@ -1,7 +1,6 @@
 import argparse
 import sys
 import random
-from typing_extensions import Self
 
 score_per_round = dict()
 
