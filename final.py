@@ -127,6 +127,10 @@ class HumanPlayer():
         
         Side effects:
             player_input attribute is set to user input.
+
+            player_input is changed to lowercase.
+            
+            player_input is changed from a string to an int.
             
             final_coordinate is instantiated with the same value as the player_input attribute.
         """
