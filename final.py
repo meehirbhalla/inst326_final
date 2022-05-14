@@ -127,9 +127,7 @@ class HumanPlayer():
         Side effects:
             prints message prompting user to console.
             
-            player_input attribute is set to user input.
-
-            player_input is changed to lowercase.
+            player_input attribute is set to user input and changed to lowercase.
             
             player_input is changed from a string to an int.
             
