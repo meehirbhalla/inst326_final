@@ -82,8 +82,7 @@ class HumanPlayer():
         
     # Meehir
     def coordinates(self):
-        """The players inputted coordinates which the arrow is aimed and fired at. 
-        Coordinate is determined based on relative position of shot to center and 
+        """Coordinate is determined based on relative position of shot to center and 
         accounts wind interference.
         
         Side effects: 
