@@ -142,31 +142,31 @@ class HumanPlayer():
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
         # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
         
-        # list of valid inputs depending on wind direction
-        N = ['a5', 'b5', 'c5', 'd5', 'e5']
-        S = ['a1', 'b1', 'c1', 'd1', 'e1']
-        E = ['e1', 'e2', 'e3', 'e4', 'e5']
-        W = ['a1', 'a2', 'a3', 'a4', 'a5']
+        # possible inputs given wind direction
+        N = ['a1', 'a2', 'a3', 'a4' 'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4', 'e1', 'e2', 'e3', 'e4']
+        S = ['a2', 'a3', 'a4', 'a5', 'b2', 'b3', 'b4', 'b5', 'c2', 'c3', 'c4', 'c5', 'd2', 'd3', 'd4', 'd5', 'e2', 'e3', 'e4', 'e5']
+        E = ['a1', 'a2', 'a3', 'a4', 'a5' , 'b1', 'b2', 'b3', 'b4', 'b5', 'c1', 'c2', 'c3', 'c4', 'c5', 'd1', 'd2', 'd3', 'd4', 'd5']
+        W = ['b1', 'b2', 'b3', 'b4', 'b5', 'c1', 'c2', 'c3', 'c4', 'c5', 'd1', 'd2', 'd3', 'd4', 'd5', 'e1', 'e2', 'e3', 'e4', 'e5']
         
         # prompts users for coordinate with restrictions applied
-        if self.wind == 'N':
+        if self.wind == 'North':
             player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
-            while player_input.lower() in N:
+            while player_input.lower() not in N:
                 print(' ')
                 player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
-        elif self.wind == 'S':
+        elif self.wind == 'South':
             player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
-            while player_input.lower() in S:
+            while player_input.lower() not in S:
                 print(' ')
                 player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
-        elif self.wind == 'E':
+        elif self.wind == 'East':
             player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
-            while player_input.lower() in E:
+            while player_input.lower() not in E:
                 print(' ')
                 player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
-        elif self.wind == 'W':
+        elif self.wind == 'West':
             player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
-            while player_input.lower() in W:
+            while player_input.lower() not in W:
                 print(' ')
                 player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
 
@@ -187,8 +187,6 @@ class HumanPlayer():
             self.player_input = int(str('4') + str(y))
         elif x  == 'e':
             self.player_input = int(str('5') + str(y))
-            
-        return self.player_input
         
     # Meehir    
     def wind_strength(self):
@@ -198,13 +196,10 @@ class HumanPlayer():
             wind strength which consists of direction
         """
         # list of potential directions
-        direction = ['N', 'S', 'E', 'W']
+        direction = ['North', 'South', 'East', 'West']
         
         # random wind direction
         self.wind = random.choice(direction)
-        
-        #return random direction
-        return self.wind
         
     # Meehir
     def validate_shot(self):
