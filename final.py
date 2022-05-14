@@ -204,10 +204,11 @@ class HumanPlayer():
         
     # Meehir
     def validate_shot(self):
-        """Determines distance from bullseye.
+        """unpacks final_coordinate attribute and changes it from an 
+        int to a string.
 
-        Return:
-            final coordinate distance from bullseye
+        Side effects:
+            final_coordinate attribute is changed from an int to a string.
         """
         # unpack final_coordinate as a string
         f,l = str(self.final_coordinate)
