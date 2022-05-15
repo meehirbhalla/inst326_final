@@ -1,9 +1,9 @@
 import argparse
-from optparse import Values
 import sys
 import random
-from functools import total_ordering
 
+
+score_per_round = dict()
 
 @total_ordering
 class HumanPlayer():
@@ -22,16 +22,16 @@ class HumanPlayer():
             score(integer): score of player
             name (str): user inputted name
         """
-        self.scores = {}
+        self._score = score
         self.name = name
     
-    def round(self, rounds): #Khaliil
+    def round(self):
         """Initiates one round of the game.
         """
         rounds = 0 
-        while self.game_over(rounds) == False:
+        while game_over() == False: #game over needs to know what round it is, store as attribute or another way to for game over to know
             # in the begining of each round anounce the current round, and display current score 
-            print(f"The current score is {self.total_score()}") 
+            print(f"The current score is {self.score()}") 
             print(f"Round {rounds} of 3")
             # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
             rounds += 1
@@ -39,45 +39,64 @@ class HumanPlayer():
             print(f"{self.name}, it is your turn")
             # display wind strength
             print(f"The current wind direction is {self.wind_strength()} ")
-            self.turn()
-            self.score(rounds)
+            _turn = self.turn()
+            self.validate_shot() 
         
-    def __lt__(self, other): #Brice
-        """Method that compares the scores of two players and checks if the 
-            current player's score is less than the other players. 
-
+    # __iadd__ magic method to add to dictionary of scores per round
+    def __iadd__(self, other):#BRICE
+        """Used to add the scores at the end of each round. Total score in each
+        round will be stored in a dictionary with a key being a round # and 
+        value being the score. 
+        
         Args:
-            other (HumanPlayer): The player whose score is compared 
-
-        Returns:
-            Boolean: returns true or false based on comparison
+            other (int): round score to be added to current score
+        
+        Return:
+            Dictionary with total score accumulated per round
         """
-        return self.scores.values < other.scores.values
-    
+        #score_per_game = dict()
+        
+        #self.score += other.score
+        #score_per_round[Round] = self.score
+        #Round += 1
+        
+        #return score_per_round
+        
+        #totalScore = 0
+        #totalScore += self.score
+        
+        score_per_round = {}
+        
+        if round == 1:
+            self.score = self.scores[round]
+            score_per_round[0] = self.score
+        elif round == 2:
+            #check if round starts at 0 or 1
+            self.score = self.scores[1] + other.scores[round]
+            score_per_round[1] = self.score
+        elif round == 3:
+            self.score += self.score + other.scores[round]
+            score_per_round[2] = self.score
+        
+        return score_per_round
+        
+        
+         # uses the __iadd__ magic method to calculate the score and add to
+         # dictionary of scores each round
+        
+    def __lt__(self, other):
+        pass
     #compares scores based on self.score
     #compute the sum of the values of self.score, use sum function
     #dictionaries has a .value function
     
-    #Helper function for the total score
-    def total_score(self): #Brice 
-        """Method to calculate total score from the game for a player
-
-        Returns:
-            integer: total score pulled from the dictionary of values 
-        """
+    
+    #Helper function
+    def total_score(self):
         return sum(self.scores.values())
     
-    def __eq__(self, other): #Brice
-        """Method that compares the scores of two players and checks if
-            they are eqal
-
-        Args:
-            other (HumanPlayer): The player whose score is compared
-
-        Returns:
-           Boolean: returns true or false based on comparison
-        """
-        return self.scores.values == other.scores.values
+    def __eq__(self, other):
+        pass
     
     # Meehir
     def coordinates(self):
@@ -87,23 +106,6 @@ class HumanPlayer():
         Side effects: 
             final_coordinate attribute is set to the winds effect on the player_input attribute.
         """ 
-        # unpack user inputted coordinates
-        x,y = self.player_input
-        
-        self.final_coordinate = self.player_input
-        
-        # sets the player_input as an int
-        if x == 'a':
-            self.player_input = int(str('1') + str(y))
-        elif x  == 'b':
-            self.player_input = int(str('2') + str(y))
-        elif x  == 'c':
-            self.player_input = int(str('3') + str(y))
-        elif x  == 'd':
-            self.player_input = int(str('4') + str(y))
-        elif x  == 'e':
-            self.player_input = int(str('5') + str(y))
-            
         # the final coordinate depends on the random wind direction's affect on the player_input
         if self.wind == 'North':
             self.final_coordinate = self.player_input + 1
@@ -114,7 +116,7 @@ class HumanPlayer():
         elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
             
-    def score(self, rounds): #Raeen
+    def score(self, round):
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
         """
@@ -133,7 +135,7 @@ class HumanPlayer():
         else:
             points = 0
         
-        self.scores[rounds] = points
+        self.scores[round] = points
         
     # Meehir           
     def turn(self):
@@ -149,6 +151,9 @@ class HumanPlayer():
             
             final_coordinate is instantiated with the same value as the player_input attribute.
         """
+        # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
+        # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
+        
         # possible inputs given wind direction
         N = ['a1', 'a2', 'a3', 'a4' 'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4', 'e1', 'e2', 'e3', 'e4']
         S = ['a2', 'a3', 'a4', 'a5', 'b2', 'b3', 'b4', 'b5', 'c2', 'c3', 'c4', 'c5', 'd2', 'd3', 'd4', 'd5', 'e2', 'e3', 'e4', 'e5']
@@ -238,7 +243,7 @@ class HumanPlayer():
         
         return self.distance_to_bullseye
     
-    def game_over(self, rounds): #Brice
+    def game_over(self, round):
         """Game is over and determines the winner. 
         
         Return:
@@ -249,18 +254,12 @@ class HumanPlayer():
         #How do I call score_per_game dict from here
         #best_score = max(player.score_per_game, key=player.score_per_game.get)
         #best_score = player.score_per_game.sort(key=lambda x: )
-        #Call total_Score
-    
-        highest_score = max(self.scores.values())
+    #Call total_Score
         
-        if rounds == 3: 
+        if round == 3: 
             print(f"The winner is: {self.name} with a total score of: "
-                f"{self.total_score}")
-            print(f"The winning player's highest score was {highest_score} \n \
-                  Here is their score chart for the game: ")
-            for key, value in sorted(self.scores.items(), key = lambda x: x[1],\
-                reverse = True):
-                print(key, value)
+                f"{.__iadd__()}")
+            print()
             return True
         else:
             return False
@@ -277,14 +276,14 @@ class ComputerPlayer(HumanPlayer):
     """
     
     # optional parameter for computer name 
-    def __init__(self, cname = 'Computer'): #Brice
+    def __init__(self, cname = 'Computer'):
         """Function that will initialize the objects that were represented in
            the attributes.
         """
         # uses super to call the init method from the human class
         super().__init__()
         
-    def turn(self): #Raeen
+    def turn(self):
         """Overides human and generates random coordinates within bounds 
         to shoot.
         """         
@@ -314,23 +313,14 @@ class ComputerPlayer(HumanPlayer):
     
 
 
-#Don't think we need anymore
-def winner(player):    
-    pass
+
+def winner(player):    pass
 
     
-def main(human, computer):#khaliil
+def main():#BRICE
     """Plays one round of the archery game and calls necessary 
     methods/functions.
     """
-    #send arguments to main function
-    #instanciate human player
-    # "" computer player
-        #each one needs to play their turn (call round)
-    #figure out who won and print (write a conditional expression)
-
-
-
     #Isnt this doing the same thing as round()?
     # Will make a call to coordinates(), turn(), validate_shot(), score(), and 
     # game_over()
@@ -352,10 +342,10 @@ def parse_args(arglist):#Brice
         namespace: parsed arguments
     """ 
     parser = argparse.ArgumentParser()
-    parser.add_argument("player1", help= "Name ofthe first player")
-    parser.add_argument("computer", help= "Name ofthe computer player")
+    parser.add_argument("Player1", help= "Name ofthe first player")
+    parser.add_argument("Computer", help= "Name ofthe computer player")
     return parser.parse_args(arglist)
  
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args.player1, args.computer)
+    
