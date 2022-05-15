@@ -1,20 +1,20 @@
 import argparse
 import sys
 import random
-from typing_extensions import Self
-from wsgiref import validate
+
 
 score_per_round = dict()
 
+@total_ordering
 class HumanPlayer():
     """Represents a Human player
     
     Attributes:
-        score (int): score of player
+        scores (dict): score of player
         name(str): Name of current player 
     """
     # utilizes optional parameters of name
-    def __init__(self, score, name = 'Player 1'): #KHALIIL
+    def __init__(self, name = 'Player 1'): #KHALIIL
         """Function that will initialize the objects that were represented in
            the attributes.
            
@@ -84,26 +84,39 @@ class HumanPlayer():
          # uses the __iadd__ magic method to calculate the score and add to
          # dictionary of scores each round
         
+    def __lt__(self, other):
+        pass
+    #compares scores based on self.score
+    #compute the sum of the values of self.score, use sum function
+    #dictionaries has a .value function
+    
+    
+    #Helper function
+    def total_score(self):
+        return sum(self.scores.values())
+    
+    def __eq__(self, other):
+        pass
+    
     # Meehir
     def coordinates(self):
-        """The players inputted coordinates which the arrow is aimed and fired 
-        at. Coordinate is determined based on relative position of shot to 
-        center and accounts wind interference.
+        """Coordinate is determined based on relative position of shot to center and 
+        accounts wind interference.
         
-        Return:
-            coordinate affected by wind
+        Side effects: 
+            final_coordinate attribute is set to the winds effect on the player_input attribute.
         """ 
         # the final coordinate depends on the random wind direction's affect on the player_input
-        if self.wind == 'N':
+        if self.wind == 'North':
             self.final_coordinate = self.player_input + 1
-        elif self.wind == 'S':
+        elif self.wind == 'South':
             self.final_coordinate = self.player_input - 1
-        elif self.wind == 'E':
+        elif self.wind == 'East':
             self.final_coordinate = self.player_input + 10
-        elif self.wind == 'W':
+        elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
             
-    def score(self):
+    def score(self, round):
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
         """
@@ -111,73 +124,71 @@ class HumanPlayer():
         # being the keys and the scores as the values.
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
-        scores = {}
         
-        five_points = ['B2','B3','B4','C2','C4','E2','E3','E4']
         
-        # accounts for bullseye, five, and one point shots
-        if self.final_coordinate == 'C3':
-            scores.append(10)
-        elif self.final_coordinate in five_points:
-            scores.append(5)
-        else:
-            scores.append(1)
-        
-        if validate_shot(player_input) == 0:
+        if self.validate_shot(self.player_input) == 0:
             points = 10
-        elif validate_shot(player_input) == 1:
+        elif self.validate_shot(self.player_input) == 1:
             points = 5
-        elif validate_shot(player_input) == 2:
+        elif self.validate_shot(self.player_input) == 2:
             points = 3
-        else
+        else:
             points = 0
         
-        scores[round] = points
+        self.scores[round] = points
         
     # Meehir           
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
         coordinates are valid.
         
-        Returns:
-            self.player_input: player input represented as a number
+        Side effects:
+            prints message prompting user to console and empty lines for formatting.
+            
+            player_input attribute is set to user input and changed to lowercase.
+            
+            player_input is changed from a string to an int.
+            
+            final_coordinate is instantiated with the same value as the player_input attribute.
         """
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
         # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
         
-        # list of valid inputs depending on wind direction
-        N = ['a5', 'b5', 'c5', 'd5', 'e5']
-        S = ['a1', 'b1', 'c1', 'd1', 'e1']
-        E = ['e1', 'e2', 'e3', 'e4', 'e5']
-        W = ['a1', 'a2', 'a3', 'a4', 'a5']
+        # possible inputs given wind direction
+        N = ['a1', 'a2', 'a3', 'a4' 'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4', 'e1', 'e2', 'e3', 'e4']
+        S = ['a2', 'a3', 'a4', 'a5', 'b2', 'b3', 'b4', 'b5', 'c2', 'c3', 'c4', 'c5', 'd2', 'd3', 'd4', 'd5', 'e2', 'e3', 'e4', 'e5']
+        E = ['a1', 'a2', 'a3', 'a4', 'a5' , 'b1', 'b2', 'b3', 'b4', 'b5', 'c1', 'c2', 'c3', 'c4', 'c5', 'd1', 'd2', 'd3', 'd4', 'd5']
+        W = ['b1', 'b2', 'b3', 'b4', 'b5', 'c1', 'c2', 'c3', 'c4', 'c5', 'd1', 'd2', 'd3', 'd4', 'd5', 'e1', 'e2', 'e3', 'e4', 'e5']
         
-        # prompts users for coordinate with restrictions applied
-        if self.wind == 'N':
-            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
-            while player_input.lower() in N:
+        # prompts users for coordinate with restrictions applied and makes sure user input is valid
+        if self.wind == 'North':
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
+            while self.player_input.lower() not in N:
                 print(' ')
-                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
-        elif self.wind == 'S':
-            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
-            while player_input.lower() in S:
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
+        elif self.wind == 'South':
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
+            while self.player_input.lower() not in S:
                 print(' ')
-                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
-        elif self.wind == 'E':
-            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
-            while player_input.lower() in E:
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
+        elif self.wind == 'East':
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
+            while self.player_input.lower() not in E:
                 print(' ')
-                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
-        elif self.wind == 'W':
-            player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
-            while player_input.lower() in W:
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
+        elif self.wind == 'West':
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
+            while self.player_input.lower() not in W:
                 print(' ')
-                player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
 
         # convert to lowercase
-        player_input = player_input.lower()
+        self.player_input = self.player_input.lower()
         
         # unpack inputted coordinates
-        x,y = player_input  
+        x,y = self.player_input  
+        
+        self.final_coordinate = self.player_input
         
         # convert to number coordinate
         if x == 'a':
@@ -190,31 +201,28 @@ class HumanPlayer():
             self.player_input = int(str('4') + str(y))
         elif x  == 'e':
             self.player_input = int(str('5') + str(y))
-            
-        return self.player_input
         
     # Meehir    
     def wind_strength(self):
-        """Determines the direction at which the wind is occuring.
+        """randomly generates a wind direction from a list of North,
+        South, East, and West.
         
-        Return:
-            wind strength which consists of direction
+        Side effects: 
+            creates wind attribute and sets it to a random cardinal direction.
         """
         # list of potential directions
-        direction = ['N', 'S', 'E', 'W']
+        direction = ['North', 'South', 'East', 'West']
         
         # random wind direction
         self.wind = random.choice(direction)
         
-        #return random direction
-        return self.wind
-        
     # Meehir
     def validate_shot(self):
-        """Determines distance from bullseye.
+        """unpacks final_coordinate attribute and changes it from an 
+        int to a string.
 
-        Return:
-            final coordinate distance from bullseye
+        Side effects:
+            final_coordinate attribute is changed from an int to a string.
         """
         # unpack final_coordinate as a string
         f,l = str(self.final_coordinate)
@@ -229,10 +237,36 @@ class HumanPlayer():
             self.final_coordinate = (str('D') + str(l))
         else:
             self.final_coordinate = (str('E') + str(l))
+
+        #Is the distance to bullseye always 2? 
+        self.distance_to_bullseye = 2
         
-        return self.final_coordinate
-            
-            
+        return self.distance_to_bullseye
+    
+    def game_over(self, round):
+        """Game is over and determines the winner. 
+        
+        Return:
+            boolean: false if game is not over true if game is over
+        """
+        #player = HumanPlayer(0, "Player 1")
+        #May need a function to determine winner 
+        #How do I call score_per_game dict from here
+        #best_score = max(player.score_per_game, key=player.score_per_game.get)
+        #best_score = player.score_per_game.sort(key=lambda x: )
+    #Call total_Score
+        
+        if round == 3: 
+            print(f"The winner is: {self.name} with a total score of: "
+                f"{.__iadd__()}")
+            print()
+            return True
+        else:
+            return False
+        # use f-strings to display the name and total score over all 3 rounds
+        # use custom list sorting to list best performing rounds by score
+    
+
 class ComputerPlayer(HumanPlayer):
     # inherits all the methods from the human class
     """Represents a computer player 
@@ -278,28 +312,7 @@ class ComputerPlayer(HumanPlayer):
         print (f'Coordinate selected: ,{computer_selected}')
     
 
-def game_over():
-    """Game is over and determines the winner. 
-    
-    Return:
-        boolean: false if game is not over true if game is over
-    """
-    player = HumanPlayer(0, "Player 1")
-    #May need a function to determine winner 
-    #How do I call score_per_game dict from here
-    #best_score = max(player.score_per_game, key=player.score_per_game.get)
-    #best_score = player.score_per_game.sort(key=lambda x: )
-   
-    
-    if round == 3: 
-        print(f"The winner is: {player.name} with a total score of: \
-            {player.__iadd__()}")
-        print()
-        return True
-    else:
-        return False
-    # use f-strings to display the name and total score over all 3 rounds
-    # use custom list sorting to list best performing rounds by score
+
 
 def winner(player):    pass
 
