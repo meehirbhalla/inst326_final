@@ -1,7 +1,7 @@
 import argparse
 import sys
 import random
-from functools import total_ordering
+
 
 score_per_round = dict()
 
@@ -22,16 +22,16 @@ class HumanPlayer():
             score(integer): score of player
             name (str): user inputted name
         """
-        self.scores = {}
+        self._score = score
         self.name = name
     
-    def round(self, rounds):
+    def round(self):
         """Initiates one round of the game.
         """
         rounds = 0 
-        while self.game_over(rounds) == False:
+        while game_over() == False: #game over needs to know what round it is, store as attribute or another way to for game over to know
             # in the begining of each round anounce the current round, and display current score 
-            print(f"The current score is {self.total_score()}") 
+            print(f"The current score is {self.score()}") 
             print(f"Round {rounds} of 3")
             # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
             rounds += 1
@@ -39,8 +39,50 @@ class HumanPlayer():
             print(f"{self.name}, it is your turn")
             # display wind strength
             print(f"The current wind direction is {self.wind_strength()} ")
-            self.turn()
-            self.score(rounds)
+            _turn = self.turn()
+            self.validate_shot() 
+        
+    # __iadd__ magic method to add to dictionary of scores per round
+    def __iadd__(self, other):#BRICE
+        """Used to add the scores at the end of each round. Total score in each
+        round will be stored in a dictionary with a key being a round # and 
+        value being the score. 
+        
+        Args:
+            other (int): round score to be added to current score
+        
+        Return:
+            Dictionary with total score accumulated per round
+        """
+        #score_per_game = dict()
+        
+        #self.score += other.score
+        #score_per_round[Round] = self.score
+        #Round += 1
+        
+        #return score_per_round
+        
+        #totalScore = 0
+        #totalScore += self.score
+        
+        score_per_round = {}
+        
+        if round == 1:
+            self.score = self.scores[round]
+            score_per_round[0] = self.score
+        elif round == 2:
+            #check if round starts at 0 or 1
+            self.score = self.scores[1] + other.scores[round]
+            score_per_round[1] = self.score
+        elif round == 3:
+            self.score += self.score + other.scores[round]
+            score_per_round[2] = self.score
+        
+        return score_per_round
+        
+        
+         # uses the __iadd__ magic method to calculate the score and add to
+         # dictionary of scores each round
         
     def __lt__(self, other):
         pass
@@ -275,18 +317,10 @@ class ComputerPlayer(HumanPlayer):
 def winner(player):    pass
 
     
-def main(human, computer):#khaliil
+def main():#BRICE
     """Plays one round of the archery game and calls necessary 
     methods/functions.
     """
-    #send arguments to main function
-    #instanciate human player
-    # "" computer player
-        #each one needs to play their turn (call round)
-    #figure out who won and print (write a conditional expression)
-
-
-
     #Isnt this doing the same thing as round()?
     # Will make a call to coordinates(), turn(), validate_shot(), score(), and 
     # game_over()
@@ -308,10 +342,10 @@ def parse_args(arglist):#Brice
         namespace: parsed arguments
     """ 
     parser = argparse.ArgumentParser()
-    parser.add_argument("player1", help= "Name ofthe first player")
-    parser.add_argument("computer", help= "Name ofthe computer player")
+    parser.add_argument("Player1", help= "Name ofthe first player")
+    parser.add_argument("Computer", help= "Name ofthe computer player")
     return parser.parse_args(arglist)
  
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args.player1, args.computer)
+    
