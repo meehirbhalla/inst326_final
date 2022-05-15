@@ -195,11 +195,6 @@ class HumanPlayer():
             self.final_coordinate = (str('D') + str(l))
         else:
             self.final_coordinate = (str('E') + str(l))
-
-        #Is the distance to bullseye always 2? 
-        self.distance_to_bullseye = 2
-        
-        return self.distance_to_bullseye
     
     def game_over(self, rounds): #Brice
         """Game is over and determines the winner. 
