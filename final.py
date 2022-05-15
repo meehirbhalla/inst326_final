@@ -29,14 +29,6 @@ class HumanPlayer():
         # will call the coordinates method where the user inputs coordinates 
         pass
 
-    def score(self): #Raeen
-        """Score taken from coordinate shot landed on. Score calls validate_shot
-        then distributes points based on where shot landed. 
-        """
-        # scores in each round will be stored in a dictionary with the rounds 
-        # being the keys and the scores as the values.
-        # determine score using conditional expressions, 
-        # if _ unit from the bullseye then assign _ points
         
     # __iadd__ magic method to add to dictionary of scores per round
     def __iadd__(self, other):#BRICE
@@ -93,7 +85,7 @@ class HumanPlayer():
         # being the keys and the scores as the values. 
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
-        scores = {}
+        self.scores = {1: ,2: ,3: }
         
         if validate_shot(player_input) == 0:
             points = 10
@@ -104,7 +96,7 @@ class HumanPlayer():
         else
             points = 0
         
-        scores[round] = points
+        self.scores[rounds] = points
         
         
     def turn(self):
@@ -181,15 +173,15 @@ class ComputerPlayer(HumanPlayer):
         # unpack x and y from computer input
         # sets the selected_coordinate as an int
         if x in computer_selected == 'a':
-            self.selected_coordinate = int(str('1') + str(y))
+            self.selected_computer_coordinate = int(str('1') + str(y))
         elif x in computer_selected == 'b':
-            self.selected_coordinate = int(str('2') + str(y))
+            self.selected_computer_coordinate = int(str('2') + str(y))
         elif x in computer_selected == 'c':
-            self.selected_coordinate = int(str('3') + str(y))
+            self.selected_computer_coordinate = int(str('3') + str(y))
         elif x in computer_selected == 'd':
-            self.selected_coordinate = int(str('4') + str(y))
+            self.selected_computer_coordinate = int(str('4') + str(y))
         else:
-            self.selected_coordinate = int(str('5') + str(y))
+            self.selected_computer_coordinate = int(str('5') + str(y))
         
         print (f'Coordinate selected: ,{computer_selected}')
         
