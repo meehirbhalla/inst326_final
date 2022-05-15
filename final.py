@@ -62,6 +62,23 @@ class HumanPlayer():
         Side effects: 
             final_coordinate attribute is set to the winds effect on the player_input attribute.
         """ 
+        # unpack user inputted coordinates
+        x,y = self.player_input
+        
+        self.final_coordinate = self.player_input
+        
+        # sets the player_input as an int
+        if x == 'a':
+            self.player_input = int(str('1') + str(y))
+        elif x  == 'b':
+            self.player_input = int(str('2') + str(y))
+        elif x  == 'c':
+            self.player_input = int(str('3') + str(y))
+        elif x  == 'd':
+            self.player_input = int(str('4') + str(y))
+        elif x  == 'e':
+            self.player_input = int(str('5') + str(y))
+            
         # the final coordinate depends on the random wind direction's affect on the player_input
         if self.wind == 'North':
             self.final_coordinate = self.player_input + 1
