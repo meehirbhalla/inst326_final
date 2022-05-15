@@ -302,10 +302,9 @@ def parse_args(arglist):#Brice
         namespace: parsed arguments
     """ 
     parser = argparse.ArgumentParser()
-    parser.add_argument("Player1", help= "Name ofthe first player")
-    parser.add_argument("Computer", help= "Name ofthe computer player")
+    parser.add_argument("Player1", help= "Name of the first player")
+    parser.add_argument("Computer", help= "Name of the computer player")
     return parser.parse_args(arglist)
  
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    
