@@ -2,6 +2,7 @@ import argparse
 import sys
 import random
 from typing_extensions import Self
+from wsgiref import validate
 
 score_per_round = dict()
 
@@ -21,23 +22,25 @@ class HumanPlayer():
             score(integer): score of player
             name (str): user inputted name
         """
-        self.score = score
+        self._score = score
         self.name = name
     
-    def round(self, rounds):
+    def round(self):
         """Initiates one round of the game.
         """
         rounds = 0 
-        while game_over() == False:
+        while game_over() == False: #game over needs to know what round it is, store as attribute or another way to for game over to know
             # in the begining of each round anounce the current round, and display current score 
-            print(f"The current score is {score()}") 
+            print(f"The current score is {self.score()}") 
             print(f"Round {rounds} of 3")
             # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
             rounds += 1
             # announce whose turn it is
             print(f"{self.name}, it is your turn")
             # display wind strength
-            print(f"The current wind direction is {wind_strength} ")
+            print(f"The current wind direction is {self.wind_strength()} ")
+            _turn = self.turn()
+            self.validate_shot() 
         
     # __iadd__ magic method to add to dictionary of scores per round
     def __iadd__(self, other):#BRICE
