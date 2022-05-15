@@ -124,9 +124,6 @@ class HumanPlayer():
             
             final_coordinate is instantiated with the same value as the player_input attribute.
         """
-        # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
-        # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
-        
         # possible inputs given wind direction
         N = ['a1', 'a2', 'a3', 'a4' 'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4', 'e1', 'e2', 'e3', 'e4']
         S = ['a2', 'a3', 'a4', 'a5', 'b2', 'b3', 'b4', 'b5', 'c2', 'c3', 'c4', 'c5', 'd2', 'd3', 'd4', 'd5', 'e2', 'e3', 'e4', 'e5']
