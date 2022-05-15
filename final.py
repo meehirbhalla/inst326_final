@@ -26,7 +26,7 @@ class HumanPlayer():
         self.scores = {}
         self.name = name
     
-    def round(self, rounds):
+    def round(self, rounds): #Khaliil
         """Initiates one round of the game.
         """
         rounds = 0 
@@ -41,17 +41,17 @@ class HumanPlayer():
             # display wind strength
             print(f"The current wind direction is {self.wind_strength} ")
         
-    def __lt__(self, other):
+    def __lt__(self, other): #Brice
         return self.scores.values < other.scores.values
     #compares scores based on self.score
     #compute the sum of the values of self.score, use sum function
     #dictionaries has a .value function
     
-    #Helper function
-    def total_score(self):
+    #Helper function for the total score
+    def total_score(self): #Brice 
         return sum(self.scores.values())
     
-    def __eq__(self, other):
+    def __eq__(self, other): #Brice
         return self.scores.values == other.scores.values
     
     # Meehir
@@ -72,7 +72,7 @@ class HumanPlayer():
         elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
             
-    def score(self, rounds):
+    def score(self, rounds): #Raeen
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
         """
@@ -211,12 +211,14 @@ class HumanPlayer():
         #best_score = max(player.score_per_game, key=player.score_per_game.get)
         #best_score = player.score_per_game.sort(key=lambda x: )
     #Call total_Score
-        highest_scores = sorted(self.scores, key= lambda )
+        score_chart = sorted(self.scores, key= lambda x: x[1], reverse = True)
         highest_score = max(self.scores, key = self.scores.get)
+        
         if rounds == 3: 
             print(f"The winner is: {self.name} with a total score of: "
                 f"{self.total_score}")
-            print()
+            print("The winning player's highest score was {highest_score}" 
+                  f"Here is their score chart for the game: {score_chart}")
             return True
         else:
             return False
@@ -233,14 +235,14 @@ class ComputerPlayer(HumanPlayer):
     """
     
     # optional parameter for computer name 
-    def __init__(self, cname = 'Computer'):
+    def __init__(self, cname = 'Computer'): #Brice
         """Function that will initialize the objects that were represented in
            the attributes.
         """
         # uses super to call the init method from the human class
         super().__init__()
         
-    def turn(self):
+    def turn(self): #Raeen
         """Overides human and generates random coordinates within bounds 
         to shoot.
         """         
