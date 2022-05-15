@@ -1,4 +1,5 @@
 import argparse
+from optparse import Values
 import sys
 import random
 from functools import total_ordering
@@ -43,18 +44,17 @@ class HumanPlayer():
             self.score(rounds)
         
     def __lt__(self, other):
-        pass
+        return self.scores.values < other.scores.values
     #compares scores based on self.score
     #compute the sum of the values of self.score, use sum function
     #dictionaries has a .value function
-    
     
     #Helper function
     def total_score(self):
         return sum(self.scores.values())
     
     def __eq__(self, other):
-        pass
+        return self.scores.values == other.scores.values
     
     # Meehir
     def coordinates(self):
@@ -74,7 +74,7 @@ class HumanPlayer():
         elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
             
-    def score(self, round):
+    def score(self, rounds):
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
         """
@@ -93,7 +93,7 @@ class HumanPlayer():
         else:
             points = 0
         
-        self.scores[round] = points
+        self.scores[rounds] = points
         
     # Meehir           
     def turn(self):
@@ -201,7 +201,7 @@ class HumanPlayer():
         
         return self.distance_to_bullseye
     
-    def game_over(self, round):
+    def game_over(self, rounds): #Brice
         """Game is over and determines the winner. 
         
         Return:
@@ -213,10 +213,11 @@ class HumanPlayer():
         #best_score = max(player.score_per_game, key=player.score_per_game.get)
         #best_score = player.score_per_game.sort(key=lambda x: )
     #Call total_Score
-        
-        if round == 3: 
+        highest_scores = sorted(self.scores, key= lambda )
+        highest_score = max(self.scores, key = self.scores.get)
+        if rounds == 3: 
             print(f"The winner is: {self.name} with a total score of: "
-                f"{.__iadd__()}")
+                f"{self.total_score}")
             print()
             return True
         else:
@@ -271,8 +272,9 @@ class ComputerPlayer(HumanPlayer):
     
 
 
-
-def winner(player):    pass
+#Don't think we need anymore
+def winner(player):    
+    pass
 
     
 def main(human, computer):#khaliil
