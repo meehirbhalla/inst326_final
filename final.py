@@ -4,7 +4,6 @@ import sys
 import random
 from functools import total_ordering
 
-score_per_round = dict()
 
 @total_ordering
 class HumanPlayer():
@@ -42,16 +41,40 @@ class HumanPlayer():
             print(f"The current wind direction is {self.wind_strength} ")
         
     def __lt__(self, other): #Brice
+        """Method that compares the scores of two players and checks if the 
+            current player's score is less than the other players. 
+
+        Args:
+            other (HumanPlayer): The player whose score is compared 
+
+        Returns:
+            Boolean: returns true or false based on comparison
+        """
         return self.scores.values < other.scores.values
+    
     #compares scores based on self.score
     #compute the sum of the values of self.score, use sum function
     #dictionaries has a .value function
     
     #Helper function for the total score
     def total_score(self): #Brice 
+        """Method to calculate total score from the game for a player
+
+        Returns:
+            integer: total score pulled from the dictionary of values 
+        """
         return sum(self.scores.values())
     
     def __eq__(self, other): #Brice
+        """Method that compares the scores of two players and checks if
+            they are eqal
+
+        Args:
+            other (HumanPlayer): The player whose score is compared
+
+        Returns:
+           Boolean: returns true or false based on comparison
+        """
         return self.scores.values == other.scores.values
     
     # Meehir
