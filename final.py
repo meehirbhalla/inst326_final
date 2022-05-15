@@ -247,7 +247,8 @@ class HumanPlayer():
         #How do I call score_per_game dict from here
         #best_score = max(player.score_per_game, key=player.score_per_game.get)
         #best_score = player.score_per_game.sort(key=lambda x: )
-    #Call total_Score
+        #Call total_Score
+    
         score_chart = sorted(self.scores, key= lambda x: x[1], reverse = True)
         highest_score = max(self.scores, key = self.scores.get)
         
