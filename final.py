@@ -55,27 +55,22 @@ class HumanPlayer():
         pass
     
     # Meehir
-    def coordinates(self, selected_coordinate):
-        """The players inputted coordinates which the arrow is aimed and fired 
-        at. Coordinate is determined based on relative position of shot to 
-        center and accounts wind interference.
+    def coordinates(self):
+        """Coordinate is determined based on relative position of shot to center and 
+        accounts wind interference.
         
-        Return:
-            coordinate affected by wind
-        """
-        
-        # call the wind strength method to caluculate the random wind direction
-        wind = wind_strength(selected_coordinate)
-        
-        # the final coordinate depends on the random wind direction
-        if wind == 'N':
-            self.final_coordinate = self.selected_coordinate + 1
-        elif wind == 'S':
-            self.final_coordinate = self.selected_coordinate - 1
-        elif wind == 'E':
-            self.final_coordinate = self.selected_coordinate + 10
-        elif wind == 'W':
-            self.final_coordinate = self.selected_coordinate - 10
+        Side effects: 
+            final_coordinate attribute is set to the winds effect on the player_input attribute.
+        """ 
+        # the final coordinate depends on the random wind direction's affect on the player_input
+        if self.wind == 'North':
+            self.final_coordinate = self.player_input + 1
+        elif self.wind == 'South':
+            self.final_coordinate = self.player_input - 1
+        elif self.wind == 'East':
+            self.final_coordinate = self.player_input + 10
+        elif self.wind == 'West':
+            self.final_coordinate = self.player_input - 10
             
     def score(self, round):
         """Score taken from coordinate shot landed on. Score calls validate_shot
@@ -102,99 +97,105 @@ class HumanPlayer():
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
         coordinates are valid.
+        
+        Side effects:
+            prints message prompting user to console and empty lines for formatting.
+            
+            player_input attribute is set to user input and changed to lowercase.
+            
+            player_input is changed from a string to an int.
+            
+            final_coordinate is instantiated with the same value as the player_input attribute.
         """
         # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
         # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
         
-        # list of valid inputs
-        valid_input = ['a1', 'a2', 'a3', 'a4', 'a5',
-                       'b1', 'b2', 'b3', 'b4', 'b5',
-                       'c1', 'c2', 'c3', 'c4', 'c5',
-                       'd1', 'd2', 'd3', 'd4', 'd5',
-                       'e1', 'e2', 'e3', 'e4', 'e5']
+        # possible inputs given wind direction
+        N = ['a1', 'a2', 'a3', 'a4' 'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4', 'e1', 'e2', 'e3', 'e4']
+        S = ['a2', 'a3', 'a4', 'a5', 'b2', 'b3', 'b4', 'b5', 'c2', 'c3', 'c4', 'c5', 'd2', 'd3', 'd4', 'd5', 'e2', 'e3', 'e4', 'e5']
+        E = ['a1', 'a2', 'a3', 'a4', 'a5' , 'b1', 'b2', 'b3', 'b4', 'b5', 'c1', 'c2', 'c3', 'c4', 'c5', 'd1', 'd2', 'd3', 'd4', 'd5']
+        W = ['b1', 'b2', 'b3', 'b4', 'b5', 'c1', 'c2', 'c3', 'c4', 'c5', 'd1', 'd2', 'd3', 'd4', 'd5', 'e1', 'e2', 'e3', 'e4', 'e5']
         
-        # ensure valid input
-        while(player_input.lower() not in valid_input):
-            player_input = input (f'''{self.name}, Please enter a coordinate in the format (xy),
-                                  where x is a letter from A-E and y is a number from 1-5: ''')
-            
-        # make user input lower case
-        player_input = player_input.lower()
-            
+        # prompts users for coordinate with restrictions applied and makes sure user input is valid
+        if self.wind == 'North':
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
+            while self.player_input.lower() not in N:
+                print(' ')
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 1-4: ')
+        elif self.wind == 'South':
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
+            while self.player_input.lower() not in S:
+                print(' ')
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-E and y is a number from 2-5: ')
+        elif self.wind == 'East':
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
+            while self.player_input.lower() not in E:
+                print(' ')
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from A-D and y is a number from 1-5: ')
+        elif self.wind == 'West':
+            self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
+            while self.player_input.lower() not in W:
+                print(' ')
+                self.player_input = input(f'{self.name}, please enter a coordinate in the format (xy), where x is a letter from B-E and y is a number from 1-5: ')
+
+        # convert to lowercase
+        self.player_input = self.player_input.lower()
+        
         # unpack inputted coordinates
-        x,y = player_input
+        x,y = self.player_input  
         
-        # unpack x and y from player input
-        # sets the selected_coordinate as an int
-        if x in player_input == 'a':
-            self.selected_coordinate = int(str('1') + str(y))
-        elif x in player_input == 'b':
-            self.selected_coordinate = int(str('2') + str(y))
-        elif x in player_input == 'c':
-            self.selected_coordinate = int(str('3') + str(y))
-        elif x in player_input == 'd':
-            self.selected_coordinate = int(str('4') + str(y))
-        else:
-            self.selected_coordinate = int(str('5') + str(y))
+        self.final_coordinate = self.player_input
         
-        print (f'Coordinate selected: ,{player_input}')
+        # convert to number coordinate
+        if x == 'a':
+            self.player_input = int(str('1') + str(y))
+        elif x  == 'b':
+            self.player_input = int(str('2') + str(y))
+        elif x  == 'c':
+            self.player_input = int(str('3') + str(y))
+        elif x  == 'd':
+            self.player_input = int(str('4') + str(y))
+        elif x  == 'e':
+            self.player_input = int(str('5') + str(y))
         
     # Meehir    
-    def wind_strength(self, selected_coordinate):
-        """Determines the direction at which the wind is occuring.
+    def wind_strength(self):
+        """randomly generates a wind direction from a list of North,
+        South, East, and West.
         
-        Return:
-            wind strength which consists of direction
+        Side effects: 
+            creates wind attribute and sets it to a random cardinal direction.
         """
         # list of potential directions
-        direction = ['N', 'S', 'E', 'W']
-    
-        # if A is the X coordinate the player selected
-        if (self.selected_coordinate == 11):
-            self.random_direction = (random.choice(direction[0::2]))
-        elif (self.selected_coordinate == 12) or (self.selected_coordinate == 13) or (self.selected_coordinate == 14):
-            self.random_direction = (random.choice(direction[0::2]))
-        else:
-            self.random_direction = (random.choice(direction[1::2]))
-            
-        # if B, C, or D is the X coordinate the player selected
-        if (self.selected_coordinate == 21) or (self.selected_coordinate == 31) or (self.selected_coordinate == 41):
-            dont_include = 1
-            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        elif (self.selected_coordinate == 25) or (self.selected_coordinate == 35) or (self.selected_coordinate == 45):
-            dont_include = 0
-            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        else:
-            self.random_direction = (random.choice(direction))
-            
-        # if E is the X coordinate the player selected
-        if (self.selected_coordinate == 51):
-            self.random_direction = (random.choice(direction[0::3]))
-        elif (self.selected_coordinate == 52) or (self.selected_coordinate == 53) or (self.selected_coordinate == 54):
-            dont_include = 2
-            self.random_direction = (random.choice(direction[:dont_include] + direction[dont_include+1:]))
-        else:
-            self.random_direction = (random.choice(direction[1::3]))
+        direction = ['North', 'South', 'East', 'West']
         
-        return self.random_direction
-  
+        # random wind direction
+        self.wind = random.choice(direction)
+        
     # Meehir
     def validate_shot(self):
-        """Determines distance from bullseye.
+        """unpacks final_coordinate attribute and changes it from an 
+        int to a string.
 
-        Return:
-            affected coordinates distance from bullseye
+        Side effects:
+            final_coordinate attribute is changed from an int to a string.
         """
-        # unpack final coordinate
-        x,y = self.final_coordinate
+        # unpack final_coordinate as a string
+        f,l = str(self.final_coordinate)
         
-        # determine distance using the x and y coordinate values of the final affected coordinate
-        if (x == 2) or (x == 3) or (x == 4) and (y == 2) or (y == 3) or (y == 4):
-            self.distance_to_bullseye = 1
-        elif (x == 3) and (y == 3):
-            self.distance_to_bullseye = 0
+        if f == '1':
+            self.final_coordinate = (str('A') + str(l))
+        elif f == '2':
+            self.final_coordinate = (str('B') + str(l))
+        elif f  == '3':
+            self.final_coordinate = (str('C') + str(l))
+        elif f == '4':
+            self.final_coordinate = (str('D') + str(l))
         else:
-            self.distance_to_bullseye = 2
+            self.final_coordinate = (str('E') + str(l))
+
+        #Is the distance to bullseye always 2? 
+        self.distance_to_bullseye = 2
         
         return self.distance_to_bullseye
     
@@ -221,6 +222,7 @@ class HumanPlayer():
         # use f-strings to display the name and total score over all 3 rounds
         # use custom list sorting to list best performing rounds by score
     
+
 class ComputerPlayer(HumanPlayer):
     # inherits all the methods from the human class
     """Represents a computer player 
