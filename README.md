@@ -3,9 +3,8 @@
 2. In order to run the program from the command line type 'python3 final.py' </br>
 3. To use the program... </br>
 4. Contributions - Meehir </br>
-      a. coordinates
-      b. HumanPlayer - turn
-      c. wind_strength
-      d. validate_shot
-      e. 
+      a. coordinates </br>
+      b. HumanPlayer - turn </br>
+      c. wind_strength </br>
+      d. validate_shot </br>
 5. Sources - 
