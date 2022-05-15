@@ -4,7 +4,6 @@ import sys
 import random
 from functools import total_ordering
 
-score_per_round = dict()
 
 @total_ordering
 class HumanPlayer():
@@ -26,7 +25,7 @@ class HumanPlayer():
         self.scores = {}
         self.name = name
     
-    def round(self, rounds):
+    def round(self, rounds): #Khaliil
         """Initiates one round of the game.
         """
         rounds = 0 
@@ -43,17 +42,41 @@ class HumanPlayer():
             self.turn()
             self.score(rounds)
         
-    def __lt__(self, other):
+    def __lt__(self, other): #Brice
+        """Method that compares the scores of two players and checks if the 
+            current player's score is less than the other players. 
+
+        Args:
+            other (HumanPlayer): The player whose score is compared 
+
+        Returns:
+            Boolean: returns true or false based on comparison
+        """
         return self.scores.values < other.scores.values
+    
     #compares scores based on self.score
     #compute the sum of the values of self.score, use sum function
     #dictionaries has a .value function
     
-    #Helper function
-    def total_score(self):
+    #Helper function for the total score
+    def total_score(self): #Brice 
+        """Method to calculate total score from the game for a player
+
+        Returns:
+            integer: total score pulled from the dictionary of values 
+        """
         return sum(self.scores.values())
     
-    def __eq__(self, other):
+    def __eq__(self, other): #Brice
+        """Method that compares the scores of two players and checks if
+            they are eqal
+
+        Args:
+            other (HumanPlayer): The player whose score is compared
+
+        Returns:
+           Boolean: returns true or false based on comparison
+        """
         return self.scores.values == other.scores.values
     
     # Meehir
@@ -64,6 +87,23 @@ class HumanPlayer():
         Side effects: 
             final_coordinate attribute is set to the winds effect on the player_input attribute.
         """ 
+        # unpack user inputted coordinates
+        x,y = self.player_input
+        
+        self.final_coordinate = self.player_input
+        
+        # sets the player_input as an int
+        if x == 'a':
+            self.player_input = int(str('1') + str(y))
+        elif x  == 'b':
+            self.player_input = int(str('2') + str(y))
+        elif x  == 'c':
+            self.player_input = int(str('3') + str(y))
+        elif x  == 'd':
+            self.player_input = int(str('4') + str(y))
+        elif x  == 'e':
+            self.player_input = int(str('5') + str(y))
+            
         # the final coordinate depends on the random wind direction's affect on the player_input
         if self.wind == 'North':
             self.final_coordinate = self.player_input + 1
@@ -74,7 +114,7 @@ class HumanPlayer():
         elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
             
-    def score(self, rounds):
+    def score(self, rounds): #Raeen
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
         """
@@ -109,9 +149,6 @@ class HumanPlayer():
             
             final_coordinate is instantiated with the same value as the player_input attribute.
         """
-        # use sequence unpacking to access the x (letter) and y (number) to interpret desired coordinate
-        # e.g., c3 would unpack to x = c and y = 3 and ultimately x = 3 and y = 3
-        
         # possible inputs given wind direction
         N = ['a1', 'a2', 'a3', 'a4' 'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4', 'e1', 'e2', 'e3', 'e4']
         S = ['a2', 'a3', 'a4', 'a5', 'b2', 'b3', 'b4', 'b5', 'c2', 'c3', 'c4', 'c5', 'd2', 'd3', 'd4', 'd5', 'e2', 'e3', 'e4', 'e5']
@@ -213,12 +250,14 @@ class HumanPlayer():
         #best_score = max(player.score_per_game, key=player.score_per_game.get)
         #best_score = player.score_per_game.sort(key=lambda x: )
     #Call total_Score
-        highest_scores = sorted(self.scores, key= lambda )
+        score_chart = sorted(self.scores, key= lambda x: x[1], reverse = True)
         highest_score = max(self.scores, key = self.scores.get)
+        
         if rounds == 3: 
             print(f"The winner is: {self.name} with a total score of: "
                 f"{self.total_score}")
-            print()
+            print("The winning player's highest score was {highest_score}" 
+                  f"Here is their score chart for the game: {score_chart}")
             return True
         else:
             return False
@@ -235,14 +274,14 @@ class ComputerPlayer(HumanPlayer):
     """
     
     # optional parameter for computer name 
-    def __init__(self, cname = 'Computer'):
+    def __init__(self, cname = 'Computer'): #Brice
         """Function that will initialize the objects that were represented in
            the attributes.
         """
         # uses super to call the init method from the human class
         super().__init__()
         
-    def turn(self):
+    def turn(self): #Raeen
         """Overides human and generates random coordinates within bounds 
         to shoot.
         """         
@@ -310,6 +349,7 @@ def parse_args(arglist):#Brice
         namespace: parsed arguments
     """ 
     parser = argparse.ArgumentParser()
+<<<<<<< HEAD
     parser.add_argument("player1", help= "Name ofthe first player")
     parser.add_argument("computer", help= "Name ofthe computer player")
     return parser.parse_args(arglist)
@@ -317,3 +357,11 @@ def parse_args(arglist):#Brice
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
     main(args.player1, args.computer)
+=======
+    parser.add_argument("Player1", help= "Name of the first player")
+    parser.add_argument("Computer", help= "Name of the computer player")
+    return parser.parse_args(arglist)
+ 
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+>>>>>>> 06b7aae26b91025db038ee547c239497d4b0c17d
