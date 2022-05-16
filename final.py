@@ -83,15 +83,18 @@ class HumanPlayer():
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
+        # 11 12 13 14 15
+        # 21 22 23 24 25
+        # 31 32 33 34 35
+        # 41 42 43 44 45
+        # 51 52 53 54 55
         
-        if self.validate_shot(self.player_input) == 0:
+        if self.final_coordinate == 33:
             points = 10
-        elif self.validate_shot(self.player_input) == 1:
+        elif self.final_coordinate == 22 or self.final_coordinate == 23 or self.final_coordinate == 24 or self.final_coordinate == 32 or self.final_coordinate == 34 or self.final_coordinate == 42 or self.final_coordinate == 43 or self.final_coordinate == 44:
             points = 5
-        elif self.validate_shot(self.player_input) == 2:
-            points = 3
         else:
-            points = 0
+            points = 1
         
         self.scores[rounds] = points
         
@@ -250,25 +253,26 @@ class ComputerPlayer(HumanPlayer):
         """         
         # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
         
-        
         letters = ['a','b','c','d','e']
         nums = ['1','2','3','4','5']
         rand_let = random.choice(letters)
         rand_num = random.choice(nums)
         computer_selected = rand_let + rand_num
-        
+        x = rand_let
+        y = rand_num
         # unpack x and y from computer input
         # sets the selected_coordinate as an int
-        if x in computer_selected == 'a':
-            self.selected_coordinate = int(str('1') + str(y))
-        elif x in computer_selected == 'b':
-            self.selected_coordinate = int(str('2') + str(y))
-        elif x in computer_selected == 'c':
-            self.selected_coordinate = int(str('3') + str(y))
-        elif x in computer_selected == 'd':
-            self.selected_coordinate = int(str('4') + str(y))
-        else:
-            self.selected_coordinate = int(str('5') + str(y))
+        if x == 'a':
+            self.selected_computer_coordinate = int(str('1') + str(y))
+        elif x == 'b':
+            self.selected_computer_coordinate = int(str('2') + str(y))
+        elif x == 'c':
+            self.selected_computer_coordinate = int(str('3') + str(y))
+        elif x == 'd':
+            self.selected_computer_coordinate = int(str('4') + str(y))
+        elif x == 'e':
+            self.selected_computer_coordinate = int(str('5') + str(y))
+        
         
         print (f'Coordinate selected: ,{computer_selected}')
     
