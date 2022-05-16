@@ -283,10 +283,14 @@ def main(human, computer):#khaliil
     """
     #send arguments to main function
     #instanciate human player
+    human = HumanPlayer()
+    human.round()
     # "" computer player
+    computer = ComputerPlayer()
+    computer.round()
         #each one needs to play their turn (call round)
     #figure out who won and print (write a conditional expression)
-
+    
 
 
     #Isnt this doing the same thing as round()?
