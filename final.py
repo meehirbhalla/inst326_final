@@ -237,14 +237,14 @@ class ComputerPlayer(HumanPlayer):
     """
     
     # optional parameter for computer name 
-    def __init__(self, cname = 'Computer'):
+    def __init__(self, cname = 'Computer'): #Brice
         """Function that will initialize the objects that were represented in
            the attributes.
         """
         # uses super to call the init method from the human class
         super().__init__()
         
-    def turn(self):
+    def turn(self): #Raeen
         """Overides human and generates random coordinates within bounds 
         to shoot.
         """         
