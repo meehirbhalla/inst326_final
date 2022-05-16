@@ -7,4 +7,10 @@
       b. HumanPlayer - turn </br>
       c. wind_strength </br>
       d. validate_shot </br>
+4. Contributions - Brice </br>
+      a. __lt__ </br>
+      b. total_score </br>
+      c. __eq__ </br>
+      d. game_over </br>
+      e. parse_args </br>
 5. Sources - 
