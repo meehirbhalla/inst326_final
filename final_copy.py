@@ -1,8 +1,7 @@
 import argparse
-from optparse import Values
 import sys
 import random
-from functools import total_ordering
+
 
 score_per_round = dict()
 
@@ -23,38 +22,81 @@ class HumanPlayer():
             score(integer): score of player
             name (str): user inputted name
         """
-        self.scores = {}
+        self._score = score
         self.name = name
     
-    def round(self, rounds):
+    def round(self):
         """Initiates one round of the game.
         """
         rounds = 0 
-        while self.game_over(rounds) == False:
+        while game_over() == False: #game over needs to know what round it is, store as attribute or another way to for game over to know
             # in the begining of each round anounce the current round, and display current score 
-            print(f"The current score is {self.total_score()}") 
+            print(f"The current score is {self.score()}") 
             print(f"Round {rounds} of 3")
             # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
             rounds += 1
             # announce whose turn it is
             print(f"{self.name}, it is your turn")
             # display wind strength
-            print(f"The current wind direction is {self.wind} ")
-            self.turn()
-            self.score(rounds)
+            print(f"The current wind direction is {self.wind_strength()} ")
+            _turn = self.turn()
+            self.validate_shot() 
+        
+    # __iadd__ magic method to add to dictionary of scores per round
+    def __iadd__(self, other):#BRICE
+        """Used to add the scores at the end of each round. Total score in each
+        round will be stored in a dictionary with a key being a round # and 
+        value being the score. 
+        
+        Args:
+            other (int): round score to be added to current score
+        
+        Return:
+            Dictionary with total score accumulated per round
+        """
+        #score_per_game = dict()
+        
+        #self.score += other.score
+        #score_per_round[Round] = self.score
+        #Round += 1
+        
+        #return score_per_round
+        
+        #totalScore = 0
+        #totalScore += self.score
+        
+        score_per_round = {}
+        
+        if round == 1:
+            self.score = self.scores[round]
+            score_per_round[0] = self.score
+        elif round == 2:
+            #check if round starts at 0 or 1
+            self.score = self.scores[1] + other.scores[round]
+            score_per_round[1] = self.score
+        elif round == 3:
+            self.score += self.score + other.scores[round]
+            score_per_round[2] = self.score
+        
+        return score_per_round
+        
+        
+         # uses the __iadd__ magic method to calculate the score and add to
+         # dictionary of scores each round
         
     def __lt__(self, other):
-        return self.scores.values < other.scores.values
+        pass
     #compares scores based on self.score
     #compute the sum of the values of self.score, use sum function
     #dictionaries has a .value function
+    
     
     #Helper function
     def total_score(self):
         return sum(self.scores.values())
     
     def __eq__(self, other):
-        return self.scores.values == other.scores.values
+        pass
     
     # Meehir
     def coordinates(self):
@@ -74,7 +116,7 @@ class HumanPlayer():
         elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
             
-    def score(self, rounds):
+    def score(self, round):
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
         """
@@ -83,20 +125,17 @@ class HumanPlayer():
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
-        # 11 12 13 14 15
-        # 21 22 23 24 25
-        # 31 32 33 34 35
-        # 41 42 43 44 45
-        # 51 52 53 54 55
         
-        if self.final_coordinate == 33:
+        if self.validate_shot(self.player_input) == 0:
             points = 10
-        elif self.final_coordinate == 22 or self.final_coordinate == 23 or self.final_coordinate == 24 or self.final_coordinate == 32 or self.final_coordinate == 34 or self.final_coordinate == 42 or self.final_coordinate == 43 or self.final_coordinate == 44:
+        elif self.validate_shot(self.player_input) == 1:
             points = 5
+        elif self.validate_shot(self.player_input) == 2:
+            points = 3
         else:
-            points = 1
+            points = 0
         
-        self.scores[rounds] = points
+        self.scores[round] = points
         
     # Meehir           
     def turn(self):
@@ -198,8 +237,13 @@ class HumanPlayer():
             self.final_coordinate = (str('D') + str(l))
         else:
             self.final_coordinate = (str('E') + str(l))
+
+        #Is the distance to bullseye always 2? 
+        self.distance_to_bullseye = 2
+        
+        return self.distance_to_bullseye
     
-    def game_over(self, rounds): #Brice
+    def game_over(self, round):
         """Game is over and determines the winner. 
         
         Return:
@@ -210,20 +254,12 @@ class HumanPlayer():
         #How do I call score_per_game dict from here
         #best_score = max(player.score_per_game, key=player.score_per_game.get)
         #best_score = player.score_per_game.sort(key=lambda x: )
-
-        #Call total_Score
-    
-        highest_score = max(self.scores.values())
+    #Call total_Score
         
-        if rounds == 3: 
+        if round == 3: 
             print(f"The winner is: {self.name} with a total score of: "
-                f"{self.total_score}")
-            print(f"The winning player's highest score was {highest_score} \n \
-                  Here is their score chart for the game: ")
-            for key, value in sorted(self.scores.items(), key = lambda x: x[1],\
-                reverse = True):
-                print(key, value)
-                
+                f"{.__iadd__()}")
+            print()
             return True
         else:
             return False
@@ -253,48 +289,38 @@ class ComputerPlayer(HumanPlayer):
         """         
         # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
         
+        
         letters = ['a','b','c','d','e']
         nums = ['1','2','3','4','5']
         rand_let = random.choice(letters)
         rand_num = random.choice(nums)
         computer_selected = rand_let + rand_num
-        x = rand_let
-        y = rand_num
+        
         # unpack x and y from computer input
         # sets the selected_coordinate as an int
-        if x == 'a':
-            self.selected_computer_coordinate = int(str('1') + str(y))
-        elif x == 'b':
-            self.selected_computer_coordinate = int(str('2') + str(y))
-        elif x == 'c':
-            self.selected_computer_coordinate = int(str('3') + str(y))
-        elif x == 'd':
-            self.selected_computer_coordinate = int(str('4') + str(y))
-        elif x == 'e':
-            self.selected_computer_coordinate = int(str('5') + str(y))
-        
+        if x in computer_selected == 'a':
+            self.selected_coordinate = int(str('1') + str(y))
+        elif x in computer_selected == 'b':
+            self.selected_coordinate = int(str('2') + str(y))
+        elif x in computer_selected == 'c':
+            self.selected_coordinate = int(str('3') + str(y))
+        elif x in computer_selected == 'd':
+            self.selected_coordinate = int(str('4') + str(y))
+        else:
+            self.selected_coordinate = int(str('5') + str(y))
         
         print (f'Coordinate selected: ,{computer_selected}')
     
 
 
-#Don't think we need anymore
-def winner(player):    
-    pass
+
+def winner(player):    pass
 
     
-def main(human, computer):#khaliil
+def main():#BRICE
     """Plays one round of the archery game and calls necessary 
     methods/functions.
     """
-    #send arguments to main function
-    #instanciate human player
-    # "" computer player
-        #each one needs to play their turn (call round)
-    #figure out who won and print (write a conditional expression)
-
-
-
     #Isnt this doing the same thing as round()?
     # Will make a call to coordinates(), turn(), validate_shot(), score(), and 
     # game_over()
@@ -316,10 +342,10 @@ def parse_args(arglist):#Brice
         namespace: parsed arguments
     """ 
     parser = argparse.ArgumentParser()
-    parser.add_argument("player1", help= "Name ofthe first player")
-    parser.add_argument("computer", help= "Name ofthe computer player")
+    parser.add_argument("Player1", help= "Name ofthe first player")
+    parser.add_argument("Computer", help= "Name ofthe computer player")
     return parser.parse_args(arglist)
  
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args.player1, args.computer)
+    
