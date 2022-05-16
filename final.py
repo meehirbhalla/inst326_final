@@ -26,7 +26,7 @@ class HumanPlayer():
         self.scores = {}
         self.name = name
     
-    def round(self, rounds):
+    def round(self, rounds): #Khaliil
         """Initiates one round of the game.
         """
         rounds = 0 
@@ -43,17 +43,17 @@ class HumanPlayer():
             self.turn()
             self.score(rounds)
         
-    def __lt__(self, other):
+    def __lt__(self, other): #Brice 
         return self.scores.values < other.scores.values
     #compares scores based on self.score
     #compute the sum of the values of self.score, use sum function
     #dictionaries has a .value function
     
     #Helper function
-    def total_score(self):
+    def total_score(self): #Brice
         return sum(self.scores.values())
     
-    def __eq__(self, other):
+    def __eq__(self, other): #Brice 
         return self.scores.values == other.scores.values
     
     # Meehir
@@ -74,7 +74,7 @@ class HumanPlayer():
         elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
             
-    def score(self, rounds):
+    def score(self, rounds): #Raeen
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
         """
@@ -276,12 +276,6 @@ class ComputerPlayer(HumanPlayer):
         
         print (f'Coordinate selected: ,{computer_selected}')
     
-
-
-#Don't think we need anymore
-def winner(player):    
-    pass
-
     
 def main(human, computer):#khaliil
     """Plays one round of the archery game and calls necessary 
