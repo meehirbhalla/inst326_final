@@ -25,7 +25,9 @@ class HumanPlayer():
         """
         self.scores = {0:0}
         self.name = name
-        self.wind_strength()
+        self.player_input = 0
+        
+
         
     
     def round(self): #Khaliil
@@ -41,6 +43,7 @@ class HumanPlayer():
             # announce whose turn it is
             print(f"{self.name}, it is your turn")
             # display wind strength
+            self.wind_strength()
             print(f"The current wind direction is {self.wind} ") #
             self.turn()
             self.coordinates()
@@ -255,6 +258,7 @@ class ComputerPlayer(HumanPlayer):
         """
         # uses super to call the init method from the human class
         super().__init__()
+        self.player_input = 0
         
         
     def turn(self): #Raeen
