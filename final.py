@@ -23,10 +23,11 @@ class HumanPlayer():
             score(integer): score of player
             name (str): user inputted name
         """
-        self.scores = {}
+        self.scores = {0:0}
         self.name = name
+        self.wind_strength()
     
-    def round(self, rounds):
+    def round(self): #Khaliil
         """Initiates one round of the game.
         """
         rounds = 0 
@@ -39,21 +40,21 @@ class HumanPlayer():
             # announce whose turn it is
             print(f"{self.name}, it is your turn")
             # display wind strength
-            print(f"The current wind direction is {self.wind} ")
+            print(f"The current wind direction is {self.wind} ") #
             self.turn()
             self.score(rounds)
         
-    def __lt__(self, other):
+    def __lt__(self, other): #Brice 
         return self.scores.values < other.scores.values
     #compares scores based on self.score
     #compute the sum of the values of self.score, use sum function
     #dictionaries has a .value function
     
     #Helper function
-    def total_score(self):
+    def total_score(self): #Brice
         return sum(self.scores.values())
     
-    def __eq__(self, other):
+    def __eq__(self, other): #Brice 
         return self.scores.values == other.scores.values
     
     # Meehir
@@ -74,7 +75,7 @@ class HumanPlayer():
         elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
             
-    def score(self, rounds):
+    def score(self, rounds): #Raeen
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
         """
@@ -254,14 +255,15 @@ class ComputerPlayer(HumanPlayer):
     """
     
     # optional parameter for computer name 
-    def __init__(self, cname = 'Computer'):
+    def __init__(self, cname = 'Computer'): #Brice
         """Function that will initialize the objects that were represented in
            the attributes.
         """
         # uses super to call the init method from the human class
         super().__init__()
         
-    def turn(self):
+        
+    def turn(self): #Raeen
         """Overides human and generates random coordinates within bounds 
         to shoot.
         """         
@@ -290,22 +292,32 @@ class ComputerPlayer(HumanPlayer):
         self.final_coordinate = computer_selected
         print (f'Coordinate selected: ,{computer_selected}')
     
-
-
-#Don't think we need anymore
-def winner(player):    
-    pass
-
     
-def main(human, computer):#khaliil
+def main(human, computer_name):#khaliil
     """Plays one round of the archery game and calls necessary 
     methods/functions.
     """
+    play_again = "y"
     #send arguments to main function
     #instanciate human player
-    # "" computer player
-        #each one needs to play their turn (call round)
-    #figure out who won and print (write a conditional expression)
+    while play_again == "y": 
+        human_player = HumanPlayer(human)
+        human_player.round()
+        # "" computer player
+        computer = ComputerPlayer(computer_name)
+        computer.round()
+            #each one needs to play their turn (call round)
+        #figure out who won and print (write a conditional expression)
+        if human_player.total_score() > computer.total_score():
+            print("Payer 1 wins!")
+        elif human_player.total_score() < computer.total_score():
+            print("Computer wins!")
+        else:
+            print("It's a tie!")
+        play_again = input("Would you like to play again?")
+
+        if play_again != "y":
+            break
 
 
 
