@@ -15,7 +15,7 @@ class HumanPlayer():
         name(str): Name of current player 
     """
     # utilizes optional parameters of name
-    def __init__(self, name = 'Player 1'): #KHALIIL
+    def __init__(self, name = 'computer'): #KHALIIL
         """Function that will initialize the objects that were represented in
            the attributes.
            
@@ -33,6 +33,8 @@ class HumanPlayer():
     
     def round(self): #Khaliil
         """Initiates one round of the game.
+        Side Effects:
+            prints to the terminal
         """
         rounds = 0 
         while self.game_over(rounds) == False:
@@ -49,7 +51,7 @@ class HumanPlayer():
             self.turn()
             self.coordinates()
             self.score(rounds)
-        
+        return self.scores
     def __lt__(self, other): #Brice 
         return self.scores.values < other.scores.values
     #compares scores based on self.score
@@ -103,13 +105,13 @@ class HumanPlayer():
         
         if self.final_coordinate == 33:
             points = 10
-        elif self.final_coordinate == 22 or self.final_coordinate == 23 or self.final_coordinate == 24 or self.final_coordinate == 32 or self.final_coordinate == 34 or self.final_coordinate == 42 or self.final_coordinate == 43 or self.final_coordinate == 44:
+        elif self.final_coordinate == 22 or self.final_coordinate == 32 or self.final_coordinate == 42 or self.final_coordinate == 23 or self.final_coordinate == 43 or self.final_coordinate == 24 or self.final_coordinate == 34 or self.final_coordinate == 44:
             points = 5
         else:
             points = 1
         
         self.scores[rounds] = points
-        
+
     # Meehir           
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
@@ -228,9 +230,8 @@ class HumanPlayer():
         highest_score = max(self.scores.values())
         
         if rounds == 3: 
-            print(f"The winner is: {self.name} with a total score of: "
-                f"{self.total_score()}")
-            print(f"The winning player's highest score was {highest_score} \n \
+            print(f"Total score for {self.name} is {self.total_score()}")
+            print(f"{self.name} highest score from 3 rounds was {highest_score} \n \
                   Here is their score chart for the game: ")
             self.scores.pop(0)
             for key, value in sorted(self.scores.items(), key = lambda x: x[1],\
@@ -292,7 +293,7 @@ class ComputerPlayer(HumanPlayer):
         print (f'Coordinate selected: ,{computer_selected}')
     
     
-def main(human, computer_name):#khaliil
+def main(human):#khaliil
     """Plays one round of the archery game and calls necessary 
     methods/functions.
 
@@ -302,16 +303,17 @@ def main(human, computer_name):#khaliil
     #instanciate human player
     while play_again == "y": 
         human_player = HumanPlayer(human)
-        human_player.round()
+        human_score = human_player.round()
         # "" computer player
-        computer = ComputerPlayer(computer_name)
-        computer.round()
+        computer = ComputerPlayer("computer")
+        computer_score = computer.round()
             #each one needs to play their turn (call round)
         #figure out who won and print (write a conditional expression)
 
-        if human_player.total_score() > computer.total_score():
-            print("Player 1 wins!")
-        elif human_player.total_score() < computer.total_score():
+
+        if sum(human_score.values()) > sum(computer_score.values()):
+            print(f"{human_player.name} wins")
+        elif sum(human_score.values()) < sum(computer_score.values()):
             print("Computer wins!")
         else:
             print("It's a tie!")
@@ -337,9 +339,9 @@ def parse_args(arglist):#Brice
     """ 
     parser = argparse.ArgumentParser()
     parser.add_argument("player1", help= "Name ofthe first player")
-    parser.add_argument("computer", help= "Name ofthe computer player")
+    #parser.add_argument("computer", help= "Name ofthe computer player")
     return parser.parse_args(arglist)
  
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args.player1, args.computer)
+    main(args.player1)

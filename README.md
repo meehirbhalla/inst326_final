@@ -17,5 +17,8 @@
       a. __init__ </br>
       b. round </br>
       c. main </br>
-
+4. Contributions - Raeen </br>
+      a. ComputerPlayer - turn </br>
+      b. HumanPlayer - Score </br>
+      
 5. Sources - 
