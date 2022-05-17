@@ -26,7 +26,6 @@ class HumanPlayer():
         self.scores = {0:0}
         self.name = name
         self.wind_strength()
-       
         
     
     def round(self): #Khaliil
@@ -39,15 +38,13 @@ class HumanPlayer():
             print(f"Round {rounds} of 3")
             # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
             rounds += 1
-            # announce whose turn it is'
-            
+            # announce whose turn it is
             print(f"{self.name}, it is your turn")
             # display wind strength
             print(f"The current wind direction is {self.wind} ") #
             self.turn()
             self.coordinates()
             self.score(rounds)
-            
         
     def __lt__(self, other): #Brice 
         return self.scores.values < other.scores.values
@@ -79,8 +76,6 @@ class HumanPlayer():
             self.final_coordinate = self.player_input + 10
         elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
-
-        print(f"It's printed {self.final_coordinate} here <<<<<<<")
             
     def score(self, rounds): #Raeen
         """Score taken from coordinate shot landed on. Score calls validate_shot
@@ -97,18 +92,9 @@ class HumanPlayer():
         # 14 24 34 44 54
         # 15 25 35 45 55
         
-        x,y = self.final_coordinate
+        #x,y = self.final_coordinate
         
-        if x == 'a':
-            self.final_coordinate = int(str('1') + str(y))
-        elif x  == 'b':
-            self.final_coordinate = int(str('2') + str(y))
-        elif x  == 'c':
-            self.final_coordinate = int(str('3') + str(y))
-        elif x  == 'd':
-            self.final_coordinate = int(str('4') + str(y))
-        elif x  == 'e':
-            self.final_coordinate = int(str('5') + str(y))
+       
     
         
         if self.final_coordinate == 33:
@@ -196,7 +182,7 @@ class HumanPlayer():
         # list of potential directions
         direction = ['North', 'South', 'East', 'West']
         
-        # random wind direction
+        # random wind direction 
         self.wind = random.choice(direction)
         
     # Meehir
@@ -208,7 +194,6 @@ class HumanPlayer():
             final_coordinate attribute is changed from an int to a string.
         """
         # unpack final_coordinate as a string
-        
         f,l = str(self.final_coordinate)
         
         if f == '1':
