@@ -26,6 +26,7 @@ class HumanPlayer():
         self.scores = {0:0}
         self.name = name
         self.wind_strength()
+        
     
     def round(self): #Khaliil
         """Initiates one round of the game.
@@ -102,7 +103,7 @@ class HumanPlayer():
             self.final_coordinate = int(str('4') + str(y))
         elif x  == 'e':
             self.final_coordinate = int(str('5') + str(y))
-        
+    
         
         if self.final_coordinate == 33:
             points = 10
@@ -230,11 +231,12 @@ class HumanPlayer():
     
         highest_score = max(self.scores.values())
         
-        if rounds == 2: 
+        if rounds == 3: 
             print(f"The winner is: {self.name} with a total score of: "
-                f"{self.total_score}")
+                f"{self.total_score()}")
             print(f"The winning player's highest score was {highest_score} \n \
                   Here is their score chart for the game: ")
+            self.scores.pop(0)
             for key, value in sorted(self.scores.items(), key = lambda x: x[1],\
                 reverse = True):
                 print(key, value)
@@ -276,7 +278,7 @@ class ComputerPlayer(HumanPlayer):
         computer_selected = rand_let + rand_num
         x = rand_let
         y = rand_num
-        # unpack x and y from computer input
+        # unpack x and y    from computer input
         # sets the selected_coordinate as an int
         if x == 'a':
             self.selected_computer_coordinate = int(str('1') + str(y))
@@ -296,6 +298,7 @@ class ComputerPlayer(HumanPlayer):
 def main(human, computer_name):#khaliil
     """Plays one round of the archery game and calls necessary 
     methods/functions.
+
     """
     play_again = "y"
     #send arguments to main function
@@ -308,6 +311,7 @@ def main(human, computer_name):#khaliil
         computer.round()
             #each one needs to play their turn (call round)
         #figure out who won and print (write a conditional expression)
+
         if human_player.total_score() > computer.total_score():
             print("Player 1 wins!")
         elif human_player.total_score() < computer.total_score():
@@ -318,13 +322,6 @@ def main(human, computer_name):#khaliil
 
         if play_again != "y":
             break
-
-
-
-    #Isnt this doing the same thing as round()?
-    # Will make a call to coordinates(), turn(), validate_shot(), score(), and 
-    # game_over()
-    pass 
 
 # argument parser in order to use command line arguments 
 # (player name and desired target) 
