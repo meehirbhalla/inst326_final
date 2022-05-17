@@ -26,6 +26,7 @@ class HumanPlayer():
         self.scores = {0:0}
         self.name = name
         self.wind_strength()
+       
         
     
     def round(self): #Khaliil
@@ -38,12 +39,15 @@ class HumanPlayer():
             print(f"Round {rounds} of 3")
             # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
             rounds += 1
-            # announce whose turn it is
+            # announce whose turn it is'
+            
             print(f"{self.name}, it is your turn")
             # display wind strength
             print(f"The current wind direction is {self.wind} ") #
             self.turn()
+            self.coordinates()
             self.score(rounds)
+            
         
     def __lt__(self, other): #Brice 
         return self.scores.values < other.scores.values
@@ -75,6 +79,8 @@ class HumanPlayer():
             self.final_coordinate = self.player_input + 10
         elif self.wind == 'West':
             self.final_coordinate = self.player_input - 10
+
+        print(f"It's printed {self.final_coordinate} here <<<<<<<")
             
     def score(self, rounds): #Raeen
         """Score taken from coordinate shot landed on. Score calls validate_shot
@@ -202,6 +208,7 @@ class HumanPlayer():
             final_coordinate attribute is changed from an int to a string.
         """
         # unpack final_coordinate as a string
+        
         f,l = str(self.final_coordinate)
         
         if f == '1':
