@@ -216,7 +216,7 @@ class HumanPlayer():
     
         highest_score = max(self.scores.values())
         
-        if rounds == 3: 
+        if rounds == 2: 
             print(f"The winner is: {self.name} with a total score of: "
                 f"{self.total_score}")
             print(f"The winning player's highest score was {highest_score} \n \
