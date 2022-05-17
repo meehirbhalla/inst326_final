@@ -91,6 +91,20 @@ class HumanPlayer():
         # 41 42 43 44 45
         # 51 52 53 54 55
         
+        x,y = self.final_coordinate
+        
+        if x == 'a':
+            self.final_coordinate = int(str('1') + str(y))
+        elif x  == 'b':
+            self.final_coordinate = int(str('2') + str(y))
+        elif x  == 'c':
+            self.final_coordinate = int(str('3') + str(y))
+        elif x  == 'd':
+            self.final_coordinate = int(str('4') + str(y))
+        elif x  == 'e':
+            self.final_coordinate = int(str('5') + str(y))
+        
+        
         if self.final_coordinate == 33:
             points = 10
         elif self.final_coordinate == 22 or self.final_coordinate == 23 or self.final_coordinate == 24 or self.final_coordinate == 32 or self.final_coordinate == 34 or self.final_coordinate == 42 or self.final_coordinate == 43 or self.final_coordinate == 44:
@@ -217,7 +231,7 @@ class HumanPlayer():
     
         highest_score = max(self.scores.values())
         
-        if rounds == 3: 
+        if rounds == 2: 
             print(f"The winner is: {self.name} with a total score of: "
                 f"{self.total_score}")
             print(f"The winning player's highest score was {highest_score} \n \
@@ -276,7 +290,7 @@ class ComputerPlayer(HumanPlayer):
         elif x == 'e':
             self.selected_computer_coordinate = int(str('5') + str(y))
         
-        
+        self.final_coordinate = computer_selected
         print (f'Coordinate selected: ,{computer_selected}')
     
     
