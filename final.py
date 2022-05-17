@@ -25,7 +25,8 @@ class HumanPlayer():
         """
         self.scores = {0:0}
         self.name = name
-        self.player_input = 0
+        self.wind_strength()
+        #self.player_input = 0
         
 
         
