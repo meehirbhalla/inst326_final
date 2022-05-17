@@ -43,6 +43,7 @@ class HumanPlayer():
             # display wind strength
             print(f"The current wind direction is {self.wind} ") #
             self.turn()
+            self.coordinates()
             self.score(rounds)
         
     def __lt__(self, other): #Brice 
@@ -91,18 +92,9 @@ class HumanPlayer():
         # 14 24 34 44 54
         # 15 25 35 45 55
         
-        x,y = self.final_coordinate
+        #x,y = self.final_coordinate
         
-        if x == 'a':
-            self.final_coordinate = int(str('1') + str(y))
-        elif x  == 'b':
-            self.final_coordinate = int(str('2') + str(y))
-        elif x  == 'c':
-            self.final_coordinate = int(str('3') + str(y))
-        elif x  == 'd':
-            self.final_coordinate = int(str('4') + str(y))
-        elif x  == 'e':
-            self.final_coordinate = int(str('5') + str(y))
+       
     
         
         if self.final_coordinate == 33:
