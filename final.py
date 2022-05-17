@@ -84,11 +84,11 @@ class HumanPlayer():
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
-        # 11 12 13 14 15
-        # 21 22 23 24 25
-        # 31 32 33 34 35
-        # 41 42 43 44 45
-        # 51 52 53 54 55
+        # 11 21 31 41 51
+        # 12 22 32 42 52
+        # 13 23 33 43 52
+        # 14 24 34 44 54
+        # 15 25 35 45 55
         
         x,y = self.final_coordinate
         
@@ -309,7 +309,7 @@ def main(human, computer_name):#khaliil
             #each one needs to play their turn (call round)
         #figure out who won and print (write a conditional expression)
         if human_player.total_score() > computer.total_score():
-            print("Payer 1 wins!")
+            print("Player 1 wins!")
         elif human_player.total_score() < computer.total_score():
             print("Computer wins!")
         else:
