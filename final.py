@@ -15,7 +15,7 @@ class HumanPlayer():
         name(str): Name of current player 
     """
     # utilizes optional parameters of name
-    def __init__(self, name): #KHALIIL
+    def __init__(self, name): #Khaliil
         """Function that will initialize the objects that were represented in
            the attributes.
            
@@ -26,7 +26,9 @@ class HumanPlayer():
         self.scores = {0:0}
         self.name = name
         self.wind_strength()
-    
+        
+    #Uses f-strings to print out relevant information regarding the game
+    # in progress
     def round(self): #Khaliil
         """Initiates one round of the game.
         Side Effects:
@@ -34,34 +36,59 @@ class HumanPlayer():
         """
         rounds = 0 
         while self.game_over(rounds) == False:
-            # in the begining of each rund anounce the current round, and display current score 
+            # Displays current round and current score at beginning of round 
             print(f"The current score is {self.total_score()}") 
             print(f"Round {rounds} of 3")
-            # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
             rounds += 1
-            # announce whose turn it is
+            
+            # Displays current player's turn 
             print(f"{self.name}, it is your turn")
-            # display wind strength
+
+           
             self.wind_strength()
-            print(f"The current wind direction is {self.wind} ") #
+             # Display wind strength
+            print(f"The current wind direction is {self.wind} ") 
             self.turn()
             self.coordinates()
             self.score(rounds)
         return self.scores
     
+    #uses magic methods to compare the values in dictionaries 
     def __lt__(self, other): #Brice 
+        """Method used to compare the two dictionaries of values in the game
+
+        Args:
+            other (dict): dictionary used to store scores from the game
+
+        Returns:
+            Boolean: Returns true or false if current scores is less than
+                     the other's scores.
+        """
         return self.scores.values < other.scores.values
-    
-    #compares scores based on self.score
-    #compute the sum of the values of self.score, use sum function
-    #dictionaries has a .value function
-    
+      
     #Helper function
     def total_score(self): #Brice
+        """Method used to calculate the total score from the values in the 
+           dictionaries  
+
+        Returns:
+            Integer: total score from the values
+        """
         return sum(self.scores.values())
     
-    def __eq__(self, other): #Brice 
+    #uses magic methods to compare the values in dictionaries
+    def __eq__(self, other): #Brice
+        """Method used to compare the two dictionaries of values in the game
+
+        Args:
+            other (dict): dictionary used to store scores from the game
+
+        Returns:
+            Boolean: Returns true or false if current scores is equal than
+                     the other's scores.
+        """ 
         return self.scores.values == other.scores.values
+    
     
     # Meehir
     def coordinates(self):
@@ -82,8 +109,10 @@ class HumanPlayer():
             self.final_coordinate = self.player_input - 10
             
     def score(self, rounds): #Raeen
-        """Score taken from coordinate shot landed on. Score calls validate_shot
-        to distribute points based on where shot landed. 
+        """_summary_
+
+        Args:
+            rounds (_type_): _description_
         """
         # scores in each round will be stored in a dictionary with the rounds 
         # being the keys and the scores as the values.
@@ -211,19 +240,14 @@ class HumanPlayer():
         else:
             self.final_coordinate = (str('E') + str(l))
     
+    # use f-strings to display the name and total score over all 3 rounds
+    # use custom list sorting to list best performing rounds by score
     def game_over(self, rounds): #Brice
         """Game is over and determines the winner. 
         
         Return:
             boolean: false if game is not over true if game is over
         """
-        #player = HumanPlayer(0, "Player 1")
-        #May need a function to determine winner 
-        #How do I call score_per_game dict from here
-        #best_score = max(player.score_per_game, key=player.score_per_game.get)
-        #best_score = player.score_per_game.sort(key=lambda x: )
-
-        #Call total_Score
     
         highest_score = max(self.scores.values())
         
@@ -239,24 +263,22 @@ class HumanPlayer():
             return True
         else:
             return False
-        # use f-strings to display the name and total score over all 3 rounds
-        # use custom list sorting to list best performing rounds by score
-    
-
+        
 class ComputerPlayer(HumanPlayer):
-    # inherits all the methods from the human class
+    # inherits all the methods from the HumanPlayer class
+    # Overrides some functions from the HumanPlayer class  
     """Represents a computer player 
 
     Attributes:
         cname (str): name for computer player
     """
     
-    # optional parameter for computer name 
+    # Optional parameter for computer name 
     def __init__(self, cname): #Brice
         """Function that will initialize the objects that were represented in
            the attributes.
         """
-        # uses super to call the init method from the human class
+        # Uses super to call the init method from the human class
         super().__init__(cname)
         self.player_input = 0
         
@@ -265,16 +287,19 @@ class ComputerPlayer(HumanPlayer):
         """Overides human and generates random coordinates within bounds 
         to shoot.
         """         
-        # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
+        # Overrides the turn method in the human class since computer turn 
+        # randomly generates a coordinate to shoot
         
         letters = ['a','b','c','d','e']
         nums = ['1','2','3','4','5']
         rand_let = random.choice(letters)
         rand_num = random.choice(nums)
         computer_selected = rand_let + rand_num
+        
+        # unpack x and y from computer input
         x = rand_let
         y = rand_num
-        # unpack x and y    from computer input
+        
         # sets the selected_coordinate as an int
         if x == 'a':
             self.selected_computer_coordinate = int(str('1') + str(y))
@@ -324,9 +349,11 @@ def main(human, computer):#Khaliil
         computer = ComputerPlayer(computer)
         computer_score = computer.round()
 
-        if sum(human_score.values()) > sum(computer_score.values()):
+        #Uses conditional expressions to evaluate the result of the comparison
+        #of scores between the computer and human player. 
+        if human_player.total_score() > computer.total_score():
             print(f"{human_player.name} wins")
-        elif sum(human_score.values()) < sum(computer_score.values()):
+        elif human_player.total_score() < computer.total_score():
             print("Computer wins!")
         else:
             print("It's a tie!")
