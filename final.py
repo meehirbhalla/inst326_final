@@ -15,12 +15,11 @@ class HumanPlayer():
         name(str): Name of current player 
     """
     # utilizes optional parameters of name
-    def __init__(self, name = 'Player 1'): #KHALIIL
+    def __init__(self, name): #KHALIIL
         """Function that will initialize the objects that were represented in
            the attributes.
            
         Args:
-            score(integer): score of player
             name (str): user inputted name
         """
         self.scores = {0:0}
@@ -29,10 +28,12 @@ class HumanPlayer():
     
     def round(self): #Khaliil
         """Initiates one round of the game.
+        Side Effects:
+            prints to the terminal
         """
         rounds = 0 
         while self.game_over(rounds) == False:
-            # in the begining of each round anounce the current round, and display current score 
+            # in the begining of each rund anounce the current round, and display current score 
             print(f"The current score is {self.total_score()}") 
             print(f"Round {rounds} of 3")
             # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
@@ -40,12 +41,16 @@ class HumanPlayer():
             # announce whose turn it is
             print(f"{self.name}, it is your turn")
             # display wind strength
+            self.wind_strength()
             print(f"The current wind direction is {self.wind} ") #
             self.turn()
+            self.coordinates()
             self.score(rounds)
-        
+        return self.scores
+    
     def __lt__(self, other): #Brice 
         return self.scores.values < other.scores.values
+    
     #compares scores based on self.score
     #compute the sum of the values of self.score, use sum function
     #dictionaries has a .value function
@@ -78,41 +83,35 @@ class HumanPlayer():
     def score(self, rounds): #Raeen
         """Score taken from coordinate shot landed on. Score calls validate_shot
         to distribute points based on where shot landed. 
+        
+        Side Effects:
+            adds new scores to the dictionary
         """
         # scores in each round will be stored in a dictionary with the rounds 
         # being the keys and the scores as the values.
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
-        # 11 12 13 14 15
-        # 21 22 23 24 25
-        # 31 32 33 34 35
-        # 41 42 43 44 45
-        # 51 52 53 54 55
+        # 11 21 31 41 51        A1 B1 C1 D1 E1
+        # 12 22 32 42 52        A2 B2 C2 D2 E2
+        # 13 23 33 43 52        A3 B3 C3 D3 E3
+        # 14 24 34 44 54        A4 B4 C4 D4 E4
+        # 15 25 35 45 55        A5 B5 C5 D5 E5
         
-        x,y = self.final_coordinate
-        
-        if x == 'a':
-            self.final_coordinate = int(str('1') + str(y))
-        elif x  == 'b':
-            self.final_coordinate = int(str('2') + str(y))
-        elif x  == 'c':
-            self.final_coordinate = int(str('3') + str(y))
-        elif x  == 'd':
-            self.final_coordinate = int(str('4') + str(y))
-        elif x  == 'e':
-            self.final_coordinate = int(str('5') + str(y))
         
         
         if self.final_coordinate == 33:
             points = 10
-        elif self.final_coordinate == 22 or self.final_coordinate == 23 or self.final_coordinate == 24 or self.final_coordinate == 32 or self.final_coordinate == 34 or self.final_coordinate == 42 or self.final_coordinate == 43 or self.final_coordinate == 44:
+        elif self.final_coordinate == 22 or self.final_coordinate == 32 \
+            or self.final_coordinate == 42 or self.final_coordinate == 23 \
+            or self.final_coordinate == 43 or self.final_coordinate == 24 \
+            or self.final_coordinate == 34 or self.final_coordinate == 44:
             points = 5
         else:
             points = 1
         
         self.scores[rounds] = points
-        
+
     # Meehir           
     def turn(self):
         """Prompts player for desired coordinates and makes sure inputted 
@@ -189,14 +188,13 @@ class HumanPlayer():
         # list of potential directions
         direction = ['North', 'South', 'East', 'West']
         
-        # random wind direction
+        # random wind direction 
         self.wind = random.choice(direction)
         
     # Meehir
     def validate_shot(self):
         """unpacks final_coordinate attribute and changes it from an 
         int to a string.
-
         Side effects:
             final_coordinate attribute is changed from an int to a string.
         """
@@ -230,11 +228,11 @@ class HumanPlayer():
     
         highest_score = max(self.scores.values())
         
-        if rounds == 2: 
-            print(f"The winner is: {self.name} with a total score of: "
-                f"{self.total_score}")
-            print(f"The winning player's highest score was {highest_score} \n \
+        if rounds == 3: 
+            print(f"Total score for {self.name} is {self.total_score()}")
+            print(f"{self.name} highest score from 3 rounds was {highest_score} \n \
                   Here is their score chart for the game: ")
+            self.scores.pop(0)
             for key, value in sorted(self.scores.items(), key = lambda x: x[1],\
                 reverse = True):
                 print(key, value)
@@ -249,23 +247,30 @@ class HumanPlayer():
 class ComputerPlayer(HumanPlayer):
     # inherits all the methods from the human class
     """Represents a computer player 
-
     Attributes:
         cname (str): name for computer player
     """
     
     # optional parameter for computer name 
-    def __init__(self, cname = 'Computer'): #Brice
+    def __init__(self, cname): #Brice
         """Function that will initialize the objects that were represented in
            the attributes.
         """
         # uses super to call the init method from the human class
-        super().__init__()
+        super().__init__(cname)
+        self.player_input = 0
         
         
     def turn(self): #Raeen
         """Overides human and generates random coordinates within bounds 
         to shoot.
+        
+        Side Effects:
+            prints the coordinates the computer selected
+            
+            selected_computer_coordinate is changed from a string to an int.
+            
+            final_coordinate is instantiated with the same value as the computer_selected attribute.
         """         
         # overrides the turn method in the human class since computer turn randomly generates a coordinate to shoot
         
@@ -276,7 +281,7 @@ class ComputerPlayer(HumanPlayer):
         computer_selected = rand_let + rand_num
         x = rand_let
         y = rand_num
-        # unpack x and y from computer input
+        # unpack x and y    from computer input
         # sets the selected_coordinate as an int
         if x == 'a':
             self.selected_computer_coordinate = int(str('1') + str(y))
@@ -292,25 +297,45 @@ class ComputerPlayer(HumanPlayer):
         self.final_coordinate = computer_selected
         print (f'Coordinate selected: ,{computer_selected}')
     
-    
-def main(human, computer_name):#khaliil
+    #Overides HumanPlayer's coordinate method slightly to fit computer's 
+    #random coordinate generation.    
+    def coordinates(self): #Brice
+        """Coordinate is determined based on relative position of shot to center
+        and accounts wind interference.
+        
+        Side effects: 
+            final_coordinate attribute is set to the winds effect on the 
+            selected_computer_coordinate attribute.
+        """ 
+        # the final coordinate depends on the random wind direction's affect on 
+        # the computer's selected coordinate. 
+        if self.wind == 'North':
+            self.final_coordinate = self.selected_computer_coordinate + 1
+        elif self.wind == 'South':
+            self.final_coordinate = self.selected_computer_coordinate - 1
+        elif self.wind == 'East':
+            self.final_coordinate = self.selected_computer_coordinate + 10
+        elif self.wind == 'West':
+            self.final_coordinate = self.selected_computer_coordinate - 10
+            
+def main(human, computer):#Khaliil
     """Plays one round of the archery game and calls necessary 
     methods/functions.
+    Args:
+        human (str): name of human player
+        computer(str): name of computer player
     """
     play_again = "y"
-    #send arguments to main function
-    #instanciate human player
+
     while play_again == "y": 
         human_player = HumanPlayer(human)
-        human_player.round()
-        # "" computer player
-        computer = ComputerPlayer(computer_name)
-        computer.round()
-            #each one needs to play their turn (call round)
-        #figure out who won and print (write a conditional expression)
-        if human_player.total_score() > computer.total_score():
-            print("Payer 1 wins!")
-        elif human_player.total_score() < computer.total_score():
+        human_score = human_player.round()
+        computer = ComputerPlayer(computer)
+        computer_score = computer.round()
+
+        if sum(human_score.values()) > sum(computer_score.values()):
+            print(f"{human_player.name} wins")
+        elif sum(human_score.values()) < sum(computer_score.values()):
             print("Computer wins!")
         else:
             print("It's a tie!")
@@ -319,20 +344,14 @@ def main(human, computer_name):#khaliil
         if play_again != "y":
             break
 
-
-
-    #Isnt this doing the same thing as round()?
-    # Will make a call to coordinates(), turn(), validate_shot(), score(), and 
-    # game_over()
-    pass 
-
-# argument parser in order to use command line arguments 
+# Argument parser in order to use command line arguments 
 # (player name and desired target) 
 def parse_args(arglist):#Brice
     """Parse command line arguments.
     
-    Expect two mandatory arguments:
+    Expect three mandatory arguments:
         - str: name of player
+        - str: name of second player/computer player
         - str: desired position on target
     
     Args:
@@ -342,8 +361,8 @@ def parse_args(arglist):#Brice
         namespace: parsed arguments
     """ 
     parser = argparse.ArgumentParser()
-    parser.add_argument("player1", help= "Name ofthe first player")
-    parser.add_argument("computer", help= "Name ofthe computer player")
+    parser.add_argument("player1", help= "Name of the first player")
+    parser.add_argument("computer", help= "Name of the computer player")
     return parser.parse_args(arglist)
  
 if __name__ == "__main__":
