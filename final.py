@@ -92,13 +92,22 @@ class HumanPlayer():
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
+<<<<<<< HEAD
         # 11 21 31 41 51        A1 B1 C1 D1 E1
         # 12 22 32 42 52        A2 B2 C2 D2 E2
         # 13 23 33 43 52        A3 B3 C3 D3 E3
         # 14 24 34 44 54        A4 B4 C4 D4 E4
         # 15 25 35 45 55        A5 B5 C5 D5 E5
         
+=======
+        # 11 21 31 41 51        A1 A2 A3 A4 A5
+        # 12 22 32 42 52        B1 B2 B3 B4 B5
+        # 13 23 33 43 52        C1 C2 C3 C4 C5
+        # 14 24 34 44 54        D1 D2 D3 D4 D5
+        # 15 25 35 45 55        E1 E2 E3 E4 E5
+>>>>>>> 32f4c6d52b78a6067de095d903ca6a3bc2db38f3
         
+        #x,y = self.final_coordinate
         
         if self.final_coordinate == 33:
             points = 10
