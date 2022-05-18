@@ -15,7 +15,7 @@ class HumanPlayer():
         name(str): Name of current player 
     """
     # utilizes optional parameters of name
-    def __init__(self, name = 'computer'): #KHALIIL
+    def __init__(self, name): #KHALIIL
         """Function that will initialize the objects that were represented in
            the attributes.
            
@@ -252,12 +252,12 @@ class ComputerPlayer(HumanPlayer):
     """
     
     # optional parameter for computer name 
-    def __init__(self, cname = 'Computer'): #Brice
+    def __init__(self, cname): #Brice
         """Function that will initialize the objects that were represented in
            the attributes.
         """
         # uses super to call the init method from the human class
-        super().__init__()
+        super().__init__(cname)
         self.player_input = 0
         
         
@@ -290,36 +290,18 @@ class ComputerPlayer(HumanPlayer):
         self.final_coordinate = computer_selected
         print (f'Coordinate selected: ,{computer_selected}')
     
-    #def round(self): #Khaliil
-        #"""Initiates one round of the game.
-        #Side Effects:
-            #prints to the terminal
-        #"""
-        #rounds = 0 
-        #while self.game_over(rounds) == False:
-            # in the begining of each rund anounce the current round, and display current score 
-            #print(f"The current score is {self.total_score()}") 
-            #print(f"Round {rounds} of 3")
-            # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
-            #rounds += 1
-            # announce whose turn it is
-            #print(f"{self.name}, it is your turn")
-            # display wind strength
-            #self.wind_strength()
-            #print(f"The current wind direction is {self.wind} ") #
-            #self.turn()
-           # self.coordinates()
-            #self.score(rounds)
-        #return self.scores
-        
-    def coordinates(self):
-        """Coordinate is determined based on relative position of shot to center and 
-        accounts wind interference.
+    #Overides HumanPlayer's coordinate method slightly to fit computer's 
+    #random coordinate generation.    
+    def coordinates(self): #Brice
+        """Coordinate is determined based on relative position of shot to center
+        and accounts wind interference.
         
         Side effects: 
-            final_coordinate attribute is set to the winds effect on the player_input attribute.
+            final_coordinate attribute is set to the winds effect on the 
+            selected_computer_coordinate attribute.
         """ 
-        # the final coordinate depends on the random wind direction's affect on the player_input
+        # the final coordinate depends on the random wind direction's affect on 
+        # the computer's selected coordinate. 
         if self.wind == 'North':
             self.final_coordinate = self.selected_computer_coordinate + 1
         elif self.wind == 'South':
@@ -329,23 +311,18 @@ class ComputerPlayer(HumanPlayer):
         elif self.wind == 'West':
             self.final_coordinate = self.selected_computer_coordinate - 10
             
-def main(human):#khaliil
+def main(human, computer):#Khaliil
     """Plays one round of the archery game and calls necessary 
     methods/functions.
 
     """
     play_again = "y"
-    #send arguments to main function
-    #instanciate human player
+
     while play_again == "y": 
         human_player = HumanPlayer(human)
         human_score = human_player.round()
-        # "" computer player
-        computer = ComputerPlayer("computer")
+        computer = ComputerPlayer(computer)
         computer_score = computer.round()
-            #each one needs to play their turn (call round)
-        #figure out who won and print (write a conditional expression)
-
 
         if sum(human_score.values()) > sum(computer_score.values()):
             print(f"{human_player.name} wins")
@@ -358,13 +335,14 @@ def main(human):#khaliil
         if play_again != "y":
             break
 
-# argument parser in order to use command line arguments 
+# Argument parser in order to use command line arguments 
 # (player name and desired target) 
 def parse_args(arglist):#Brice
     """Parse command line arguments.
     
-    Expect two mandatory arguments:
+    Expect three mandatory arguments:
         - str: name of player
+        - str: name of second player/computer player
         - str: desired position on target
     
     Args:
@@ -374,10 +352,10 @@ def parse_args(arglist):#Brice
         namespace: parsed arguments
     """ 
     parser = argparse.ArgumentParser()
-    parser.add_argument("player1", help= "Name ofthe first player")
-    parser.add_argument("computer", help= "Name ofthe computer player")
+    parser.add_argument("player1", help= "Name of the first player")
+    parser.add_argument("computer", help= "Name of the computer player")
     return parser.parse_args(arglist)
  
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args.player1)
+    main(args.player1, args.computer)
