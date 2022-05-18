@@ -48,8 +48,10 @@ class HumanPlayer():
             self.coordinates()
             self.score(rounds)
         return self.scores
+    
     def __lt__(self, other): #Brice 
         return self.scores.values < other.scores.values
+    
     #compares scores based on self.score
     #compute the sum of the values of self.score, use sum function
     #dictionaries has a .value function
@@ -88,17 +90,20 @@ class HumanPlayer():
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
-        # 11 21 31 41 51
-        # 12 22 32 42 52
-        # 13 23 33 43 52
-        # 14 24 34 44 54
-        # 15 25 35 45 55
+        # 11 21 31 41 51        A1 A2 A3 A4 A5
+        # 12 22 32 42 52        B1 B2 B3 B4 B5
+        # 13 23 33 43 52        C1 C2 C3 C4 C5
+        # 14 24 34 44 54        D1 D2 D3 D4 D5
+        # 15 25 35 45 55        E1 E2 E3 E4 E5
         
         #x,y = self.final_coordinate
         
         if self.final_coordinate == 33:
             points = 10
-        elif self.final_coordinate == 22 or self.final_coordinate == 32 or self.final_coordinate == 42 or self.final_coordinate == 23 or self.final_coordinate == 43 or self.final_coordinate == 24 or self.final_coordinate == 34 or self.final_coordinate == 44:
+        elif self.final_coordinate == 22 or self.final_coordinate == 32 \
+            or self.final_coordinate == 42 or self.final_coordinate == 23 \
+            or self.final_coordinate == 43 or self.final_coordinate == 24 \
+            or self.final_coordinate == 34 or self.final_coordinate == 44:
             points = 5
         else:
             points = 1
@@ -285,7 +290,45 @@ class ComputerPlayer(HumanPlayer):
         self.final_coordinate = computer_selected
         print (f'Coordinate selected: ,{computer_selected}')
     
-    
+    #def round(self): #Khaliil
+        #"""Initiates one round of the game.
+        #Side Effects:
+            #prints to the terminal
+        #"""
+        #rounds = 0 
+        #while self.game_over(rounds) == False:
+            # in the begining of each rund anounce the current round, and display current score 
+            #print(f"The current score is {self.total_score()}") 
+            #print(f"Round {rounds} of 3")
+            # there should be a total of three rounds, and the first player to win 2 rounds wins, but as long as the game is not over keep initiating
+            #rounds += 1
+            # announce whose turn it is
+            #print(f"{self.name}, it is your turn")
+            # display wind strength
+            #self.wind_strength()
+            #print(f"The current wind direction is {self.wind} ") #
+            #self.turn()
+           # self.coordinates()
+            #self.score(rounds)
+        #return self.scores
+        
+    def coordinates(self):
+        """Coordinate is determined based on relative position of shot to center and 
+        accounts wind interference.
+        
+        Side effects: 
+            final_coordinate attribute is set to the winds effect on the player_input attribute.
+        """ 
+        # the final coordinate depends on the random wind direction's affect on the player_input
+        if self.wind == 'North':
+            self.final_coordinate = self.selected_computer_coordinate + 1
+        elif self.wind == 'South':
+            self.final_coordinate = self.selected_computer_coordinate - 1
+        elif self.wind == 'East':
+            self.final_coordinate = self.selected_computer_coordinate + 10
+        elif self.wind == 'West':
+            self.final_coordinate = self.selected_computer_coordinate - 10
+            
 def main(human):#khaliil
     """Plays one round of the archery game and calls necessary 
     methods/functions.
