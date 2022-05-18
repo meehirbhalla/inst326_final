@@ -26,10 +26,6 @@ class HumanPlayer():
         self.scores = {0:0}
         self.name = name
         self.wind_strength()
-        
-        
-
-        
     
     def round(self): #Khaliil
         """Initiates one round of the game.
@@ -99,9 +95,6 @@ class HumanPlayer():
         # 15 25 35 45 55
         
         #x,y = self.final_coordinate
-        
-       
-    
         
         if self.final_coordinate == 33:
             points = 10
@@ -339,7 +332,7 @@ def parse_args(arglist):#Brice
     """ 
     parser = argparse.ArgumentParser()
     parser.add_argument("player1", help= "Name ofthe first player")
-    #parser.add_argument("computer", help= "Name ofthe computer player")
+    parser.add_argument("computer", help= "Name ofthe computer player")
     return parser.parse_args(arglist)
  
 if __name__ == "__main__":
