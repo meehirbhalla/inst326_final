@@ -20,7 +20,6 @@ class HumanPlayer():
            the attributes.
            
         Args:
-            score(integer): score of player
             name (str): user inputted name
         """
         self.scores = {0:0}
@@ -314,7 +313,9 @@ class ComputerPlayer(HumanPlayer):
 def main(human, computer):#Khaliil
     """Plays one round of the archery game and calls necessary 
     methods/functions.
-
+    Args:
+        human (str): name of human player
+        computer(str): name of computer player
     """
     play_again = "y"
 
