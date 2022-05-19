@@ -14,6 +14,7 @@
       c. __eq__ </br>
       d. game_over </br>
       e. parse_args </br>
+      f. ComputerPlayer coordinates
 4. Contributions - Khaliil </br>
       a. __init__ </br>
       b. round </br>

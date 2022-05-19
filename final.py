@@ -20,7 +20,6 @@ class HumanPlayer():
            the attributes.
            
         Args:
-            score(integer): score of player
             name (str): user inputted name
         """
         self.scores = {0:0}
@@ -109,23 +108,28 @@ class HumanPlayer():
             self.final_coordinate = self.player_input - 10
             
     def score(self, rounds): #Raeen
-        """_summary_
+
+        """Score taken from coordinate shot landed on. Score calls validate_shot
+        to distribute points based on where shot landed.
 
         Args:
             rounds (_type_): _description_
+         
+        Side Effects:
+            adds new scores to the dictionary
+
         """
         # scores in each round will be stored in a dictionary with the rounds 
         # being the keys and the scores as the values.
         # determine score using conditional expressions, 
         # if _ unit from the bullseye then assign _ points
         
-        # 11 21 31 41 51        A1 A2 A3 A4 A5
-        # 12 22 32 42 52        B1 B2 B3 B4 B5
-        # 13 23 33 43 52        C1 C2 C3 C4 C5
-        # 14 24 34 44 54        D1 D2 D3 D4 D5
-        # 15 25 35 45 55        E1 E2 E3 E4 E5
-        
-        #x,y = self.final_coordinate
+
+        # 11 21 31 41 51        A1 B1 C1 D1 E1
+        # 12 22 32 42 52        A2 B2 C2 D2 E2
+        # 13 23 33 43 52        A3 B3 C3 D3 E3
+        # 14 24 34 44 54        A4 B4 C4 D4 E4
+        # 15 25 35 45 55        A5 B5 C5 D5 E5
         
         if self.final_coordinate == 33:
             points = 10
@@ -222,7 +226,6 @@ class HumanPlayer():
     def validate_shot(self):
         """unpacks final_coordinate attribute and changes it from an 
         int to a string.
-
         Side effects:
             final_coordinate attribute is changed from an int to a string.
         """
@@ -268,7 +271,6 @@ class ComputerPlayer(HumanPlayer):
     # inherits all the methods from the HumanPlayer class
     # Overrides some functions from the HumanPlayer class  
     """Represents a computer player 
-
     Attributes:
         cname (str): name for computer player
     """
@@ -286,6 +288,13 @@ class ComputerPlayer(HumanPlayer):
     def turn(self): #Raeen
         """Overides human and generates random coordinates within bounds 
         to shoot.
+        
+        Side Effects:
+            prints the coordinates the computer selected
+            
+            selected_computer_coordinate is changed from a string to an int.
+            
+            final_coordinate is instantiated with the same value as the computer_selected attribute.
         """         
         # Overrides the turn method in the human class since computer turn 
         # randomly generates a coordinate to shoot
@@ -339,7 +348,9 @@ class ComputerPlayer(HumanPlayer):
 def main(human, computer):#Khaliil
     """Plays one round of the archery game and calls necessary 
     methods/functions.
-
+    Args:
+        human (str): name of human player
+        computer(str): name of computer player
     """
     play_again = "y"
 
