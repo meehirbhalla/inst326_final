@@ -27,7 +27,6 @@ class HumanPlayer():
         self.wind_strength()
         
     #Uses f-strings to print out relevant information regarding the game
-    # in progress
     def round(self): #Khaliil
         """Initiates one round of the game.
         Side Effects:
